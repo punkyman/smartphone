@@ -2,12 +2,19 @@
 #include <Arduino.h>
 #include "i2c_communication.h"
 
+enum rc {
+  ROLL,
+  PITCH,
+  YAW
+};
+
 #define MAG_ORIENTATION(X, Y, Z) \
   {                              \
-    imu.magADC[ROLL] = X;        \
-    imu.magADC[PITCH] = Y;       \
-    imu.magADC[YAW] = Z;         \
+    magADC[ROLL] = X;        \
+    magADC[PITCH] = Y;       \
+    magADC[YAW] = Z;         \
   }
+
 
 #define HMC58X3_R_CONFA 0
 #define HMC58X3_R_CONFB 1
