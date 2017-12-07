@@ -85,37 +85,30 @@ void i2c_BMP085_readCalibration()
 void i2c_BMP085_UT_Start(void)
 {
   i2c::i2c_writeReg(BMP085_ADDRESS, 0xf4, 0x2e);
-  i2c::i2c_rep_start(BMP085_ADDRESS << 1);
-  i2c::i2c_write(0xF6);
-  i2c::i2c_stop();
+  i2c::i2c_selectReg(BMP085_ADDRESS, 0xF6);
 }
 
 // read uncompensated pressure value: send command first
 void i2c_BMP085_UP_Start()
 {
   i2c::i2c_writeReg(BMP085_ADDRESS, 0xf4, 0x34 + (OSS << 6)); // control register value for oversampling setting 3
-  i2c::i2c_rep_start(BMP085_ADDRESS << 1);                    //I2C write direction => 0
-  i2c::i2c_write(0xF6);
-  i2c::i2c_stop();
+  i2c::i2c_selectReg(BMP085_ADDRESS, 0xF6);
 }
 
 // read uncompensated pressure value: read result bytes
 // the datasheet suggests a delay of 25.5 ms (oversampling settings 3) after the send command
 void i2c_BMP085_UP_Read()
 {
-  i2c::i2c_rep_start((BMP085_ADDRESS << 1) | 1); //I2C read direction => 1
-  bmp085_ctx.up.raw[2] = i2c::i2c_readAck();
-  bmp085_ctx.up.raw[1] = i2c::i2c_readAck();
-  bmp085_ctx.up.raw[0] = i2c::i2c_readNak();
+  i2c::i2c_read_to_buf(BMP085_ADDRESS, bmp085_ctx.up.raw, 3);
+  swap_endianness(bmp085_ctx.up.raw, 3);
 }
 
 // read uncompensated temperature value: read result bytes
 // the datasheet suggests a delay of 4.5 ms after the send command
 void i2c_BMP085_UT_Read()
 {
-  i2c::i2c_rep_start((BMP085_ADDRESS << 1) | 1); //I2C read direction => 1
-  bmp085_ctx.ut.raw[1] = i2c::i2c_readAck();
-  bmp085_ctx.ut.raw[0] = i2c::i2c_readNak();
+  i2c::i2c_read_to_buf(BMP085_ADDRESS, bmp085_ctx.ut.raw, 2);
+  swap_endianness(bmp085_ctx.up.raw, 2);
 }
 
 void i2c_BMP085_Calculate()

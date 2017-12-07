@@ -10,6 +10,7 @@
 namespace ModuleAcceleration
 {
     extern int16_t accADC[3];
+
     void setup();
 
     void upate();

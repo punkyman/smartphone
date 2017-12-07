@@ -11,67 +11,38 @@ void setup(void)
   Wire.begin();
 }
 
-void __attribute__((noinline)) waitTransmissionI2C(uint8_t twcr)
+void i2c_read_reg_to_buf(uint8_t add, uint8_t reg, uint8_t *buf, uint8_t size)
 {
-  TWCR = twcr;
-  uint8_t count = 255;
-  while (!(TWCR & (1 << TWINT)))
+  Wire.beginTransmission(add);
+  Wire.write(reg);
+  Wire.endTransmission();
+
+  Wire.requestFrom(add, size);
+
+  if(Wire.available() >= size)
   {
-    count--;
-    if (count == 0)
-    {           //we are in a blocking state => we don't insist
-      TWCR = 0; //and we force a reset on TWINT register
-#if defined(WMP)
-      neutralizeTime = micros(); //we take a timestamp here to neutralize the value during a short delay
-#endif
-      //i2c_errors_count++;
-      break;
+    while (size > 0)
+    {
+      *buf = Wire.read();
+      ++buf;
+      --size;
     }
   }
 }
 
-void i2c_rep_start(uint8_t address)
+void i2c_read_to_buf(uint8_t add, uint8_t *buf, uint8_t size)
 {
-  waitTransmissionI2C((1 << TWINT) | (1 << TWSTA) | (1 << TWEN)); // send REPEAT START condition and wait until transmission completed
-  TWDR = address;                                                 // send device address
-  waitTransmissionI2C((1 << TWINT) | (1 << TWEN));                // wail until transmission completed
-}
+  Wire.requestFrom(add, size);
 
-void i2c_stop(void)
-{
-  TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);
-  //  while(TWCR & (1<<TWSTO));                // <- can produce a blocking state with some WMP clones
-}
-
-void i2c_write(uint8_t data)
-{
-  TWDR = data; // send data to the previously addressed device
-  waitTransmissionI2C((1 << TWINT) | (1 << TWEN));
-}
-
-uint8_t i2c_readAck()
-{
-  waitTransmissionI2C((1 << TWINT) | (1 << TWEN) | (1 << TWEA));
-  return TWDR;
-}
-
-uint8_t i2c_readNak()
-{
-  waitTransmissionI2C((1 << TWINT) | (1 << TWEN));
-  uint8_t r = TWDR;
-  i2c_stop();
-  return r;
-}
-
-void i2c_read_reg_to_buf(uint8_t add, uint8_t reg, uint8_t *buf, uint8_t size)
-{
-  i2c_rep_start(add << 1);       // I2C write direction
-  i2c_write(reg);                // register selection
-  i2c_rep_start((add << 1) | 1); // I2C read direction
-  uint8_t *b = buf;
-  while (--size)
-    *b++ = i2c_readAck(); // acknowledge all but the final byte
-  *b = i2c_readNak();
+  if(Wire.available() >= size)
+  {
+    while (size > 0)
+    {
+      *buf = Wire.read();
+      ++buf;
+      --size;
+    }
+  }
 }
 
 void i2c_getSixRawADC(uint8_t add, uint8_t reg)
@@ -81,10 +52,17 @@ void i2c_getSixRawADC(uint8_t add, uint8_t reg)
 
 void i2c_writeReg(uint8_t add, uint8_t reg, uint8_t val)
 {
-  i2c_rep_start(add << 1); // I2C write direction
-  i2c_write(reg);          // register selection
-  i2c_write(val);          // value to write in register
-  i2c_stop();
+  Wire.beginTransmission(add);
+  Wire.write(reg);
+  Wire.write(val);
+  Wire.endTransmission();
+}
+
+void i2c_selectReg(uint8_t add, uint8_t reg)
+{
+  Wire.beginTransmission(add);
+  Wire.write(reg);
+  Wire.endTransmission();
 }
 
 uint8_t i2c_readReg(uint8_t add, uint8_t reg)
@@ -93,4 +71,5 @@ uint8_t i2c_readReg(uint8_t add, uint8_t reg)
   i2c_read_reg_to_buf(add, reg, &val, 1);
   return val;
 }
+
 }
