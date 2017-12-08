@@ -5,7 +5,7 @@
 
 #include <Arduino.h>
 
-#define ADXL345_ADDRESS 0x1D
+#define ADXL345_ADDRESS 0x53
 
 namespace ModuleAcceleration
 {

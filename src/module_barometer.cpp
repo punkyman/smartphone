@@ -89,7 +89,7 @@ void i2c_BMP085_UP_Read()
 void i2c_BMP085_UT_Read()
 {
   i2c::read_to_buf(BMP085_ADDRESS, bmp085_ctx.ut.raw, 2);
-  i2c::swap_endianness(bmp085_ctx.up.raw, 2);
+  i2c::swap_endianness(bmp085_ctx.ut.raw, 2);
 }
 
 void i2c_BMP085_Calculate()
