@@ -64,13 +64,13 @@ void ACC_Common() {
 
 void setup () {
   delay(10);
-  i2c::i2c_writeReg(ADXL345_ADDRESS,0x2D,1<<3); //  register: Power CTRL  -- value: Set measure bit 3 on
-  i2c::i2c_writeReg(ADXL345_ADDRESS,0x31,0x0B); //  register: DATA_FORMAT -- value: Set bits 3(full range) and 1 0 on (+/- 16g-range)
-  i2c::i2c_writeReg(ADXL345_ADDRESS,0x2C,0x09); //  register: BW_RATE     -- value: rate=50hz, bw=20hz
+  i2c::writeReg(ADXL345_ADDRESS,0x2D,1<<3); //  register: Power CTRL  -- value: Set measure bit 3 on
+  i2c::writeReg(ADXL345_ADDRESS,0x31,0x0B); //  register: DATA_FORMAT -- value: Set bits 3(full range) and 1 0 on (+/- 16g-range)
+  i2c::writeReg(ADXL345_ADDRESS,0x2C,0x09); //  register: BW_RATE     -- value: rate=50hz, bw=20hz
 }
 
 void upate () {
-  i2c::i2c_getSixRawADC(ADXL345_ADDRESS,0x32);
+  i2c::getSixRawADC(ADXL345_ADDRESS,0x32);
 
   ACC_ORIENTATION( ((i2c::rawADC[1]<<8) | i2c::rawADC[0]) ,
                    ((i2c::rawADC[3]<<8) | i2c::rawADC[2]) ,

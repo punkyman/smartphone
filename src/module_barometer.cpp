@@ -8,25 +8,6 @@
 //  4) raw temp + raw pressure => calculation of the adjusted pressure
 //  the following code uses the maximum precision setting (oversampling setting 3)
 
-/* transform a series of bytes from big endian to little
-   endian and vice versa. */
-void swap_endianness(void *buf, size_t size)
-{
-  /* we swap in-place, so we only have to
-  * place _one_ element on a temporary tray
-  */
-  uint8_t tray;
-  uint8_t *from;
-  uint8_t *to;
-  /* keep swapping until the pointers have assed each other */
-  for (from = (uint8_t *)buf, to = &from[size - 1]; from < to; from++, to--)
-  {
-    tray = *from;
-    *from = *to;
-    *to = tray;
-  }
-}
-
 namespace ModuleBarometer
 {
 uint32_t currentTime = 0;
@@ -72,43 +53,43 @@ void i2c_BMP085_readCalibration()
   delay(10);
   //read calibration data in one go
   size_t s_bytes = (uint8_t *)&bmp085_ctx.md - (uint8_t *)&bmp085_ctx.ac1 + sizeof(bmp085_ctx.ac1);
-  i2c::i2c_read_reg_to_buf(BMP085_ADDRESS, 0xAA, (uint8_t *)&bmp085_ctx.ac1, s_bytes);
+  i2c::read_reg_to_buf(BMP085_ADDRESS, 0xAA, (uint8_t *)&bmp085_ctx.ac1, s_bytes);
   // now fix endianness
   int16_t *p;
   for (p = &bmp085_ctx.ac1; p <= &bmp085_ctx.md; p++)
   {
-    swap_endianness(p, sizeof(*p));
+    i2c::swap_endianness(p, sizeof(*p));
   }
 }
 
 // read uncompensated temperature value: send command first
 void i2c_BMP085_UT_Start(void)
 {
-  i2c::i2c_writeReg(BMP085_ADDRESS, 0xf4, 0x2e);
-  i2c::i2c_selectReg(BMP085_ADDRESS, 0xF6);
+  i2c::writeReg(BMP085_ADDRESS, 0xf4, 0x2e);
+  i2c::selectReg(BMP085_ADDRESS, 0xF6);
 }
 
 // read uncompensated pressure value: send command first
 void i2c_BMP085_UP_Start()
 {
-  i2c::i2c_writeReg(BMP085_ADDRESS, 0xf4, 0x34 + (OSS << 6)); // control register value for oversampling setting 3
-  i2c::i2c_selectReg(BMP085_ADDRESS, 0xF6);
+  i2c::writeReg(BMP085_ADDRESS, 0xf4, 0x34 + (OSS << 6)); // control register value for oversampling setting 3
+  i2c::selectReg(BMP085_ADDRESS, 0xF6);
 }
 
 // read uncompensated pressure value: read result bytes
 // the datasheet suggests a delay of 25.5 ms (oversampling settings 3) after the send command
 void i2c_BMP085_UP_Read()
 {
-  i2c::i2c_read_to_buf(BMP085_ADDRESS, bmp085_ctx.up.raw, 3);
-  swap_endianness(bmp085_ctx.up.raw, 3);
+  i2c::read_to_buf(BMP085_ADDRESS, bmp085_ctx.up.raw, 3);
+  i2c::swap_endianness(bmp085_ctx.up.raw, 3);
 }
 
 // read uncompensated temperature value: read result bytes
 // the datasheet suggests a delay of 4.5 ms after the send command
 void i2c_BMP085_UT_Read()
 {
-  i2c::i2c_read_to_buf(BMP085_ADDRESS, bmp085_ctx.ut.raw, 2);
-  swap_endianness(bmp085_ctx.up.raw, 2);
+  i2c::read_to_buf(BMP085_ADDRESS, bmp085_ctx.ut.raw, 2);
+  i2c::swap_endianness(bmp085_ctx.up.raw, 2);
 }
 
 void i2c_BMP085_Calculate()

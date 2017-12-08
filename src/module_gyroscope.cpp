@@ -21,11 +21,11 @@ namespace ModuleGyroscope
   void setup()
   {
     delay(100);
-    i2c::i2c_writeReg(L3G4200D_ADDRESS ,0x20 ,0x8F ); // CTRL_REG1   400Hz ODR, 20hz filter, run!
+    i2c::writeReg(L3G4200D_ADDRESS ,0x20 ,0x8F ); // CTRL_REG1   400Hz ODR, 20hz filter, run!
     delay(5);
-    i2c::i2c_writeReg(L3G4200D_ADDRESS ,0x24 ,0x02 ); // CTRL_REG5   low pass filter enable
+    i2c::writeReg(L3G4200D_ADDRESS ,0x24 ,0x02 ); // CTRL_REG5   low pass filter enable
     delay(5);
-    i2c::i2c_writeReg(L3G4200D_ADDRESS ,0x23 ,0x30); // CTRL_REG4 Select 2000dps
+    i2c::writeReg(L3G4200D_ADDRESS ,0x23 ,0x30); // CTRL_REG4 Select 2000dps
   }
 
   void GYRO_Common() {
@@ -85,7 +85,7 @@ namespace ModuleGyroscope
 }
 
 void update() {
-  i2c::i2c_getSixRawADC(L3G4200D_ADDRESS,0x80|0x28);
+  i2c::getSixRawADC(L3G4200D_ADDRESS,0x80|0x28);
 
   GYRO_ORIENTATION( ((i2c::rawADC[1]<<8) | i2c::rawADC[0])>>2  ,
                     ((i2c::rawADC[3]<<8) | i2c::rawADC[2])>>2  ,

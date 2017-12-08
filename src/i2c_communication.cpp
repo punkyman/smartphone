@@ -11,7 +11,27 @@ void setup(void)
   Wire.begin();
 }
 
-void i2c_read_reg_to_buf(uint8_t add, uint8_t reg, uint8_t *buf, uint8_t size)
+/* transform a series of bytes from big endian to little
+   endian and vice versa. */
+void swap_endianness(void *buf, size_t size)
+{
+  /* we swap in-place, so we only have to
+  * place _one_ element on a temporary tray
+  */
+  uint8_t tray;
+  uint8_t *from;
+  uint8_t *to;
+  /* keep swapping until the pointers have assed each other */
+  for (from = (uint8_t *)buf, to = &from[size - 1]; from < to; from++, to--)
+  {
+    tray = *from;
+    *from = *to;
+    *to = tray;
+  }
+}
+
+
+void read_reg_to_buf(uint8_t add, uint8_t reg, uint8_t *buf, uint8_t size)
 {
   Wire.beginTransmission(add);
   Wire.write(reg);
@@ -30,7 +50,7 @@ void i2c_read_reg_to_buf(uint8_t add, uint8_t reg, uint8_t *buf, uint8_t size)
   }
 }
 
-void i2c_read_to_buf(uint8_t add, uint8_t *buf, uint8_t size)
+void read_to_buf(uint8_t add, uint8_t *buf, uint8_t size)
 {
   Wire.requestFrom(add, size);
 
@@ -45,12 +65,12 @@ void i2c_read_to_buf(uint8_t add, uint8_t *buf, uint8_t size)
   }
 }
 
-void i2c_getSixRawADC(uint8_t add, uint8_t reg)
+void getSixRawADC(uint8_t add, uint8_t reg)
 {
-  i2c_read_reg_to_buf(add, reg, rawADC, 6);
+  read_reg_to_buf(add, reg, rawADC, 6);
 }
 
-void i2c_writeReg(uint8_t add, uint8_t reg, uint8_t val)
+void writeReg(uint8_t add, uint8_t reg, uint8_t val)
 {
   Wire.beginTransmission(add);
   Wire.write(reg);
@@ -58,17 +78,17 @@ void i2c_writeReg(uint8_t add, uint8_t reg, uint8_t val)
   Wire.endTransmission();
 }
 
-void i2c_selectReg(uint8_t add, uint8_t reg)
+void selectReg(uint8_t add, uint8_t reg)
 {
   Wire.beginTransmission(add);
   Wire.write(reg);
   Wire.endTransmission();
 }
 
-uint8_t i2c_readReg(uint8_t add, uint8_t reg)
+uint8_t readReg(uint8_t add, uint8_t reg)
 {
   uint8_t val;
-  i2c_read_reg_to_buf(add, reg, &val, 1);
+  read_reg_to_buf(add, reg, &val, 1);
   return val;
 }
 

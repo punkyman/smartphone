@@ -40,7 +40,7 @@ int32_t xyz_total[3] = {0, 0, 0}; // 32 bit totals so they won't overflow.
 
 void getADC()
 {
-  i2c::i2c_getSixRawADC(MAG_ADDRESS, MAG_DATA_REGISTER);
+  i2c::getSixRawADC(MAG_ADDRESS, MAG_DATA_REGISTER);
   MAG_ORIENTATION(((i2c::rawADC[0] << 8) | i2c::rawADC[1]),
                   ((i2c::rawADC[4] << 8) | i2c::rawADC[5]),
                   ((i2c::rawADC[2] << 8) | i2c::rawADC[3]));
@@ -50,10 +50,10 @@ static uint8_t bias_collect(uint8_t bias)
 {
   int16_t abs_magADC;
 
-  i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_CONFA, bias); // Reg A DOR=0x010 + MS1,MS0 set to pos or negative bias
+  i2c::writeReg(MAG_ADDRESS, HMC58X3_R_CONFA, bias); // Reg A DOR=0x010 + MS1,MS0 set to pos or negative bias
   for (uint8_t i = 0; i < 10; i++)
   { // Collect 10 samples
-    i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_MODE, 1);
+    i2c::writeReg(MAG_ADDRESS, HMC58X3_R_MODE, 1);
     delay(100);
     getADC(); // Get the raw values in case the scales have already been changed.
     for (uint8_t axis = 0; axis < 3; axis++)
@@ -73,8 +73,8 @@ void setup()
 
   // Note that the  very first measurement after a gain change maintains the same gain as the previous setting.
   // The new gain setting is effective from the second measurement and on.
-  i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_CONFB, 2 << 5); //Set the Gain
-  i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_MODE, 1);
+  i2c::writeReg(MAG_ADDRESS, HMC58X3_R_CONFB, 2 << 5); //Set the Gain
+  i2c::writeReg(MAG_ADDRESS, HMC58X3_R_MODE, 1);
   delay(100);
   getADC(); //Get one sample, and discard it
 
@@ -88,9 +88,9 @@ void setup()
       magGain[axis] = 820.0 * HMC58X3_X_SELF_TEST_GAUSS * 2.0 * 10.0 / xyz_total[axis]; // note: xyz_total[axis] is always positive
 
   // leave test mode
-  i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_CONFA, 0x70); //Configuration Register A  -- 0 11 100 00  num samples: 8 ; output rate: 15Hz ; normal measurement mode
-  i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_CONFB, 0x20); //Configuration Register B  -- 001 00000    configuration gain 1.3Ga
-  i2c::i2c_writeReg(MAG_ADDRESS, HMC58X3_R_MODE, 0x00);  //Mode register             -- 000000 00    continuous Conversion Mode
+  i2c::writeReg(MAG_ADDRESS, HMC58X3_R_CONFA, 0x70); //Configuration Register A  -- 0 11 100 00  num samples: 8 ; output rate: 15Hz ; normal measurement mode
+  i2c::writeReg(MAG_ADDRESS, HMC58X3_R_CONFB, 0x20); //Configuration Register B  -- 001 00000    configuration gain 1.3Ga
+  i2c::writeReg(MAG_ADDRESS, HMC58X3_R_MODE, 0x00);  //Mode register             -- 000000 00    continuous Conversion Mode
   delay(100);
 }
 
