@@ -1,6 +1,8 @@
 #pragma once
 
-#include <U8g2lib.h>
+#define USE_ADAFRUIT
+//#define USE_U8G2
+#define SH1106_ADDRESS 0x3C
 
 namespace ModuleDisplay
 {

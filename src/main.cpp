@@ -6,7 +6,7 @@
 #include "module_barometer.h"
 #include "module_acceleration.h"
 #include "module_gyroscope.h"
-//#include "module_display.h"
+#include "module_display.h"
 
 void setup(void) {
   Serial.begin(9600);
@@ -17,17 +17,29 @@ void setup(void) {
   ModuleCompass::setup();
   ModuleAcceleration::setup();
   ModuleBarometer::setup();
-  //ModuleDisplay::setup();
+  ModuleDisplay::setup();
 }
 
 void loop(void) {
   ModuleGyroscope::update();
   ModuleCompass::update();
-  //ModuleAcceleration::update();
-  ModuleBarometer::update();
- // ModuleDisplay::draw_frame();
+  ModuleAcceleration::update();
+  Serial.print(ModuleGyroscope::gyroADC[0]);
+  Serial.print(' ');
+  Serial.print(ModuleGyroscope::gyroADC[1]);
+  Serial.print(' ');
+  Serial.print(ModuleGyroscope::gyroADC[2]);
+  Serial.print('\n');
+  if(ModuleBarometer::update() == 2)
+  {
+  //   Serial.print((int)ModuleBarometer::baroTemperature);
+  // Serial.print('\n');
+  // Serial.print((int)ModuleBarometer::baroPressure & 0xffff);
+  // Serial.print('\n');
+  }
+  ModuleDisplay::draw_frame();
   // deley between each page
-  Serial.write(ModuleBarometer::baroTemperature);
+  
   delay(100);
 
 }

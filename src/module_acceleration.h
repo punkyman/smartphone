@@ -13,6 +13,6 @@ namespace ModuleAcceleration
 
     void setup();
 
-    void upate();
+    void update();
 }
 

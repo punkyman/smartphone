@@ -69,7 +69,7 @@ void setup () {
   i2c::writeReg(ADXL345_ADDRESS,0x2C,0x09); //  register: BW_RATE     -- value: rate=50hz, bw=20hz
 }
 
-void upate () {
+void update () {
   i2c::getSixRawADC(ADXL345_ADDRESS,0x32);
 
   ACC_ORIENTATION( ((i2c::rawADC[1]<<8) | i2c::rawADC[0]) ,
