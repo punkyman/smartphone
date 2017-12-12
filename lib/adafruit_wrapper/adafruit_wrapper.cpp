@@ -4,6 +4,7 @@
 #include "Adafruit_GFX.h"
 #include "Adafruit_SH1106.h"
 
+// random reset pin, not used anyway
 #define OLED_RESET 4
 Adafruit_SH1106 display(OLED_RESET);
 
