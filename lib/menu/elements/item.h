@@ -2,6 +2,8 @@
 
 namespace Menu
 {
+    struct Page;
+
     struct Item
     {
         virtual void update() = 0;        
@@ -15,10 +17,10 @@ namespace Menu
         void unfocus();
 
         // returns the address of a page for navigation, null otherwise
-        virtual Item* interact() = 0;
-        virtual Item* cancel() = 0;
+        virtual Page* interact() = 0;
+        virtual Page* cancel() = 0;
 
-        Item* parent;
+        Page* parent;
         const char* name;
         bool focused;
     };
