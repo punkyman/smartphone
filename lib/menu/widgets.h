@@ -7,13 +7,12 @@ namespace Menu
 {
     struct Widget : Item
     {
-        // a widget does not display in fullscreen
-        virtual void draw() {}
+        Widget(Page* parent, const char* name);
     };
 
     struct DisplayFloatWidget : Widget
     {
-        DisplayFloatWidget(Item* parent, const char* name, GETFLOAT getter);
+        DisplayFloatWidget(Page* parent, const char* name, GETFLOAT getter);
         virtual void update();
         virtual void drawInPage();
 

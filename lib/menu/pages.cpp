@@ -3,8 +3,9 @@
 
 namespace Menu
 {
-Page::Page(const char* name, uint8_t nbitems)
-: name(name)
+
+Page::Page(Page* parent, const char* name, uint8_t nbitems)
+: Item(parent, name)
 {
     content = (Item**) malloc(sizeof(Item*) * nbitems);
 }
@@ -19,10 +20,10 @@ void Page::setitem(uint8_t index, Item* item)
 
 void Page::update()
 {
-    for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
+    /*for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
     {
         content[i]->update();
-    }
+    }*/
 }
 
 void Page::draw()
@@ -38,15 +39,10 @@ void Page::drawInPage()
 
 }
 
-MainPage::MainPage(Page* root, uint8_t nbitems)
-: Page(nullptr, "main", nbitems), root(root)
+RootPage::RootPage(uint8_t nbitems)
+: Page(nullptr, "main", nbitems)
 {
     
 }
-
-Page* MainPage::interact()
-{
-    return root;
-}        
 
 }

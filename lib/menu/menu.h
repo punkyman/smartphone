@@ -1,14 +1,20 @@
 #pragma once
 //#include "macros.h"
 
-#include "elements/pages.h"
+#include "pages.h"
+#include "widgets.h"
 
 namespace Menu
 {
-    //extern MainPage root;
-    //MenuBrowser navigation;
 
+struct MenuBrowser
+{
+    MenuBrowser(Page* root);
     void update();
     void render();
+
+    Page* currentPage;
+};
+
 };
  

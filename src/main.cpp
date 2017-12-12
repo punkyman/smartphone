@@ -21,6 +21,9 @@ void setup(void) {
   ModuleAcceleration::setup();
   ModuleBarometer::setup();
   ModuleDisplay::setup();
+
+  Menu::RootPage rootMenu((uint8_t)1);
+  Menu::DisplayFloatWidget(&rootMenu, "temperature", &Globals::g_get_temperature);
 }
 
 void loop(void) {

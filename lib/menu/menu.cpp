@@ -1,16 +1,21 @@
 #include "menu.h"
 
-namespace menu
+namespace Menu
 {
 
-void update()
+MenuBrowser::MenuBrowser(Page* root)
 {
-    //root.update();
+    currentPage = root;
 }
 
-void render()
+void MenuBrowser::update()
 {
-    //root.draw();
+    currentPage->update();
+}
+
+void MenuBrowser::render()
+{
+    currentPage->draw();
 }
 
 };
