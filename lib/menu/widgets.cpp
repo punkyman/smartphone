@@ -14,15 +14,18 @@ DisplayFloatWidget::DisplayFloatWidget(Page* parent, const char* name, GETFLOAT 
 : Widget(parent, name), get(getter)
 {
 }
+
 void DisplayFloatWidget::update()
 {
     value = get();
+    Serial.print(value);
+    Serial.print('\n');
 }
 
 void DisplayFloatWidget::drawInPage(Renderer* render)
 {
     render->drawText(0,0, name);
-    //render->drawText(10,0, name);    
+    render->drawText(0,10, String(value).c_str());
 }
 
 };

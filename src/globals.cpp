@@ -8,7 +8,7 @@ namespace Globals
 
 float g_get_temperature()
 {
-    return Globals::g_temperature / 10.0f; // according to module_barometer.cpp
+    return Globals::g_temperature / 100.0f; // according to module_barometer.cpp
 }
 
 void g_set_temperature(int16_t value)

@@ -1,5 +1,3 @@
-#pragma once
-
 #include "item.h"
 
 namespace Menu

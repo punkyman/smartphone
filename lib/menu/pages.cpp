@@ -21,10 +21,10 @@ void Page::setitem(uint8_t index, Item* item)
 
 void Page::update()
 {
-    /*for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
+    for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
     {
         content[i]->update();
-    }*/
+    }
 }
 
 void Page::draw(Renderer* render)
