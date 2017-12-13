@@ -3,5 +3,5 @@
 
 #include "pages.h"
 #include "widgets.h"
-
+#include "renderer.h"
  

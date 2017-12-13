@@ -3,6 +3,7 @@
 namespace Menu
 {
     struct Page;
+    struct Renderer;
 
     struct Item
     {
@@ -11,7 +12,7 @@ namespace Menu
         virtual void update() = 0;        
 
         // in-page draw
-        virtual void drawInPage() = 0;
+        virtual void drawInPage(Renderer* render) = 0;
 
         // in-page selection
         void focus();

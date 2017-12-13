@@ -6,7 +6,10 @@
 PhoneMenu::PhoneMenu()
 {
     currentPage = new Menu::RootPage(1);
-    currentPage->setitem(0, new Menu::DisplayFloatWidget(currentPage, "temperature", &Globals::g_get_temperature));
+    currentPage->setitem(0, new Menu::DisplayFloatWidget(currentPage, "temperature", &g_get_temperature));
+
+    render = new Menu::Renderer;
+    //render.drawText = ();
 }
 
 void PhoneMenu::update()
@@ -14,7 +17,7 @@ void PhoneMenu::update()
     currentPage->update();
 }
     
-void PhoneMenu::render()
+void PhoneMenu::draw()
 {
-    currentPage->draw();
+    currentPage->draw(render);
 }

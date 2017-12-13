@@ -1,5 +1,6 @@
 #include "module_barometer.h"
 #include "i2c_communication.h"
+#include "globals.h"
 
 // principle:
 //  1) read the calibration register (only once at the initialization)
@@ -144,6 +145,9 @@ uint8_t update()
     bmp085_ctx.state = 1;
     Baro_Common();
     bmp085_ctx.deadline += 21000; // 6000+21000=27000 1.5ms margin according to the spec (25.5ms P convetion time with OSS=3)
+
+    g_set_temperature(baroTemperature); 
+
     return 1;
   }
   else

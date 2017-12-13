@@ -18,7 +18,7 @@ void DisplayFloatWidget::update()
     value = get();
 }
 
-void DisplayFloatWidget::drawInPage()
+void DisplayFloatWidget::drawInPage(Renderer* render)
 {
 
 }

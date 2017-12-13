@@ -30,7 +30,6 @@ void loop(void) {
   ModuleAcceleration::update();
   if(ModuleBarometer::update() == 2)
   {
-    Globals::g_temperature = ModuleBarometer::baroTemperature; 
   //   Serial.print((int)ModuleBarometer::baroTemperature);
   // Serial.print('\n');
   // Serial.print((int)ModuleBarometer::baroPressure & 0xffff);
@@ -47,7 +46,7 @@ void loop(void) {
   Serial.print('\n');
 
   // deley between each page
-  menu.render();
+  menu.draw();
 
   delay(100);
 

@@ -14,10 +14,10 @@ namespace Menu
         virtual void update();
         
         // draw the name of the page
-        virtual void drawInPage();
+        virtual void drawInPage(Renderer* render);
 
         // full page draw
-        virtual void draw();
+        virtual void draw(Renderer* render);
 
         void setitem(uint8_t index, Item* item);
     };

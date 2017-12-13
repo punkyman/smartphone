@@ -4,9 +4,14 @@ namespace Globals
 {
     int16_t g_temperature;
 
+}; // namespace Globals
+
 float g_get_temperature()
 {
-    return g_temperature / 10.0f; // according to module_barometer.cpp
+    return Globals::g_temperature / 10.0f; // according to module_barometer.cpp
 }
 
-}; // namespace Globals
+void g_set_temperature(int16_t value)
+{
+    Globals::g_temperature = value;
+}

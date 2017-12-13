@@ -1,5 +1,6 @@
 #include "pages.h"
 #include "widgets.h"
+#include "renderer.h"
 
 namespace Menu
 {
@@ -7,7 +8,7 @@ namespace Menu
 Page::Page(Page* parent, const char* name, uint8_t nbitems)
 : Item(parent, name)
 {
-    content = (Item**) malloc(sizeof(Item*) * nbitems);
+    content = new Item*[nbitems];
 }
 
 void Page::setitem(uint8_t index, Item* item)
@@ -26,17 +27,17 @@ void Page::update()
     }*/
 }
 
-void Page::draw()
+void Page::draw(Renderer* render)
 {
     for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
     {
-        content[i]->drawInPage();
+        content[i]->drawInPage(render);
     }
 }
 
-void Page::drawInPage()
+void Page::drawInPage(Renderer* render)
 {
-
+    render->drawText(0, 0, name);
 }
 
 RootPage::RootPage(uint8_t nbitems)

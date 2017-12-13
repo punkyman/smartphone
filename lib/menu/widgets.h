@@ -14,7 +14,7 @@ namespace Menu
     {
         DisplayFloatWidget(Page* parent, const char* name, GETFLOAT getter);
         virtual void update();
-        virtual void drawInPage();
+        virtual void drawInPage(Renderer* render);
 
         GETFLOAT get;
         float value;
