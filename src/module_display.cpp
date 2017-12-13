@@ -21,14 +21,25 @@ namespace ModuleDisplay
 #endif
   }
 
-  void draw_frame()
+  void begin()
   {
 #ifdef USE_ADAFRUIT
-    adafruit_draw_frame();
-#endif
+    adafruit_begin();
+#endif      
+  }
 
-#ifdef USE_U8G2
-    u8g2_draw_frame();
+  void end()
+  {
+#ifdef USE_ADAFRUIT
+    adafruit_end();
+#endif      
+  }
+
+  void drawText(uint8_t x, uint8_t y, const char* text)
+  {
+#ifdef USE_ADAFRUIT
+    adafruit_drawtext(x, y, text);
 #endif
   }
+
 }

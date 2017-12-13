@@ -46,8 +46,9 @@ void loop(void) {
   Serial.print('\n');
 
   // deley between each page
+  ModuleDisplay::begin();
   menu.draw();
+  ModuleDisplay::end();
 
   delay(100);
-
 }

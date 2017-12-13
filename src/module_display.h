@@ -1,4 +1,5 @@
 #pragma once
+#include <Arduino.h>
 
 #define USE_ADAFRUIT
 //#define USE_U8G2
@@ -8,6 +9,10 @@ namespace ModuleDisplay
 {
     void setup();
 
-    void draw_frame();
+    void begin();
+
+    void end();
+
+    void drawText(uint8_t x, uint8_t y, const char* text);
 
 }

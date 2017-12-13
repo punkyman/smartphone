@@ -1,4 +1,5 @@
 #include "widgets.h"
+#include "renderer.h"
 
 namespace Menu
 {
@@ -9,7 +10,7 @@ Widget::Widget(Page* parent, const char* name)
 
 }
 
-DisplayFloatWidget::DisplayFloatWidget(Page* parent, const char* nam, GETFLOAT getter)
+DisplayFloatWidget::DisplayFloatWidget(Page* parent, const char* name, GETFLOAT getter)
 : Widget(parent, name), get(getter)
 {
 }
@@ -20,7 +21,8 @@ void DisplayFloatWidget::update()
 
 void DisplayFloatWidget::drawInPage(Renderer* render)
 {
-
+    render->drawText(0,0, name);
+    //render->drawText(10,0, name);    
 }
 
 };
