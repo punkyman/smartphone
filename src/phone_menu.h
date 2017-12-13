@@ -1,6 +1,9 @@
 #pragma once
 
-#include <menu.h>
+namespace Menu
+{
+    struct Page;
+}
 
 struct PhoneMenu
 {

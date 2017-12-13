@@ -1,4 +1,6 @@
 #include "phone_menu.h"
+
+#include <menu.h>
 #include "globals.h"
 
 PhoneMenu::PhoneMenu()
