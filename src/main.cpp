@@ -9,8 +9,9 @@
 #include "module_acceleration.h"
 #include "module_gyroscope.h"
 #include "module_display.h"
+#include "phone_menu.h"
 
-#include "menu.h"
+PhoneMenu menu;
 
 void setup(void) {
   Serial.begin(9600);
@@ -21,9 +22,6 @@ void setup(void) {
   ModuleAcceleration::setup();
   ModuleBarometer::setup();
   ModuleDisplay::setup();
-
-  Menu::RootPage rootMenu((uint8_t)1);
-  Menu::DisplayFloatWidget(&rootMenu, "temperature", &Globals::g_get_temperature);
 }
 
 void loop(void) {
@@ -38,8 +36,9 @@ void loop(void) {
   // Serial.print((int)ModuleBarometer::baroPressure & 0xffff);
   // Serial.print('\n');
   }
-  ModuleDisplay::draw_frame();
-
+  
+  menu.update();
+  
   Serial.print(ModuleGyroscope::gyroADC[0]);
   Serial.print(' ');
   Serial.print(ModuleGyroscope::gyroADC[1]);
@@ -48,7 +47,8 @@ void loop(void) {
   Serial.print('\n');
 
   // deley between each page
-  
+  menu.render();
+
   delay(100);
 
 }
