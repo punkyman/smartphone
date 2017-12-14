@@ -7,6 +7,10 @@
 
 namespace ModuleDisplay
 {
+    uint8_t getScreenWidth();
+
+    uint8_t getScreenHeight();
+
     void setup();
 
     void begin();
@@ -14,5 +18,4 @@ namespace ModuleDisplay
     void end();
 
     void drawText(uint8_t x, uint8_t y, const char* text);
-
 }

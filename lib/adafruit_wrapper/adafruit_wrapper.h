@@ -3,6 +3,10 @@
 
 void adafruit_setup(uint8_t address);
 
+uint16_t adafruit_get_width();
+
+uint16_t adafruit_get_height();
+
 void adafruit_begin();
 
 void adafruit_end();

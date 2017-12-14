@@ -14,6 +14,16 @@ void adafruit_setup(uint8_t address)
   display.begin(SH1106_SWITCHCAPVCC, address, false);
 }
 
+uint16_t adafruit_get_width()
+{
+  return display.width();
+}
+
+uint16_t adafruit_get_height()
+{
+  return display.height();
+}
+
 void adafruit_begin()
 {
   display.clearDisplay();

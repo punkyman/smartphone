@@ -21,6 +21,21 @@ namespace ModuleDisplay
 #endif
   }
 
+uint8_t getScreenWidth()
+{
+#ifdef USE_ADAFRUIT
+    return adafruit_get_width();
+#endif
+}
+
+uint8_t getScreenHeight()
+{
+#ifdef USE_ADAFRUIT
+    return adafruit_get_height();
+#endif
+}
+
+
   void begin()
   {
 #ifdef USE_ADAFRUIT
