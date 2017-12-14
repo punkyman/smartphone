@@ -25,7 +25,7 @@ void DisplayFloatWidget::update()
 void DisplayFloatWidget::drawInPage(Renderer* render)
 {
     render->drawText(0,0, name);
-    render->drawText(0,10, String(value).c_str());
+    render->drawText(0,10, String(String(value) + String(" °C")).c_str());
 }
 
 };

@@ -4,11 +4,11 @@
 
 #include "globals.h"
 
-#include "module_compass.h"
-#include "module_barometer.h"
-#include "module_acceleration.h"
-#include "module_gyroscope.h"
-#include "module_display.h"
+#include "modules/module_compass.h"
+#include "modules/module_barometer.h"
+#include "modules/module_acceleration.h"
+#include "modules/module_gyroscope.h"
+#include "modules/module_display.h"
 #include "phone_menu.h"
 
 PhoneMenu menu;
