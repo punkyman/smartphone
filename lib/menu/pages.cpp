@@ -34,8 +34,11 @@ void Page::draw(Renderer* render)
     uint8_t textw, texth;
     render->getTextSize(name, &textw, &texth);
 
-    render->drawLine(area.x, area.y, area.w, area.y);
-    area.y += 2; // line + space
+    render->drawRect(area.x, area.y, area.w, area.h);
+    area.x += 1; // line + space
+    area.y += 1; // line + space
+    area.w -= 2; // -x - line
+    area.h -= 2; // -y - line
     render->drawText((render->screenWidth - textw) / 2, area.y, name);
     area.y += texth + 1; // text + space
     render->drawLine(area.x, area.y, area.w, area.y);

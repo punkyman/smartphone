@@ -74,4 +74,11 @@ void getTextSize(const char* text, uint8_t* width, uint8_t* height)
 #endif      
   }
 
+  void drawRect(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1)
+  {
+#ifdef USE_ADAFRUIT
+    adafruit_drawrect(x0, y0, x1, y1);
+#endif      
+  }
+
 }

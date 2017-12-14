@@ -57,3 +57,8 @@ void adafruit_drawline(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
 {
   display.drawLine(x0, y0, x1, y1, WHITE);
 }
+
+void adafruit_drawrect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
+{
+  display.drawRect(x0, y0, x1, y1, WHITE);
+}
