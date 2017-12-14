@@ -12,6 +12,7 @@ PhoneMenu::PhoneMenu()
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());
     render->getTextSize = ModuleDisplay::getTextSize;
     render->drawText = ModuleDisplay::drawText;
+    render->drawLine = ModuleDisplay::drawLine;
 }
 
 void PhoneMenu::update()

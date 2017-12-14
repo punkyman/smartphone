@@ -1,5 +1,6 @@
 #include "pages.h"
 #include "widgets.h"
+#include "types.h"
 #include "renderer.h"
 
 namespace Menu
@@ -29,15 +30,31 @@ void Page::update()
 
 void Page::draw(Renderer* render)
 {
+    Rect area(0,0, render->screenWidth, render->screenHeight);
+    uint8_t textw, texth;
+    render->getTextSize(name, &textw, &texth);
+
+    render->drawLine(area.x, area.y, area.w, area.y);
+    area.y += 2; // line + space
+    render->drawText((render->screenWidth - textw) / 2, area.y, name);
+    area.y += texth + 1; // text + space
+    render->drawLine(area.x, area.y, area.w, area.y);
+    area.y += 1; // line;
+
     for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
     {
-        content[i]->drawInPage(render);
+        content[i]->drawInPage(render, &area);
     }
 }
 
-void Page::drawInPage(Renderer* render)
+void Page::drawInPage(Renderer* render, Rect* area)
 {
-    render->drawText(0, 0, name);
+    uint8_t textw, texth;
+    render->getTextSize(name, &textw, &texth);
+
+    area->y += 1; // space
+    render->drawText(area->x, area->y, name);
+    area->y += texth;
 }
 
 RootPage::RootPage(uint8_t nbitems)

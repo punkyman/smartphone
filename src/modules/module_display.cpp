@@ -39,7 +39,7 @@ void getTextSize(const char* text, uint8_t* width, uint8_t* height)
 {
 #ifdef USE_ADAFRUIT
     uint16_t w, h;
-    adafruit_get_text_size(text, w, h);
+    adafruit_get_text_size(text, &w, &h);
     *width = w;
     *height = h;
     return;
@@ -65,6 +65,13 @@ void getTextSize(const char* text, uint8_t* width, uint8_t* height)
 #ifdef USE_ADAFRUIT
     adafruit_drawtext(x, y, text);
 #endif
+  }
+
+  void drawLine(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1)
+  {
+#ifdef USE_ADAFRUIT
+    adafruit_drawline(x0, y0, x1, y1);
+#endif      
   }
 
 }

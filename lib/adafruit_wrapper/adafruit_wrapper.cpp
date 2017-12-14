@@ -12,6 +12,8 @@ void adafruit_setup(uint8_t address)
 {
   // the display does not have any reset pin
   display.begin(SH1106_SWITCHCAPVCC, address, false);
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
 }
 
 uint16_t adafruit_get_width()
@@ -26,11 +28,13 @@ uint16_t adafruit_get_height()
 
 void adafruit_get_text_size(const char* text, uint16_t* width, uint16_t* height)
 {
+  char* str = (char*) text; // beurk...
   uint16_t x, y, w, h;
-  display.getTextBounds(text, 0, 0, &x, &y, &w, &h);
+  display.getTextBounds(str, 0, 0, &x, &y, &w, &h);
 
-  *width = x > w ? x : w;
-  *height = y > h ? y : h;
+  // according to comments, getTextBounds returns UL corner and W,H
+  *width = w;
+  *height = h;
 }
 
 void adafruit_begin()
@@ -45,8 +49,11 @@ void adafruit_end()
 
 void adafruit_drawtext(uint16_t x, uint16_t y, const char* text)
 {
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
   display.setCursor(x,y);
   display.print(text);
+}
+
+void adafruit_drawline(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
+{
+  display.drawLine(x0, y0, x1, y1, WHITE);
 }

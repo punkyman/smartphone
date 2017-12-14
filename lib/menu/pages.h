@@ -4,7 +4,9 @@
 #include "item.h"
 
 namespace Menu
-{    
+{   
+    struct Rect;
+
     struct Page : Item 
     {
         Item** content;
@@ -14,7 +16,7 @@ namespace Menu
         virtual void update();
         
         // draw the name of the page
-        virtual void drawInPage(Renderer* render);
+        virtual void drawInPage(Renderer* render, Rect* area);
 
         // full page draw
         virtual void draw(Renderer* render);
