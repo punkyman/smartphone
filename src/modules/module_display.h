@@ -11,6 +11,8 @@ namespace ModuleDisplay
 
     uint8_t getScreenHeight();
 
+    void getTextSize(const char* text, uint8_t* width, uint8_t* height);
+
     void setup();
 
     void begin();

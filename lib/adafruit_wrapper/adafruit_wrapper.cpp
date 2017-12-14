@@ -24,6 +24,15 @@ uint16_t adafruit_get_height()
   return display.height();
 }
 
+void adafruit_get_text_size(const char* text, uint16_t* width, uint16_t* height)
+{
+  uint16_t x, y, w, h;
+  display.getTextBounds(text, 0, 0, &x, &y, &w, &h);
+
+  *width = x > w ? x : w;
+  *height = y > h ? y : h;
+}
+
 void adafruit_begin()
 {
   display.clearDisplay();

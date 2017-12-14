@@ -7,6 +7,8 @@ uint16_t adafruit_get_width();
 
 uint16_t adafruit_get_height();
 
+void adafruit_get_text_size(const char* text, uint16_t* width, uint16_t* height);
+
 void adafruit_begin();
 
 void adafruit_end();

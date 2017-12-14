@@ -43,7 +43,7 @@ void Page::drawInPage(Renderer* render)
 RootPage::RootPage(uint8_t nbitems)
 : Page(nullptr, "main", nbitems)
 {
-    
+
 }
 
 }

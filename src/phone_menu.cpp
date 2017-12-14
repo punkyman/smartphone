@@ -10,6 +10,7 @@ PhoneMenu::PhoneMenu()
     currentPage->setitem(0, new Menu::DisplayFloatWidget(currentPage, "temperature", &g_get_temperature));
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());
+    render->getTextSize = ModuleDisplay::getTextSize;
     render->drawText = ModuleDisplay::drawText;
 }
 

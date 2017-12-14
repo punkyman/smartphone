@@ -35,6 +35,16 @@ uint8_t getScreenHeight()
 #endif
 }
 
+void getTextSize(const char* text, uint8_t* width, uint8_t* height)
+{
+#ifdef USE_ADAFRUIT
+    uint16_t w, h;
+    adafruit_get_text_size(text, w, h);
+    *width = w;
+    *height = h;
+    return;
+#endif
+}
 
   void begin()
   {
