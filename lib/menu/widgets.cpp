@@ -32,10 +32,10 @@ void DisplayFloatWidget::drawInPage(Renderer* render, Rect* area)
     render->drawText(area->x, area->y, name);
     area->y += texth + 1; // text + space
 
-    /*String valuestr(String(value) + String(" °C"));
+    String valuestr((value) + String(" C"));
     render->getTextSize(valuestr.c_str(), &textw, &texth);
     render->drawText(area->x ,area->y, valuestr.c_str());
-    area->y += texth; // text*/
+    area->y += texth; // text
 }
 
 };
