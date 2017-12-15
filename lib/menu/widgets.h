@@ -20,6 +20,16 @@ namespace Menu
         float value;
     };
 
+    struct DisplayIntWidget : Widget
+    {
+        DisplayIntWidget(Page* parent, const char* name, GETINT getter);
+        virtual void update();
+        virtual void drawInPage(Renderer* render, Rect* area);
+
+        GETINT get;
+        int value;
+    };
+
     /*struct ModifyIntWidget : Widget
     {
         ModifyIntWidget(Item* parent, const char* name, GETINT getter, SETINT setter);

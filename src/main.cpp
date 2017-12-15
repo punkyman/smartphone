@@ -38,11 +38,7 @@ void loop(void) {
   
   menu.update();
   
-  Serial.print(ModuleGyroscope::gyroADC[0]);
-  Serial.print(' ');
-  Serial.print(ModuleGyroscope::gyroADC[1]);
-  Serial.print(' ');
-  Serial.print(ModuleGyroscope::gyroADC[2]);
+  Serial.print(ModuleBarometer::baroPressure);
   Serial.print('\n');
 
   // deley between each page

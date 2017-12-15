@@ -7,14 +7,14 @@ namespace Menu
 {
 
 Page::Page(Page* parent, const char* name, uint8_t nbitems)
-: Item(parent, name)
+: Item(parent, name), nb(nbitems)
 {
     content = new Item*[nbitems];
 }
 
 void Page::setitem(uint8_t index, Item* item)
 {
-    if (index < (sizeof(content) / sizeof(Item*)))
+    if (index < nb)
     {
         content[index] = item;
     }
@@ -22,7 +22,7 @@ void Page::setitem(uint8_t index, Item* item)
 
 void Page::update()
 {
-    for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
+    for(uint8_t i = 0; i < nb; ++i)
     {
         content[i]->update();
     }
@@ -44,7 +44,7 @@ void Page::draw(Renderer* render)
     render->drawLine(area.x, area.y, area.w, area.y);
     area.y += 1; // line;
 
-    for(uint8_t i = 0; i < (sizeof(content) / sizeof(Item*)); ++i)
+    for(uint8_t i = 0; i < nb; ++i)
     {
         content[i]->drawInPage(render, &area);
     }

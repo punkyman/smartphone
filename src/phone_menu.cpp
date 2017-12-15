@@ -6,8 +6,9 @@
 
 PhoneMenu::PhoneMenu()
 {
-    currentPage = new Menu::RootPage(1);
+    currentPage = new Menu::RootPage(2);
     currentPage->setitem(0, new Menu::DisplayFloatWidget(currentPage, "temperature", &g_get_temperature));
+    currentPage->setitem(1, new Menu::DisplayIntWidget(currentPage, "pressure", &g_get_pressure));
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());
     render->getTextSize = ModuleDisplay::getTextSize;

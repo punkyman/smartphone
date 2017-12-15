@@ -9,8 +9,6 @@ namespace Menu
 
     struct Page : Item 
     {
-        Item** content;
-
         Page(Page* parent, const char* name, uint8_t nbitems);
 
         virtual void update();
@@ -22,6 +20,9 @@ namespace Menu
         virtual void draw(Renderer* render);
 
         void setitem(uint8_t index, Item* item);
+
+        Item** content;
+        uint8_t nb;
     };
 
     struct RootPage : Page 
