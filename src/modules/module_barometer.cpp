@@ -146,8 +146,8 @@ uint8_t update()
     Baro_Common();
     bmp085_ctx.deadline += 21000; // 6000+21000=27000 1.5ms margin according to the spec (25.5ms P convetion time with OSS=3)
 
-    g_set_temperature(baroTemperature); 
-        g_set_pressure(baroPressure); 
+    g_set_temperature(baroTemperature);  
+    g_set_pressure(baroPressure);
 
     return 1;
   }
@@ -156,8 +156,6 @@ uint8_t update()
     i2c_BMP085_UP_Read();
     i2c_BMP085_UT_Start();
     i2c_BMP085_Calculate();
-
-
 
     bmp085_ctx.state = 0;
     return 2;

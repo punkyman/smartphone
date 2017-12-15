@@ -11,20 +11,19 @@ Widget::Widget(Page* parent, const char* name)
 
 }
 
-DisplayFloatWidget::DisplayFloatWidget(Page* parent, const char* name, GETFLOAT getter)
+DisplayTextWidget::DisplayTextWidget(Page* parent, const char* name, GETSTR getter)
 : Widget(parent, name), get(getter)
 {
 }
 
-void DisplayFloatWidget::update()
+void DisplayTextWidget::update()
 {
-    value = get();
-    Serial.print(value);
-    Serial.print('\n');
+
 }
 
-void DisplayFloatWidget::drawInPage(Renderer* render, Rect* area)
+void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
 {
+    const char* str = get();
     uint8_t textw, texth;
     render->getTextSize(name, &textw, &texth);
 
@@ -32,34 +31,8 @@ void DisplayFloatWidget::drawInPage(Renderer* render, Rect* area)
     render->drawText(area->x + 2, area->y, name);
     area->y += texth + 1; // text + space
 
-    String valuestr((value) + String(" C"));
-    render->getTextSize(valuestr.c_str(), &textw, &texth);
-    render->drawText(area->x + 2,area->y, valuestr.c_str());
-    area->y += texth; // text
-}
-
-DisplayIntWidget::DisplayIntWidget(Page* parent, const char* name, GETINT getter)
-: Widget(parent, name), get(getter)
-{
-}
-
-void DisplayIntWidget::update()
-{
-    value = get();
-}
-
-void DisplayIntWidget::drawInPage(Renderer* render, Rect* area)
-{
-    uint8_t textw, texth;
-    render->getTextSize(name, &textw, &texth);
-
-    area->y += 1; // space
-    render->drawText(area->x + 2, area->y, name);
-    area->y += texth + 1; // text + space
-
-    String valuestr((value) + String(" Pa"));
-    render->getTextSize(valuestr.c_str(), &textw, &texth);
-    render->drawText(area->x + 2,area->y, valuestr.c_str());
+    render->getTextSize(str, &textw, &texth);
+    render->drawText(area->x + 2,area->y, str);
     area->y += texth; // text
 }
 

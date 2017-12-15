@@ -10,24 +10,13 @@ namespace Menu
         Widget(Page* parent, const char* name);
     };
 
-    struct DisplayFloatWidget : Widget
+    struct DisplayTextWidget : Widget
     {
-        DisplayFloatWidget(Page* parent, const char* name, GETFLOAT getter);
+        DisplayTextWidget(Page* parent, const char* name, GETSTR getter);
         virtual void update();
         virtual void drawInPage(Renderer* render, Rect* area);
 
-        GETFLOAT get;
-        float value;
-    };
-
-    struct DisplayIntWidget : Widget
-    {
-        DisplayIntWidget(Page* parent, const char* name, GETINT getter);
-        virtual void update();
-        virtual void drawInPage(Renderer* render, Rect* area);
-
-        GETINT get;
-        int value;
+        GETSTR get;
     };
 
     /*struct ModifyIntWidget : Widget
