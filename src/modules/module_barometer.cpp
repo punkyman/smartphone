@@ -14,7 +14,7 @@ namespace ModuleBarometer
 uint32_t currentTime = 0;
 int32_t baroPressure;
 int16_t baroTemperature;
-int32_t baroPressureSum;
+//int32_t baroPressureSum;
 
 static struct
 {
@@ -35,7 +35,7 @@ static struct
 } bmp085_ctx;
 #define OSS 3
 
-static void Baro_Common()
+/*static void Baro_Common()
 {
   static int32_t baroHistTab[BARO_TAB_SIZE];
   static uint8_t baroHistIdx;
@@ -47,7 +47,7 @@ static void Baro_Common()
   baroPressureSum += baroHistTab[baroHistIdx];
   baroPressureSum -= baroHistTab[indexplus1];
   baroHistIdx = indexplus1;
-}
+}*/
 
 void i2c_BMP085_readCalibration()
 {
@@ -143,7 +143,7 @@ uint8_t update()
     i2c_BMP085_UT_Read();
     i2c_BMP085_UP_Start();
     bmp085_ctx.state = 1;
-    Baro_Common();
+    //Baro_Common();
     bmp085_ctx.deadline += 21000; // 6000+21000=27000 1.5ms margin according to the spec (25.5ms P convetion time with OSS=3)
 
     g_set_temperature(baroTemperature);  
