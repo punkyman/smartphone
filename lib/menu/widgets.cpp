@@ -5,13 +5,13 @@
 namespace Menu
 {
 
-Widget::Widget(Page* parent, const char* name)
+Widget::Widget(Page* parent, const __FlashStringHelper* name)
 : Item(parent, name)
 {
 
 }
 
-DisplayTextWidget::DisplayTextWidget(Page* parent, const char* name, GETSTR getter)
+DisplayTextWidget::DisplayTextWidget(Page* parent, const __FlashStringHelper* name, GETSTR getter)
 : Widget(parent, name), get(getter)
 {
 }
@@ -23,7 +23,7 @@ void DisplayTextWidget::update()
 
 void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
 {
-    const char* str = get();
+    //const char* str = get();
     uint8_t textw, texth;
     render->getTextSize(name, &textw, &texth);
 
@@ -31,8 +31,8 @@ void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
     render->drawText(area->x + 2, area->y, name);
     area->y += texth + 1; // text + space
 
-    render->getTextSize(str, &textw, &texth);
-    render->drawText(area->x + 2,area->y, str);
+    //render->getTextSize(str, &textw, &texth);
+    //render->drawText(area->x + 2,area->y, str);
     area->y += texth; // text
 }
 

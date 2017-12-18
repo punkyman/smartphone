@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Arduino.h>
+
 namespace Menu
 {
     struct Rect;
@@ -8,7 +10,7 @@ namespace Menu
 
     struct Item
     {
-        Item(Page* parent, const char* name);
+        Item(Page* parent,  const __FlashStringHelper * name);
 
         virtual void update() = 0;        
 
@@ -22,7 +24,7 @@ namespace Menu
         Page* getparent();
 
         Page* parent;
-        const char* name;
+        const __FlashStringHelper * name;
         bool focused;
     };
 };

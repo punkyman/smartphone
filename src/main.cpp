@@ -1,9 +1,8 @@
 #include <Arduino.h>
 #include <Wire.h>
+#include <MemoryFree.h>
+
 #include "i2c_communication.h"
-
-#include "globals.h"
-
 #include "modules/module_compass.h"
 #include "modules/module_barometer.h"
 #include "modules/module_acceleration.h"
@@ -38,13 +37,12 @@ void loop(void) {
   
   menu.update();
   
-  Serial.print(ModuleBarometer::baroPressure);
-  Serial.print('\n');
-
   // deley between each page
   ModuleDisplay::begin();
   menu.draw();
   ModuleDisplay::end();
 
+  Serial.print(F("Free memory : "));
+  Serial.println(freeMemory());
   delay(100);
 }

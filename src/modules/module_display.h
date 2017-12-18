@@ -11,7 +11,7 @@ namespace ModuleDisplay
 
     uint8_t getScreenHeight();
 
-    void getTextSize(const char* text, uint8_t* width, uint8_t* height);
+    void getTextSize(const __FlashStringHelper * text, uint8_t* width, uint8_t* height);
 
     void setup();
 
@@ -19,7 +19,7 @@ namespace ModuleDisplay
 
     void end();
 
-    void drawText(uint8_t x, uint8_t y, const char* text);
+    void drawText(uint8_t x, uint8_t y, const __FlashStringHelper * text);
 
     void drawLine(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
 

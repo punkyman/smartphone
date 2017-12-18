@@ -1,5 +1,5 @@
 #pragma once
-
+#include <Arduino.h>
 #include "functor_declarations.h"
 #include "item.h"
 
@@ -7,12 +7,12 @@ namespace Menu
 {
     struct Widget : Item
     {
-        Widget(Page* parent, const char* name);
+        Widget(Page* parent, const __FlashStringHelper * name);
     };
 
     struct DisplayTextWidget : Widget
     {
-        DisplayTextWidget(Page* parent, const char* name, GETSTR getter);
+        DisplayTextWidget(Page* parent, const __FlashStringHelper * name, GETSTR getter);
         virtual void update();
         virtual void drawInPage(Renderer* render, Rect* area);
 

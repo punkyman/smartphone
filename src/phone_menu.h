@@ -5,7 +5,6 @@ namespace Menu
     struct Page;
     struct Renderer;
 }
-#include <renderer.h>
 
 struct PhoneMenu
 {

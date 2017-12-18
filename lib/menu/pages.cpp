@@ -6,7 +6,7 @@
 namespace Menu
 {
 
-Page::Page(Page* parent, const char* name, uint8_t nbitems)
+Page::Page(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
 : Item(parent, name), nb(nbitems)
 {
     content = new Item*[nbitems];
@@ -61,7 +61,7 @@ void Page::drawInPage(Renderer* render, Rect* area)
 }
 
 RootPage::RootPage(uint8_t nbitems)
-: Page(nullptr, "main", nbitems)
+: Page(nullptr, F("main"), nbitems)
 {
 
 }

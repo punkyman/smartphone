@@ -9,7 +9,7 @@ namespace Menu
 
     struct Page : Item 
     {
-        Page(Page* parent, const char* name, uint8_t nbitems);
+        Page(Page* parent, const __FlashStringHelper * name, uint8_t nbitems);
 
         virtual void update();
         
