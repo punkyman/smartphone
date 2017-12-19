@@ -8,6 +8,7 @@
 #include "modules/module_acceleration.h"
 #include "modules/module_gyroscope.h"
 #include "modules/module_display.h"
+#include "modules/module_input.h"
 #include "phone_menu.h"
 
 PhoneMenu menu;
@@ -21,6 +22,7 @@ void setup(void) {
   ModuleAcceleration::setup();
   ModuleBarometer::setup();
   ModuleDisplay::setup();
+  ModuleInput::setup();
 }
 
 void loop(void) {
@@ -34,13 +36,14 @@ void loop(void) {
   //Serial.print((int)ModuleBarometer::baroPressure);
   //Serial.print('\n');
   }
-  
+
+  ModuleInput::update();
   menu.update();
   
   ModuleDisplay::begin();
   menu.draw();
   ModuleDisplay::end();
-
+  
   Serial.print(F("Free memory : "));
   Serial.println(freeMemory());
   delay(100);

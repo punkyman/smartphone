@@ -14,5 +14,5 @@ extern float joystick_analog_X;
 extern float joystick_analog_Y;
 extern bool joystick_switch;
 
-void init_joystick();
-void read_values();
+void joystick_init();
+void joystick_read_values();

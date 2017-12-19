@@ -4,12 +4,12 @@ float joystick_analog_X = 0.0f;
 float joystick_analog_Y = 0.0f;
 bool joystick_switch = false;
 
-void init_joystick()
+void joystick_init()
 {
     pinMode(DIGITAL_PIN_SWITCH, INPUT);
 }
 
-void read_values()
+void joystick_read_values()
 {
     joystick_analog_X = analogRead(ANALOG_PIN_AXIS_X) / ANALOG_MAX;
     joystick_analog_Y = analogRead(ANALOG_PIN_AXIS_Y) / ANALOG_MAX;
