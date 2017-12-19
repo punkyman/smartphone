@@ -21,4 +21,6 @@ void adafruit_drawtext(uint16_t x, uint16_t y, const __FlashStringHelper* text);
 
 void adafruit_drawline(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 
-void adafruit_drawrect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
+void adafruit_drawrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
+
+void adafruit_fillrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h);

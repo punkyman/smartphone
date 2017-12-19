@@ -19,6 +19,7 @@ PhoneMenu::PhoneMenu()
     render->drawTextFSH = ModuleDisplay::drawTextFSH;
     render->drawLine = ModuleDisplay::drawLine;
     render->drawRect = ModuleDisplay::drawRect;
+    render->fillRect = ModuleDisplay::fillRect;
 }
 
 void PhoneMenu::update()

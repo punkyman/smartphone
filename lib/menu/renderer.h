@@ -21,6 +21,8 @@ struct Renderer
     void (*drawLine)(uint8_t, uint8_t, uint8_t, uint8_t);
     // x, y, w, h
     void (*drawRect)(uint8_t, uint8_t, uint8_t, uint8_t);
+    // x, y, w, h
+    void (*fillRect)(uint8_t, uint8_t, uint8_t, uint8_t);
 
     uint8_t screenWidth;
     uint8_t screenHeight;

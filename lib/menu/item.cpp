@@ -4,7 +4,7 @@ namespace Menu
 {
 
 Item::Item(Page* parent, const __FlashStringHelper * name)
-: parent(parent), name(name)
+: parent(parent), name(name), focused(false)
 { 
 }
 

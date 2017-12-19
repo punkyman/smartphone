@@ -39,7 +39,8 @@ void Page::draw(Renderer* render)
     area.y += 1; // line + space
     area.w -= 2; // -x - line
     area.h -= 2; // -y - line
-    render->drawTextFSH((render->screenWidth - textw) / 2, area.y, name);
+    uint8_t x = (render->screenWidth - textw) / 2, y = area.y;
+    render->drawTextFSH(x, y, name);
     area.y += texth + 1; // text + space
     render->drawLine(area.x, area.y, area.w, area.y);
     area.y += 1; // line;
@@ -54,6 +55,11 @@ void Page::drawInPage(Renderer* render, Rect* area)
 {
     uint8_t textw, texth;
     render->getTextSizeFSH(name, &textw, &texth);
+
+    if(focused)
+    {
+        render->fillRect(area->x, area->y, textw+2, texth+2);
+    }
 
     area->y += 1; // space
     render->drawTextFSH(area->x + 2, area->y, name);

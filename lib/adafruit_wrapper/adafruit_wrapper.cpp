@@ -12,8 +12,8 @@ void adafruit_setup(uint8_t address)
 {
   // the display does not have any reset pin
   display.begin(SH1106_SWITCHCAPVCC, address, false);
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
+  display.setTextSize(1); // no zoom on standard font
+  display.setTextColor(INVERSE); // write in inverse, so that composing with fillrect always works
 }
 
 uint16_t adafruit_get_width()
@@ -77,7 +77,12 @@ void adafruit_drawline(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
   display.drawLine(x0, y0, x1, y1, WHITE);
 }
 
-void adafruit_drawrect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
+void adafruit_drawrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
-  display.drawRect(x0, y0, x1, y1, WHITE);
+  display.drawRect(x, y, w, h, WHITE);
+}
+
+void adafruit_fillrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
+{
+  display.fillRect(x, y, w, h, WHITE);
 }
