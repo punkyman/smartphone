@@ -56,7 +56,7 @@ void Page::drawInPage(Renderer* render, Rect* area)
     render->getTextSizeFSH(name, &textw, &texth);
 
     area->y += 1; // space
-    render->drawTextFSH(area->x, area->y, name);
+    render->drawTextFSH(area->x + 2, area->y, name);
     area->y += texth;
 }
 
