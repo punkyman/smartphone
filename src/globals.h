@@ -7,6 +7,7 @@ namespace Globals
     extern int32_t g_pressure;
 }
 
+// Getters have to be used one per one, as temporary data is used internally
 const char* g_get_temperature();
 void g_set_temperature(int16_t value);
 

@@ -6,6 +6,7 @@ namespace Globals
     int32_t g_pressure = 0;
 }; // namespace Globals
 
+// temporary string for all the operations; keep it low!
 char str[16];
 
 const char* g_get_temperature()
