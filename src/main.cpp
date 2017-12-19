@@ -29,10 +29,10 @@ void loop(void) {
   ModuleAcceleration::update();
   if(ModuleBarometer::update() == 2)
   {
-  //   Serial.print((int)ModuleBarometer::baroTemperature);
-  // Serial.print('\n');
-  // Serial.print((int)ModuleBarometer::baroPressure & 0xffff);
-  // Serial.print('\n');
+  //Serial.print((int)ModuleBarometer::baroTemperature);
+  //Serial.print('\n');
+  //Serial.print((int)ModuleBarometer::baroPressure);
+  //Serial.print('\n');
   }
   
   menu.update();

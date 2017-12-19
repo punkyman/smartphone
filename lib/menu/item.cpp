@@ -3,16 +3,9 @@
 namespace Menu
 {
 
-Item::Item(Page* parent,  const char* name)
+Item::Item(Page* parent, const __FlashStringHelper * name)
 : parent(parent), name(name)
-{
-    
-}
-
-Item::Item(Page* parent, const __FlashStringHelper * str)
-: parent(parent)
-{
-    name = (const char*) str; 
+{ 
 }
 
 void Item::focus()

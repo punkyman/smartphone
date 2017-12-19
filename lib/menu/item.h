@@ -10,9 +10,7 @@ namespace Menu
 
     struct Item
     {
-
-        Item(Page* parent,  const char* name); 
-        Item(Page* parent,  const __FlashStringHelper * str); // support for F() macro
+        Item(Page* parent,  const __FlashStringHelper * name); // support for F() macro
 
         virtual void update() = 0;        
 
@@ -26,7 +24,7 @@ namespace Menu
         Page* getparent();
 
         Page* parent;
-        const char* name;
+        const __FlashStringHelper* name;
         bool focused;
     };
 };

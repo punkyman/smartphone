@@ -12,8 +12,10 @@ PhoneMenu::PhoneMenu()
     currentPage->setitem(1, new Menu::DisplayTextWidget(currentPage, F("pressure"), g_get_pressure));
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());
-    render->getTextSize = ModuleDisplay::getTextSize;
-    render->drawText = ModuleDisplay::drawText;
+    render->getTextSizeChar = ModuleDisplay::getTextSizeChar;
+    render->getTextSizeFSH = ModuleDisplay::getTextSizeFSH;
+    render->drawTextChar = ModuleDisplay::drawTextChar;
+    render->drawTextFSH = ModuleDisplay::drawTextFSH;
     render->drawLine = ModuleDisplay::drawLine;
     render->drawRect = ModuleDisplay::drawRect;
 }

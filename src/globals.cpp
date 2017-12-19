@@ -22,7 +22,7 @@ void g_set_temperature(int16_t value)
 
 const char* g_get_pressure()
 {
-    dtostrf(Globals::g_pressure / 10.0f, 4, 2, str); // according to module_barometer.cpp
+    dtostrf(Globals::g_pressure / 100.0f, 4, 0, str); // according to module_barometer.cpp
     snprintf(str, 16, "%s hPa", str);
     return str;
 }

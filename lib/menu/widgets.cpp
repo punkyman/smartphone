@@ -23,16 +23,16 @@ void DisplayTextWidget::update()
 
 void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
 {
-    //const char* str = get();
     uint8_t textw, texth;
-    render->getTextSize(name, &textw, &texth);
+    render->getTextSizeFSH(name, &textw, &texth);
 
     area->y += 1; // space
-    render->drawText(area->x + 2, area->y, name);
+    render->drawTextFSH(area->x + 2, area->y, name);
     area->y += texth + 1; // text + space
 
-    //render->getTextSize(str, &textw, &texth);
-    //render->drawText(area->x + 2,area->y, str);
+    const char* str = get();
+    render->getTextSizeChar(str, &textw, &texth);
+    render->drawTextChar(area->x + 2,area->y, str);
     area->y += texth; // text
 }
 
