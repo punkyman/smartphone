@@ -35,7 +35,7 @@ uint8_t getScreenHeight()
 #endif
 }
 
-void getTextSize(const __FlashStringHelper * text, uint8_t* width, uint8_t* height)
+void getTextSize(const char * text, uint8_t* width, uint8_t* height)
 {
 #ifdef USE_ADAFRUIT
     uint16_t w, h;
@@ -60,7 +60,7 @@ void begin()
 #endif      
   }
 
-  void drawText(uint8_t x, uint8_t y, const __FlashStringHelper * text)
+  void drawText(uint8_t x, uint8_t y, const char * text)
   {
 #ifdef USE_ADAFRUIT
     adafruit_drawtext(x, y, text);

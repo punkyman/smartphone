@@ -9,8 +9,8 @@ struct Renderer
     Renderer(int screenWidth, int screenHeight) 
     : screenWidth(screenWidth), screenHeight(screenHeight) { }
 
-    void (*getTextSize)(const __FlashStringHelper *, uint8_t*, uint8_t*);
-    void (*drawText)(uint8_t, uint8_t, const __FlashStringHelper *);
+    void (*getTextSize)(const char *, uint8_t*, uint8_t*);
+    void (*drawText)(uint8_t, uint8_t, const char *);
     void (*drawLine)(uint8_t, uint8_t, uint8_t, uint8_t);
     void (*drawRect)(uint8_t, uint8_t, uint8_t, uint8_t);
 

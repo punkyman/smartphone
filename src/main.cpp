@@ -37,7 +37,6 @@ void loop(void) {
   
   menu.update();
   
-  // deley between each page
   ModuleDisplay::begin();
   menu.draw();
   ModuleDisplay::end();

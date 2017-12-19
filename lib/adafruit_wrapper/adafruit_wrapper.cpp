@@ -39,17 +39,6 @@ void adafruit_get_text_size(const char* text, uint16_t* width, uint16_t* height)
   *height = h;
 }
 
-void adafruit_get_text_size(const __FlashStringHelper * text, uint16_t* width, uint16_t* height)
-{
-  int16_t x, y;
-  uint16_t w, h;
-  display.getTextBounds(text, 0, 0, &x, &y, &w, &h);
-
-  // according to comments, getTextBounds returns UL corner and W,H
-  *width = w;
-  *height = h;
-}
-
 void adafruit_begin()
 {
   display.clearDisplay();
@@ -60,7 +49,7 @@ void adafruit_end()
   display.display();
 }
 
-void adafruit_drawtext(uint16_t x, uint16_t y, const __FlashStringHelper * text)
+void adafruit_drawtext(uint16_t x, uint16_t y, const char* text)
 {
   display.setCursor(x,y);
   display.print(text);
