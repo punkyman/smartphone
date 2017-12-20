@@ -13,18 +13,18 @@ namespace Menu
         
         // draw the name of the page
         virtual void drawInPage(Renderer* render, Rect* area);
-
         // full page draw
         virtual void draw(Renderer* render);
 
         void setitem(uint8_t index, Item* item);
 
+        // navigation methods
+        virtual void next() = 0;
+        virtual void previous() = 0;
+        virtual Page* back() = 0;
+        virtual Page* validate() = 0;
+
         Item** content;
         uint8_t nb;
-    };
-
-    struct RootPage : Page 
-    {
-        RootPage(uint8_t nbitems);
     };
 };

@@ -1,5 +1,4 @@
-#include "pages.h"
-#include "widgets.h"
+#include "page.h"
 #include "types.h"
 #include "renderer.h"
 
@@ -56,12 +55,6 @@ void Page::drawInPage(Renderer* render, Rect* area)
     area->y += 1; // space
     render->drawTextFSH(area->x + 2, area->y, name);
     area->y += texth;
-}
-
-RootPage::RootPage(uint8_t nbitems)
-: Page(nullptr, F("main"), nbitems)
-{
-
 }
 
 }
