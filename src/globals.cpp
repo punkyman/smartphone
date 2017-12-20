@@ -4,6 +4,7 @@ namespace Globals
 {
     int16_t g_temperature = 0;
     int32_t g_pressure = 0;
+    uint8_t g_battery_level = 0;
 }; // namespace Globals
 
 // temporary string for all the operations; keep it low!
@@ -31,4 +32,14 @@ const char* g_get_pressure()
 void g_set_pressure(int32_t value)
 {
     Globals::g_pressure = value;
+}
+
+uint8_t g_get_battery_level()
+{
+    return Globals::g_battery_level;
+}
+
+void g_set_battery_level(uint8_t value)
+{
+    Globals::g_battery_level = value;
 }
