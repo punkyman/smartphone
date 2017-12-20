@@ -1,6 +1,8 @@
 #pragma once
 #include <Arduino.h>
 
+#define INVERT_AXIS
+
 #define ANALOG_PIN_AXIS_X A0
 #define ANALOG_PIN_AXIS_Y A1
 #define DIGITAL_PIN_SWITCH 2

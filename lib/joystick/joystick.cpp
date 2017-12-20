@@ -11,8 +11,13 @@ void joystick_init()
 
 void joystick_read_values()
 {
+#ifndef INVERT_AXIS
     joystick_analog_X = analogRead(ANALOG_PIN_AXIS_X) / ANALOG_MAX;
     joystick_analog_Y = analogRead(ANALOG_PIN_AXIS_Y) / ANALOG_MAX;
+#else
+    joystick_analog_X = analogRead(ANALOG_PIN_AXIS_Y) / ANALOG_MAX;
+    joystick_analog_Y = analogRead(ANALOG_PIN_AXIS_X) / ANALOG_MAX;
+#endif
     joystick_switch = digitalRead(DIGITAL_PIN_SWITCH) != HIGH;
 
     SCALE_AXIS(joystick_analog_X);
