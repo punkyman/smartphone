@@ -61,6 +61,7 @@ Page* VerticalListPage::back()
 
 Page* VerticalListPage::validate()
 {
+    return this;
     // may require RTTI mechanism to return only pages
 }
 
