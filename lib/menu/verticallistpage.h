@@ -13,6 +13,6 @@ namespace Menu
         virtual Page* back();
         virtual Page* validate();
 
-        uint8_t index;
+        int8_t index;
     };
 };

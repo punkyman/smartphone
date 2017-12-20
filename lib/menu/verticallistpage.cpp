@@ -4,7 +4,7 @@ namespace Menu
 {
 
 VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
-: Page(parent, name, nbitems), index(0) 
+: Page(parent, name, nbitems), index(-1) 
 {
 }
 
@@ -12,7 +12,10 @@ void VerticalListPage::next()
 {
     if(index < nb - 1)
     {
-        content[index]->unfocus();
+        // special case as the page starts up with no item focused
+        if(index != -1)
+            content[index]->unfocus();
+        
         content[++index]->focus();
     }
 }
