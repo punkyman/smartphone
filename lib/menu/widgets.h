@@ -13,7 +13,6 @@ namespace Menu
     struct DisplayTextWidget : Widget
     {
         DisplayTextWidget(Page* parent, const __FlashStringHelper * name, GETSTR getter);
-        virtual void update();
         virtual void drawInPage(Renderer* render, Rect* area);
 
         GETSTR get;
@@ -22,7 +21,6 @@ namespace Menu
     /*struct ModifyIntWidget : Widget
     {
         ModifyIntWidget(Item* parent, const char* name, GETINT getter, SETINT setter);
-        virtual void update();
         virtual void drawInPage();
 
         GETINT get;

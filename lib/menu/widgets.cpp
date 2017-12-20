@@ -16,11 +16,6 @@ DisplayTextWidget::DisplayTextWidget(Page* parent, const __FlashStringHelper* na
 {
 }
 
-void DisplayTextWidget::update()
-{
-
-}
-
 void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
 {
     uint8_t textw, texth;

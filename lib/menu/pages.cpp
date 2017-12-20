@@ -20,14 +20,6 @@ void Page::setitem(uint8_t index, Item* item)
     }
 }
 
-void Page::update()
-{
-    for(uint8_t i = 0; i < nb; ++i)
-    {
-        content[i]->update();
-    }
-}
-
 void Page::draw(Renderer* render)
 {
     Rect area(0,0, render->screenWidth, render->screenHeight);

@@ -24,7 +24,7 @@ PhoneMenu::PhoneMenu()
 
 void PhoneMenu::update()
 {
-    currentPage->update();
+    //currentPage->update();
 }
     
 void PhoneMenu::draw()

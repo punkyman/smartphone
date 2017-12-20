@@ -10,8 +10,6 @@ namespace Menu
     struct Page : Item 
     {
         Page(Page* parent, const __FlashStringHelper * name, uint8_t nbitems);
-
-        virtual void update();
         
         // draw the name of the page
         virtual void drawInPage(Renderer* render, Rect* area);

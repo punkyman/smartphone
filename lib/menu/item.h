@@ -12,8 +12,6 @@ namespace Menu
     {
         Item(Page* parent,  const __FlashStringHelper * name); // support for F() macro
 
-        virtual void update() = 0;        
-
         // in-page draw
         virtual void drawInPage(Renderer* render, Rect* area) = 0;
 
