@@ -4,6 +4,9 @@
 namespace Menu
 {
 
+    static const uint8_t text_spacing = 1;
+    static const uint8_t text_margin = 2;
+
 struct Renderer
 {
     Renderer(int screenWidth, int screenHeight) 

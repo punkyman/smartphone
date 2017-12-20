@@ -25,14 +25,15 @@ void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
 
     if(focused)
         render->fillRect(area->x, area->y,
-        (textw > namew ? textw : namew) + 2, nameh + texth + 3);
+        (textw > namew ? textw : namew) + (text_margin * 2),
+        nameh + texth + 3 * text_spacing);
 
-    area->y += 1; // space
-    render->drawTextFSH(area->x + 2, area->y, name);
-    area->y += texth + 1; // text + space
+    area->y += text_margin;
+    render->drawTextFSH(area->x + text_margin, area->y, name);
+    area->y += texth + text_spacing;
 
-    render->drawTextChar(area->x + 2,area->y, str);
-    area->y += texth; // text
+    render->drawTextChar(area->x + text_margin,area->y, str);
+    area->y += texth;
 }
 
 };

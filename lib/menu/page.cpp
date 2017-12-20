@@ -49,12 +49,12 @@ void Page::drawInPage(Renderer* render, Rect* area)
 
     if(focused)
     {
-        render->fillRect(area->x, area->y, textw+2, texth+2);
+        render->fillRect(area->x, area->y, textw + text_margin, texth + text_margin);
     }
 
-    area->y += 1; // space
-    render->drawTextFSH(area->x + 2, area->y, name);
-    area->y += texth;
+    area->y += text_spacing;
+    render->drawTextFSH(area->x + text_margin, area->y, name);
+    area->y += texth + text_spacing;
 }
 
 }
