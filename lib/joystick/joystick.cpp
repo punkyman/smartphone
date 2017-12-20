@@ -6,7 +6,7 @@ bool joystick_switch = false;
 
 void joystick_init()
 {
-    pinMode(DIGITAL_PIN_SWITCH, INPUT);
+    pinMode(DIGITAL_PIN_SWITCH, INPUT_PULLUP);
 }
 
 void joystick_read_values()
