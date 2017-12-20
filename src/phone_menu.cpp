@@ -29,5 +29,7 @@ void PhoneMenu::update()
     
 void PhoneMenu::draw()
 {
+    ModuleDisplay::begin();
     currentPage->draw(render);
+    ModuleDisplay::end();
 }
