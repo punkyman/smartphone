@@ -8,6 +8,8 @@ namespace Menu
     {
         MainPage(uint8_t nbitems);
 
+        virtual void draw(Renderer* render);
+
         virtual void next();
         virtual void previous();
         virtual Page* back();

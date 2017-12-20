@@ -1,4 +1,6 @@
 #include "mainpage.h"
+#include "types.h"
+#include "renderer.h"
 
 namespace Menu
 {
@@ -6,6 +8,16 @@ namespace Menu
 MainPage::MainPage(uint8_t nbitems)
 : Page(nullptr, F("main"), nbitems)
 {
+}
+
+void MainPage::draw(Renderer* render)
+{
+    Rect area(0,0, render->screenWidth, render->screenHeight);
+
+    for(uint8_t i = 0; i < nb; ++i)
+    {
+        content[i]->drawInPage(render, &area);
+    }
 }
 
 void MainPage::next()

@@ -16,7 +16,7 @@ namespace Menu
         // draw the name of the page
         virtual void drawInPage(Renderer* render, Rect* area);
         // full page draw
-        virtual void draw(Renderer* render);
+        virtual void draw(Renderer* render) = 0;
 
         void setitem(uint8_t index, Item* item);
 
