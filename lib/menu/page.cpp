@@ -34,4 +34,15 @@ void Page::drawInPage(Renderer* render, Rect* area)
     area->y += texth + text_spacing;
 }
 
+bool Page::canDrawInPage(const Renderer* render, Rect* area) const
+{
+    uint8_t textw, texth;
+    render->getTextSizeFSH(name, &textw, &texth);
+
+    area->y += text_spacing;
+    area->y += texth + text_spacing;
+
+    return area->y < render->screenHeight;    
+}
+
 }

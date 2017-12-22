@@ -36,4 +36,22 @@ void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
     area->y += texth;
 }
 
+bool DisplayTextWidget::canDrawInPage(const Renderer* render, Rect* area) const
+{
+    uint8_t namew, nameh, textw, texth;
+    render->getTextSizeFSH(name, &namew, &nameh);
+    const char* str = get();
+    render->getTextSizeChar(str, &textw, &texth);
+
+    area->y += text_margin;
+    area->y += texth + text_spacing;
+    area->y += texth;    
+
+    return area->y < render->screenHeight;
+}
+
+
+
+
+
 };

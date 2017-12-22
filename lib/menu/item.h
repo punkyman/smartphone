@@ -14,6 +14,8 @@ namespace Menu
 
         // in-page draw
         virtual void drawInPage(Renderer* render, Rect* area) = 0;
+        // returns if the widget can fit in the area, and updates the area with its size
+        virtual bool canDrawInPage(const Renderer* render, Rect* area) const = 0;
 
         // in-page selection
         void focus();

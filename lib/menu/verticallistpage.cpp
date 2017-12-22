@@ -5,9 +5,48 @@
 namespace Menu
 {
 
-VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
-: Page(parent, name, nbitems), index(0), drawindex(0)
+// establish the beginning and the end of what has to be drawn on-screen, so that the selected index is drawn on-screen and nothing goes out of the area
+// expects start to be at currently drawn value, and end to be at the number of items
+void computeWindow(const Renderer* render, const Rect* area, const Item** content, uint8_t index, uint8_t* start, uint8_t* end)
 {
+    if(index < *start)
+    {
+        *start = index;
+    }
+    
+    uint8_t nb = *end;
+    do
+    {
+        Rect space = *area;
+        for(uint8_t i = *start; i < nb; ++i)
+        {
+            if(!content[i]->canDrawInPage(render, &space))
+            {
+                *end = i;
+                break;
+            }
+        }
+
+        if(index > *end)
+        {
+            ++(*start);
+        }
+        else
+        {
+            break;
+        }
+    } while (1);
+}
+
+VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
+: Page(parent, name, nbitems), index(0), draw_start_index(0)
+{
+}
+
+void VerticalListPage::enter()
+{
+    index = 0;
+    draw_start_index = 0;
 }
 
 void VerticalListPage::draw(Renderer* render)
@@ -27,16 +66,14 @@ void VerticalListPage::draw(Renderer* render)
     render->drawLine(area.x, area.y, area.w, area.y);
     area.y += 1; // line;
 
-    for(uint8_t i = 0; i < nb; ++i)
+    uint8_t draw_end_index = nb;
+
+    computeWindow(render, &area, (const Menu::Item**) content, index, &draw_start_index, &draw_end_index);
+
+    for(uint8_t i = draw_start_index; i < draw_end_index; ++i)
     {
         content[i]->drawInPage(render, &area);
     }
-}
-
-void VerticalListPage::enter()
-{
-    index = 0;
-    drawindex = 0;
 }
 
 void VerticalListPage::next()

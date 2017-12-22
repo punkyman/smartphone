@@ -15,6 +15,7 @@ namespace Menu
         
         // draw the name of the page
         virtual void drawInPage(Renderer* render, Rect* area);
+        virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
         // full page draw
         virtual void draw(Renderer* render) = 0;
 

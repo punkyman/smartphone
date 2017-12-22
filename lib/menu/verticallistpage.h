@@ -17,7 +17,7 @@ namespace Menu
 
         virtual void enter();
 
-        uint8_t index;
-        uint8_t drawindex;
+        uint8_t index; 
+        uint8_t draw_start_index;
     };
 };
