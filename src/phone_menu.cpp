@@ -30,6 +30,7 @@ PhoneMenu::PhoneMenu()
 void PhoneMenu::update()
 {
     const ModuleInput::Inputs* inputs = ModuleInput::getInputs();
+    Menu::Page* previousPage = currentPage;
 
     if(inputs->pressed_up)
     {
@@ -42,6 +43,11 @@ void PhoneMenu::update()
     if(inputs->pressed_validate)
     {
         currentPage = currentPage->validate();
+    }
+
+    if(previousPage != currentPage)
+    {
+        currentPage->enter();
     }
 }
     

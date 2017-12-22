@@ -15,6 +15,9 @@ namespace Menu
         virtual Page* back();
         virtual Page* validate();
 
-        int8_t index;
+        virtual void enter();
+
+        uint8_t index;
+        uint8_t drawindex;
     };
 };

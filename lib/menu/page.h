@@ -21,10 +21,13 @@ namespace Menu
         void setitem(uint8_t index, Item* item);
 
         // navigation methods
-        virtual void next() = 0;
-        virtual void previous() = 0;
+        virtual void next() {}
+        virtual void previous() {}
         virtual Page* back() = 0;
         virtual Page* validate() = 0;
+
+        // page initialisation
+        virtual void enter() {}
 
         Item** content;
         uint8_t nb;

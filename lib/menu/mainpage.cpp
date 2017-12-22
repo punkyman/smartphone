@@ -20,14 +20,6 @@ void MainPage::draw(Renderer* render)
     }
 }
 
-void MainPage::next()
-{
-}
-
-void MainPage::previous()
-{
-}
-
 Page* MainPage::back()
 {
     return this;

@@ -10,8 +10,6 @@ namespace Menu
 
         virtual void draw(Renderer* render);
 
-        virtual void next();
-        virtual void previous();
         virtual Page* back();
         virtual Page* validate();
 
