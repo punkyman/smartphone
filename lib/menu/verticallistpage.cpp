@@ -47,11 +47,12 @@ VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * nam
 
 void VerticalListPage::enter()
 {
+    // for now, avoid implementation of leave() by unfocusing previous item here
     if(nb)
     {
         content[index]->unfocus();
     }
-    
+
     index = 0;
     draw_start_index = 0;
 
