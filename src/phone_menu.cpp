@@ -16,6 +16,7 @@ PhoneMenu::PhoneMenu()
     currentPage->setitem(3, new Menu::DisplayTextWidget(currentPage, F("pressure"), g_get_pressure));
 
     main->setroot(currentPage);
+    currentPage->enter();
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());
     render->getTextSizeChar = ModuleDisplay::getTextSizeChar;

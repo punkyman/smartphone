@@ -18,6 +18,8 @@ void computeWindow(const Renderer* render, const Rect* area, const Item** conten
     do
     {
         Rect space = *area;
+        *end = nb;
+
         for(uint8_t i = *start; i < nb; ++i)
         {
             if(!content[i]->canDrawInPage(render, &space))
@@ -27,7 +29,7 @@ void computeWindow(const Renderer* render, const Rect* area, const Item** conten
             }
         }
 
-        if(index > *end)
+        if(index >= *end)
         {
             ++(*start);
         }
@@ -45,8 +47,18 @@ VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * nam
 
 void VerticalListPage::enter()
 {
+    if(nb)
+    {
+        content[index]->unfocus();
+    }
+    
     index = 0;
     draw_start_index = 0;
+
+    if(nb)
+    {
+        content[index]->focus();
+    }
 }
 
 void VerticalListPage::draw(Renderer* render)
