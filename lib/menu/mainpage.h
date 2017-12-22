@@ -6,7 +6,7 @@ namespace Menu
 {
     struct MainPage : Page 
     {
-        MainPage(uint8_t nbitems);
+        MainPage();
 
         virtual void draw(Renderer* render);
 

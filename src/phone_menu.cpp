@@ -8,14 +8,15 @@
 
 PhoneMenu::PhoneMenu()
 {
-    Menu::MainPage* main  = new Menu::MainPage(0);
-    currentPage = new Menu::VerticalListPage(currentPage, F("menu"), 4);
-    currentPage->setitem(0, new Menu::VerticalListPage(currentPage, F("trucs"), 0));
-    currentPage->setitem(1, new Menu::VerticalListPage(currentPage, F("machins"), 0));
-    currentPage->setitem(2, new Menu::DisplayTextWidget(currentPage, F("temperature"), g_get_temperature));
-    currentPage->setitem(3, new Menu::DisplayTextWidget(currentPage, F("pressure"), g_get_pressure));
+    MENU_NEW_MAIN(main);
+    MENU_NEW_LIST(menu, main, F("menu"), 4);
+    MENU_NEW_LIST_AT(0, menu, trucs, F("trucs"), 0);
+    MENU_NEW_LIST_AT(1, menu, machins, F("machins"), 0);
+    MENU_NEW_TEXT_AT(2, menu, F("temperature"), g_get_temperature);
+    MENU_NEW_TEXT_AT(3, menu, F("pressure"), g_get_temperature);
 
-    main->setroot(currentPage);
+    main->setroot(menu);
+    currentPage = menu;
     currentPage->enter();
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());

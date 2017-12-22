@@ -1,5 +1,5 @@
 #pragma once
-//#include "macros.h"
+#include "macros.h"
 
 #include "page.h"
 #include "mainpage.h"

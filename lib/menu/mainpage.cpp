@@ -5,8 +5,8 @@
 namespace Menu
 {
 
-MainPage::MainPage(uint8_t nbitems)
-: Page(nullptr, F("main"), nbitems)
+MainPage::MainPage()
+: Page(nullptr, F("main"), 0)
 {
 }
 
