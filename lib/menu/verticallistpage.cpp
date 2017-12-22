@@ -40,6 +40,21 @@ void computeWindow(const Renderer* render, const Rect* area, const Item** conten
     } while (1);
 }
 
+void drawScrollBar(Renderer* render, uint8_t start_index, uint8_t end_index, uint8_t nb, Rect* area)
+{
+    uint8_t size = (area->w - (2 * scrollbar_spacing))/ nb;
+
+    uint8_t begin_x = area->x + area->w - (3 * scrollbar_spacing) - scrollbar_width; 
+    render->drawLine(begin_x, area->y,
+        begin_x, area->y + area->h);
+
+    begin_x += scrollbar_spacing * 2;
+    render->fillRect(begin_x, area->y + (start_index*size) + scrollbar_spacing,
+        scrollbar_width, ((nb - end_index - start_index) * size) - scrollbar_spacing);
+
+    area->w -= (2 * scrollbar_spacing) - scrollbar_width;
+}
+
 VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
 : Page(parent, name, nbitems), index(0), draw_start_index(0)
 {
@@ -82,6 +97,11 @@ void VerticalListPage::draw(Renderer* render)
     uint8_t draw_end_index = nb;
 
     computeWindow(render, &area, (const Menu::Item**) content, index, &draw_start_index, &draw_end_index);
+
+    if( (draw_end_index - draw_start_index) != nb )
+    {
+        drawScrollBar(render, draw_start_index, draw_end_index, nb, &area);
+    }
 
     for(uint8_t i = draw_start_index; i < draw_end_index; ++i)
     {
