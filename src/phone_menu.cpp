@@ -9,11 +9,14 @@
 PhoneMenu::PhoneMenu()
 {
     MENU_NEW_MAIN(main);
-    MENU_NEW_LIST(menu, main, F("menu"), 4);
+    MENU_NEW_LIST(menu, main, F("menu"), 7);
     MENU_NEW_LIST_AT(0, menu, trucs, F("trucs"), 0);
     MENU_NEW_LIST_AT(1, menu, machins, F("machins"), 0);
     MENU_NEW_TEXT_AT(2, menu, F("temperature"), g_get_temperature);
-    MENU_NEW_TEXT_AT(3, menu, F("pressure"), g_get_temperature);
+    MENU_NEW_LIST_AT(3, menu, blabla, F("blabla"), 0);
+    MENU_NEW_TEXT_AT(4, menu, F("pressure"), g_get_pressure);
+    MENU_NEW_LIST_AT(5, menu, toto, F("toto"), 0);
+    MENU_NEW_TEXT_AT(6, menu, F("temperature"), g_get_temperature);
 
     main->setroot(menu);
     currentPage = menu;
