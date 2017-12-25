@@ -2,16 +2,34 @@
 
 #include <Wire.h>
 #include "Adafruit_GFX.h"
-#include "Adafruit_SH1106.h"
 
+#ifdef USE_SH1106
+#include "Adafruit_SH1106.h"
 // random reset pin, not used anyway
 #define OLED_RESET 4
 Adafruit_SH1106 display(OLED_RESET);
+#endif
+
+#ifdef USE_PCD8544
+#include "Adafruit_PCD8544.h"
+// on arduino mini pinout is :
+// SCK : 13, MOSI : 11
+#define DIGITAL_PIN_DC 7
+#define DIGITAL_PIN_CS 8
+#define DIGITAL_PIN_RST 9
+Adafruit_PCD8544 display(DIGITAL_PIN_DC, DIGITAL_PIN_CS, DIGITAL_PIN_RST);
+#endif
 
 void adafruit_setup(uint8_t address)
 {
+#ifdef USE_SH1106
   // the display does not have any reset pin
   display.begin(SH1106_SWITCHCAPVCC, address, false);
+#endif
+#ifdef USE_PCD8544
+    display.begin();
+#endif
+
   display.setTextSize(1); // no zoom on standard font
   display.setTextColor(INVERSE); // write in inverse, so that composing with fillrect always works
 }

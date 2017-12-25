@@ -1,6 +1,9 @@
 #pragma once
 #include <Arduino.h>
 
+//#define USE_SH1106
+#define USE_PCD8544
+
 void adafruit_setup(uint8_t address);
 
 uint16_t adafruit_get_width();
