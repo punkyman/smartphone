@@ -8,6 +8,8 @@ namespace Menu
     struct Widget : Item
     {
         Widget(Page* parent, const __FlashStringHelper * name);
+
+        virtual bool ispage() const { return false; }
     };
 
     struct DisplayTextWidget : Widget

@@ -21,6 +21,9 @@ namespace Menu
         void focus();
         void unfocus();
 
+        // rtti like to know if the item is of type page
+        virtual bool ispage() const = 0;
+
         Page* getparent();
 
         Page* parent;

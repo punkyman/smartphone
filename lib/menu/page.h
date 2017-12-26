@@ -19,6 +19,8 @@ namespace Menu
         // full page draw
         virtual void draw(Renderer* render) = 0;
 
+        virtual bool ispage() const { return true; }
+
         void setitem(uint8_t index, Item* item);
 
         // navigation methods

@@ -94,18 +94,21 @@ void VerticalListPage::draw(Renderer* render)
     render->drawLine(area.x, area.y, area.w, area.y);
     area.y += 1; // line;
 
-    uint8_t draw_end_index = nb;
-
-    computeWindow(render, &area, (const Menu::Item**) content, index, &draw_start_index, &draw_end_index);
-
-    if( (draw_end_index - draw_start_index) != nb )
+    if(nb)
     {
-        drawScrollBar(render, draw_start_index, draw_end_index, nb, &area);
-    }
+        uint8_t draw_end_index = nb;
 
-    for(uint8_t i = draw_start_index; i < draw_end_index; ++i)
-    {
-        content[i]->drawInPage(render, &area);
+        computeWindow(render, &area, (const Menu::Item**) content, index, &draw_start_index, &draw_end_index);
+
+        if( (draw_end_index - draw_start_index) != nb )
+        {
+            drawScrollBar(render, draw_start_index, draw_end_index, nb, &area);
+        }
+
+        for(uint8_t i = draw_start_index; i < draw_end_index; ++i)
+        {
+            content[i]->drawInPage(render, &area);
+        }
     }
 }
 
@@ -133,8 +136,10 @@ Page* VerticalListPage::back()
 
 Page* VerticalListPage::validate()
 {
-    return this;
-    // may require RTTI mechanism to return only pages
+    if(content[index]->ispage())
+        return (Page*) content[index];
+    else
+        return this;
 }
 
 };
