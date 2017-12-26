@@ -23,12 +23,18 @@ void loop(void) {
   Hardware::update();
   menu.update();
   
+  unsigned long endUpdateTime = micros();
+
   menu.draw();
 
-  unsigned long endTime = micros();
+unsigned long endTime = micros();
   
   Serial.print(F("Update time : "));
-  Serial.println(endTime - startTime);
+  Serial.println(endUpdateTime - startTime);
+
+  Serial.print(F("Draw time : "));
+  Serial.println(endTime - endUpdateTime);
+
   Serial.print(F("Free memory : "));
   Serial.println(freeMemory());
 
