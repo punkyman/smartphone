@@ -28,7 +28,7 @@ uint8_t g_get_battery_level()
 bool g_get_compass_data(float* roll, float* pitch/*, float* yaw*/)
 {
     *roll = ModuleCompass::magADC[ModuleCompass::ROLL];
-    *pitch = ModuleCompass::magADC[ModuleCompass::PITCH];
+    *pitch = -ModuleCompass::magADC[ModuleCompass::PITCH]; // board placement correction
     /* *yaw = ModuleCompass::magADC[ModuleCompass::YAW]; */
     
     float norm = sqrt((*roll * *roll) + (*pitch * *pitch) /*+ (*yaw * *yaw) */);
