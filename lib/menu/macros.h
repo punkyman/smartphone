@@ -15,3 +15,6 @@
 
 #define MENU_NEW_TEXT_AT(idx, page, text, getter) \
     page->setitem(idx, new Menu::DisplayTextWidget(page, text, getter))
+
+#define MENU_NEW_COMPASS_AT(idx, page, getter) \
+    page->setitem(idx, new Menu::CompassWidget(page, getter))

@@ -22,6 +22,17 @@ namespace Menu
         GETSTR get;
     };
 
+    struct CompassWidget : Widget
+    {
+        CompassWidget(Page* parent, GETCOMPASSDATA getter);
+
+        virtual void drawInPage(Renderer* render, Rect* area);
+        // widget is fullscreen, so it will always use entire area and return true
+        virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
+
+        GETCOMPASSDATA get;
+    };
+
     /*struct ModifyIntWidget : Widget
     {
         ModifyIntWidget(Item* parent, const char* name, GETINT getter, SETINT setter);

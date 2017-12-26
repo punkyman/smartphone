@@ -22,6 +22,7 @@ namespace Menu
 
     static const uint8_t text_spacing = 1;
     static const uint8_t text_margin = 2;
+    static const uint8_t circle_margin = 2;
 
 struct Renderer
 {

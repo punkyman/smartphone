@@ -51,7 +51,35 @@ bool DisplayTextWidget::canDrawInPage(const Renderer* render, Rect* area) const
 }
 
 
+CompassWidget::CompassWidget(Page* parent, GETCOMPASSDATA getter)
+: Widget(parent, F("compass")), get(getter)
+{
 
+}
 
+void CompassWidget::drawInPage(Renderer* render, Rect* area)
+{
+    uint8_t cx = area->x + ((area->w - area->x) / 2);
+    uint8_t cy = area->y + ((area->h - area->y) / 2);
+    uint8_t r = ((area->h -area->y) / 2) - circle_margin;
+    render->drawCircle(cx, cy, r);
+
+    float x, y;
+    get(&x, &y);
+    int16_t sx = (float)x * (float)r;
+    int16_t sy = (float)y * (float)r;
+    render->drawLine(cx, cy, cx + sx, cy + sy);
+
+    area->x += area->w;
+    area->y += area->h;
+}
+
+bool CompassWidget::canDrawInPage(const Renderer* render, Rect* area) const
+{
+    area->x += area->w;
+    area->y += area->h;
+
+    return true;
+}
 
 };

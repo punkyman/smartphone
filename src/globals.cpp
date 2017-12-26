@@ -25,16 +25,16 @@ uint8_t g_get_battery_level()
     return ModuleBattery::batterylevel;
 }
 
-bool g_get_compass_data(float* roll, float* pitch, float* yaw)
+bool g_get_compass_data(float* roll, float* pitch/*, float* yaw*/)
 {
     *roll = ModuleCompass::magADC[ModuleCompass::ROLL];
     *pitch = ModuleCompass::magADC[ModuleCompass::PITCH];
-    *yaw = ModuleCompass::magADC[ModuleCompass::YAW];
+    /* *yaw = ModuleCompass::magADC[ModuleCompass::YAW]; */
     
-    float norm = sqrt((*roll * *roll) + (*pitch * *pitch) + (*yaw * *yaw));
+    float norm = sqrt((*roll * *roll) + (*pitch * *pitch) /*+ (*yaw * *yaw) */);
     *roll /= norm;
     *pitch /= norm;
-    *yaw /= norm;
+    /* *yaw /= norm; */
 
     return !ModuleCompass::calibrateMag;
 }

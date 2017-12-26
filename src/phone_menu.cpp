@@ -15,7 +15,8 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_TEXT_AT(0, climate, F("temperature"), g_get_temperature);
     MENU_NEW_TEXT_AT(1, climate, F("pressure"), g_get_pressure);
 
-    MENU_NEW_LIST_AT(1, menu, compass, F("compass"), 0);
+    MENU_NEW_LIST_AT(1, menu, compass, F("compass"), 1);
+    MENU_NEW_COMPASS_AT(0, compass, g_get_compass_data);
 
     main->setroot(menu);
     currentPage = menu;

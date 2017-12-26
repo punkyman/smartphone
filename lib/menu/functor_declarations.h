@@ -7,3 +7,5 @@ typedef float (*GETFLOAT)();
 typedef void (*SETFLOAT)(float);
 
 typedef const char* (*GETSTR)();
+
+typedef bool (*GETCOMPASSDATA)(float*, float*);
