@@ -20,6 +20,10 @@ Adafruit_SH1106 display(OLED_RESET);
 Adafruit_PCD8544 display(DIGITAL_PIN_DC, DIGITAL_PIN_CS, DIGITAL_PIN_RST);
 #endif
 
+#define ADA_WHITE 1
+#define ADA_BLACK 0
+#define ADA_INVERSE 2
+
 void adafruit_setup(uint8_t address)
 {
 #ifdef USE_SH1106
@@ -31,7 +35,7 @@ void adafruit_setup(uint8_t address)
 #endif
 
   display.setTextSize(1); // no zoom on standard font
-  display.setTextColor(INVERSE); // write in inverse, so that composing with fillrect always works
+  display.setTextColor(ADA_INVERSE); // write in inverse, so that composing with fillrect always works
 }
 
 uint16_t adafruit_get_width()
@@ -92,15 +96,15 @@ void adafruit_drawtext(uint16_t x, uint16_t y, const __FlashStringHelper* text)
 
 void adafruit_drawline(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)
 {
-  display.drawLine(x0, y0, x1, y1, WHITE);
+  display.drawLine(x0, y0, x1, y1, ADA_WHITE);
 }
 
 void adafruit_drawrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
-  display.drawRect(x, y, w, h, WHITE);
+  display.drawRect(x, y, w, h, ADA_WHITE);
 }
 
 void adafruit_fillrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
-  display.fillRect(x, y, w, h, WHITE);
+  display.fillRect(x, y, w, h, ADA_WHITE);
 }
