@@ -42,7 +42,7 @@ void computeWindow(const Renderer* render, const Rect* area, const Item** conten
 
 void drawScrollBar(Renderer* render, uint8_t start_index, uint8_t end_index, uint8_t nb, Rect* area)
 {
-    uint8_t size = (area->w - (2 * scrollbar_spacing))/ nb;
+    uint8_t size = (area->h - (2 * scrollbar_spacing))/ nb;
 
     uint8_t begin_x = area->x + area->w - (3 * scrollbar_spacing) - scrollbar_width; 
     render->drawLine(begin_x, area->y,
@@ -50,7 +50,7 @@ void drawScrollBar(Renderer* render, uint8_t start_index, uint8_t end_index, uin
 
     begin_x += scrollbar_spacing * 2;
     render->fillRect(begin_x, area->y + (start_index*size) + scrollbar_spacing,
-        scrollbar_width, ((nb - end_index - start_index) * size) - scrollbar_spacing);
+        scrollbar_width, ((end_index - start_index) * size) - 2 * scrollbar_spacing);
 
     area->w -= (2 * scrollbar_spacing) - scrollbar_width;
 }
