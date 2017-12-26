@@ -106,4 +106,11 @@ void begin()
 #endif
   }
 
+  void drawCircle(uint8_t x, uint8_t y, uint8_t r)
+  {
+#ifdef USE_ADAFRUIT
+    adafruit_drawcircle(x, y, r);
+#endif
+  }
+
 }

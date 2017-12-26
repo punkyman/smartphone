@@ -17,6 +17,8 @@ namespace Menu
     typedef void (*DRAWRECT)(uint8_t, uint8_t, uint8_t, uint8_t);
     // x, y, w, h
     typedef void (*FILLRECT)(uint8_t, uint8_t, uint8_t, uint8_t);
+    // x, y, r
+    typedef void (*DRAWCIRCLE)(uint8_t, uint8_t, uint8_t);
 
     static const uint8_t text_spacing = 1;
     static const uint8_t text_margin = 2;
@@ -33,6 +35,7 @@ struct Renderer
     DRAWLINE drawLine;
     DRAWRECT drawRect;
     FILLRECT fillRect;
+    DRAWCIRCLE drawCircle;
 
     uint8_t screenWidth;
     uint8_t screenHeight;

@@ -29,6 +29,7 @@ PhoneMenu::PhoneMenu()
     render->drawLine = ModuleDisplay::drawLine;
     render->drawRect = ModuleDisplay::drawRect;
     render->fillRect = ModuleDisplay::fillRect;
+    render->drawCircle = ModuleDisplay::drawCircle;
 }
 
 void PhoneMenu::update()
