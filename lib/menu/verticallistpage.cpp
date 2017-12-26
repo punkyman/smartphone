@@ -42,17 +42,17 @@ void computeWindow(const Renderer* render, const Rect* area, const Item** conten
 
 void drawScrollBar(Renderer* render, uint8_t start_index, uint8_t end_index, uint8_t nb, Rect* area)
 {
-    uint8_t size = (area->h - (2 * scrollbar_spacing))/ nb;
+    uint8_t size = (area->y1 - area->y0 - (2 * scrollbar_spacing))/ nb;
 
-    uint8_t begin_x = area->x + area->w - (3 * scrollbar_spacing) - scrollbar_width; 
-    render->drawLine(begin_x, area->y,
-        begin_x, area->y + area->h);
+    uint8_t begin_x = area->x1 - (3 * scrollbar_spacing) - scrollbar_width; 
+    render->drawLine(begin_x, area->y0,
+        begin_x, area->y1);
 
     begin_x += scrollbar_spacing * 2;
-    render->fillRect(begin_x, area->y + (start_index*size) + scrollbar_spacing,
+    render->fillRect(begin_x, area->y0 + (start_index*size) + scrollbar_spacing,
         scrollbar_width, ((end_index - start_index) * size) - 2 * scrollbar_spacing);
 
-    area->w -= (2 * scrollbar_spacing) - scrollbar_width;
+    area->x1 -= (2 * scrollbar_spacing) - scrollbar_width;
 }
 
 VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
@@ -83,16 +83,17 @@ void VerticalListPage::draw(Renderer* render)
     uint8_t textw, texth;
     render->getTextSizeFSH(name, &textw, &texth);
 
-    render->drawRect(area.x, area.y, area.w, area.h);
-    area.x += 1; // line + space
-    area.y += 1; // line + space
-    area.w -= 2; // -x - line
-    area.h -= 2; // -y - line
-    uint8_t x = (render->screenWidth - textw) / 2, y = area.y;
-    render->drawTextFSH(x, y, name);
-    area.y += texth + 1; // text + space
-    render->drawLine(area.x, area.y, area.w, area.y);
-    area.y += 1; // line;
+    render->drawRect(area.x0, area.y0, area.x1 - area.x0, area.y1 - area.y0);
+    area.x0 += 1;
+    area.y0 += 1;
+    area.x1 -= 1;
+    area.y1 -= 1;
+
+    uint8_t x = (render->screenWidth - textw) / 2;
+    render->drawTextFSH(x, area.y0, name);
+    area.y0 += texth + text_spacing;
+    render->drawLine(area.x0, area.y0, area.x1, area.y0);
+    area.y0 += 1; // line;
 
     if(nb)
     {

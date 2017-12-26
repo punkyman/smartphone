@@ -26,12 +26,12 @@ void Page::drawInPage(Renderer* render, Rect* area)
 
     if(focused)
     {
-        render->fillRect(area->x, area->y, textw + text_margin, texth + text_margin);
+        render->fillRect(area->x0, area->y0, textw + text_margin, texth + text_margin);
     }
 
-    area->y += text_spacing;
-    render->drawTextFSH(area->x + text_margin, area->y, name);
-    area->y += texth + text_spacing;
+    area->y0 += text_spacing;
+    render->drawTextFSH(area->x0 + text_margin, area->y0, name);
+    area->y0 += texth + text_spacing;
 }
 
 bool Page::canDrawInPage(const Renderer* render, Rect* area) const
@@ -39,10 +39,10 @@ bool Page::canDrawInPage(const Renderer* render, Rect* area) const
     uint8_t textw, texth;
     render->getTextSizeFSH(name, &textw, &texth);
 
-    area->y += text_spacing;
-    area->y += texth + text_spacing;
+    area->y0 += text_spacing;
+    area->y0 += texth + text_spacing;
 
-    return area->y < render->screenHeight;    
+    return area->y0 <= area->y1;    
 }
 
 }

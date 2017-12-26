@@ -24,16 +24,16 @@ void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
     render->getTextSizeChar(str, &textw, &texth);
 
     if(focused)
-        render->fillRect(area->x, area->y,
+        render->fillRect(area->x0, area->y0,
         (textw > namew ? textw : namew) + (text_margin * 2),
         nameh + texth + 3 * text_spacing);
 
-    area->y += text_margin;
-    render->drawTextFSH(area->x + text_margin, area->y, name);
-    area->y += texth + text_spacing;
+    area->y0 += text_margin;
+    render->drawTextFSH(area->x0 + text_margin, area->y0, name);
+    area->y0 += texth + text_spacing;
 
-    render->drawTextChar(area->x + text_margin,area->y, str);
-    area->y += texth;
+    render->drawTextChar(area->x0 + text_margin,area->y0, str);
+    area->y0 += texth;
 }
 
 bool DisplayTextWidget::canDrawInPage(const Renderer* render, Rect* area) const
@@ -43,11 +43,11 @@ bool DisplayTextWidget::canDrawInPage(const Renderer* render, Rect* area) const
     const char* str = get();
     render->getTextSizeChar(str, &textw, &texth);
 
-    area->y += text_margin;
-    area->y += texth + text_spacing;
-    area->y += texth;    
+    area->y0 += text_margin;
+    area->y0 += texth + text_spacing;
+    area->y0 += texth;    
 
-    return area->y < render->screenHeight;
+    return area->y0 <= area->y1;
 }
 
 
@@ -59,9 +59,9 @@ CompassWidget::CompassWidget(Page* parent, GETCOMPASSDATA getter)
 
 void CompassWidget::drawInPage(Renderer* render, Rect* area)
 {
-    uint8_t cx = area->x + ((area->w - area->x) / 2);
-    uint8_t cy = area->y + ((area->h - area->y) / 2);
-    uint8_t r = ((area->h -area->y) / 2) - circle_margin;
+    uint8_t cx = area->x0 + ((area->x1 - area->x0) / 2);
+    uint8_t cy = area->y0 + ((area->y1 - area->y0) / 2);
+    uint8_t r = ((area->y1 -area->y0) / 2) - circle_margin;
     render->drawCircle(cx, cy, r);
 
     float x, y;
@@ -70,14 +70,14 @@ void CompassWidget::drawInPage(Renderer* render, Rect* area)
     int16_t sy = (float)y * (float)r;
     render->drawLine(cx, cy, cx + sx, cy + sy);
 
-    area->x += area->w;
-    area->y += area->h;
+    area->x0 = area->x1;
+    area->y0 += area->y1;
 }
 
 bool CompassWidget::canDrawInPage(const Renderer* render, Rect* area) const
 {
-    area->x += area->w;
-    area->y += area->h;
+    area->x0 = area->x1;
+    area->y0 += area->y1;
 
     return true;
 }
