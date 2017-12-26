@@ -2,11 +2,6 @@
 #include <Arduino.h>
 #include "i2c_communication.h"
 
-enum rc {
-  ROLL,
-  PITCH,
-  YAW
-};
 
 #define MAG_ORIENTATION(X, Y, Z) \
   {                              \

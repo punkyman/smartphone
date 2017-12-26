@@ -9,6 +9,15 @@
 
 namespace ModuleCompass
 {
+    enum rc {
+    ROLL,
+    PITCH,
+    YAW
+    };
+
+    // exposes if the sensor is in calibration phase
+    extern bool calibrateMag;
+    // actual sensor data
     extern int16_t  magADC[3];
 
     void setup();

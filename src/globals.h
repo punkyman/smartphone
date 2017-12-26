@@ -7,3 +7,6 @@ const char* g_get_temperature();
 const char* g_get_pressure();
 
 uint8_t g_get_battery_level();
+
+// boolean returns if controller is calibrated or not
+bool g_get_compass_data(float* roll, float* pitch, float* yaw);
