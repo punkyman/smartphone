@@ -29,3 +29,5 @@ void adafruit_drawrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 void adafruit_fillrect(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 
 void adafruit_drawcircle(uint16_t x, uint16_t y, uint16_t r);
+
+void adafruit_drawbitmap(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint8_t data[]);
