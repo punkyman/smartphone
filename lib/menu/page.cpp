@@ -22,7 +22,7 @@ void Page::setitem(uint8_t index, Item* item)
 void Page::drawInPage(Renderer* render, Rect* area)
 {
     uint8_t textw, texth;
-    render->getTextSizeFSH(name, &textw, &texth);
+    render->getTextSizeFSH(name, &textw, &texth, NORMAL);
 
     if(focused)
     {
@@ -30,14 +30,14 @@ void Page::drawInPage(Renderer* render, Rect* area)
     }
 
     area->y0 += text_spacing;
-    render->drawTextFSH(area->x0 + text_margin, area->y0, name);
+    render->drawTextFSH(area->x0 + text_margin, area->y0, name, NORMAL);
     area->y0 += texth + text_spacing;
 }
 
 bool Page::canDrawInPage(const Renderer* render, Rect* area) const
 {
     uint8_t textw, texth;
-    render->getTextSizeFSH(name, &textw, &texth);
+    render->getTextSizeFSH(name, &textw, &texth, NORMAL);
 
     area->y0 += text_spacing;
     area->y0 += texth + text_spacing;

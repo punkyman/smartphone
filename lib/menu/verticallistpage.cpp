@@ -81,7 +81,7 @@ void VerticalListPage::draw(Renderer* render)
 {
     Rect area(0,0, render->screenWidth, render->screenHeight);
     uint8_t textw, texth;
-    render->getTextSizeFSH(name, &textw, &texth);
+    render->getTextSizeFSH(name, &textw, &texth, NORMAL);
 
     render->drawRect(area.x0, area.y0, area.x1 - area.x0, area.y1 - area.y0);
     area.x0 += 1;
@@ -90,7 +90,7 @@ void VerticalListPage::draw(Renderer* render)
     area.y1 -= 1;
 
     uint8_t x = (render->screenWidth - textw) / 2;
-    render->drawTextFSH(x, area.y0, name);
+    render->drawTextFSH(x, area.y0, name, NORMAL);
     area.y0 += texth + text_spacing;
     render->drawLine(area.x0, area.y0, area.x1, area.y0);
     area.y0 += 1; // line;

@@ -34,7 +34,6 @@ void adafruit_setup(uint8_t address)
     display.begin();
 #endif
 
-  display.setTextSize(1); // no zoom on standard font
   display.setTextColor(ADA_INVERSE); // write in inverse, so that composing with fillrect always works
 }
 
@@ -46,6 +45,11 @@ uint16_t adafruit_get_width()
 uint16_t adafruit_get_height()
 {
   return display.height();
+}
+
+void adafruit_setfontsize(uint8_t size)
+{
+  display.setTextSize(size);
 }
 
 void adafruit_get_text_size(const char* text, uint16_t* width, uint16_t* height)
