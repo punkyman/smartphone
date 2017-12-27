@@ -44,3 +44,14 @@ const char* g_get_clock()
     snprintf(str, 16, "%i:%i", 12, 59);
     return str;
 }
+
+uint8_t g_get_rssi()
+{
+    // 0             -115  dBm  or  less    
+    // 1             -111  dBm  
+    // 2...30      -110... -54 dBm 
+    // 31            -52  dBm  or  greater  
+    // 99            not  known  or  not  detectable  
+
+    return 31;
+}
