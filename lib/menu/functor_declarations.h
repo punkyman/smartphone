@@ -1,11 +1,6 @@
 #pragma once
 
-typedef int (*GETINT)();
-typedef void (*SETINT)(int);
-
-typedef float (*GETFLOAT)();
-typedef void (*SETFLOAT)(float);
-
+typedef uint8_t     (*GETU8)();
+typedef float       (*GETFLOAT)();
 typedef const char* (*GETSTR)();
-
-typedef bool (*GETCOMPASSDATA)(float*, float*);
+typedef bool        (*GETCOMPASSDATA)(float*, float*);

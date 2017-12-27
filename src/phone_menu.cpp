@@ -8,7 +8,9 @@
 
 PhoneMenu::PhoneMenu()
 {
-    MENU_NEW_MAIN(main);
+    MENU_NEW_MAIN(main, 1);
+    MENU_NEW_BATTERY_AT(0, main, g_get_battery_level);
+
     MENU_NEW_LIST(menu, main, F("menu"), 2);
 
     MENU_NEW_LIST_AT(0, menu, climate, F("climate"), 2);
@@ -19,7 +21,7 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_COMPASS_AT(0, compass, g_get_compass_data);
 
     main->setroot(menu);
-    currentPage = menu;
+    currentPage = main;
     currentPage->enter();
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());

@@ -1,7 +1,10 @@
 #pragma once
 
-#define MENU_NEW_MAIN(page) \
-    Menu::MainPage* page = new Menu::MainPage()
+#define MENU_NEW_MAIN(page, nb) \
+    Menu::MainPage* page = new Menu::MainPage(nb)
+
+#define MENU_NEW_BATTERY_AT(idx, page, getter) \
+    page->setitem(idx, new Menu::BatteryWidget(page, getter))
 
 #define MENU_NEW_LIST(page, parent, text, nb) \
     Menu::Page* page = new Menu::VerticalListPage(parent, text, nb)
