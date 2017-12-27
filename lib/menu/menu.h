@@ -4,6 +4,6 @@
 #include "page.h"
 #include "mainpage.h"
 #include "verticallistpage.h"
-#include "widgets.h"
+#include "vertical_widgets.h"
 #include "renderer.h"
  

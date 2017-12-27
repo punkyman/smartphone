@@ -1,17 +1,10 @@
 #pragma once
 #include <Arduino.h>
 #include "functor_declarations.h"
-#include "item.h"
+#include "widget.h"
 
 namespace Menu
 {
-    struct Widget : Item
-    {
-        Widget(Page* parent, const __FlashStringHelper * name);
-
-        virtual bool ispage() const { return false; }
-    };
-
     struct DisplayTextWidget : Widget
     {
         DisplayTextWidget(Page* parent, const __FlashStringHelper * name, GETSTR getter);
@@ -33,14 +26,5 @@ namespace Menu
         GETCOMPASSDATA get;
     };
 
-    /*struct ModifyIntWidget : Widget
-    {
-        ModifyIntWidget(Item* parent, const char* name, GETINT getter, SETINT setter);
-        virtual void drawInPage();
-
-        GETINT get;
-        SETINT set;
-        int value;
-    };*/
 };
 

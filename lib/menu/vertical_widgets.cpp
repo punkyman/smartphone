@@ -1,15 +1,9 @@
-#include "widgets.h"
+#include "vertical_widgets.h"
 #include "types.h"
 #include "renderer.h"
 
 namespace Menu
 {
-
-Widget::Widget(Page* parent, const __FlashStringHelper* name)
-: Item(parent, name)
-{
-
-}
 
 DisplayTextWidget::DisplayTextWidget(Page* parent, const __FlashStringHelper* name, GETSTR getter)
 : Widget(parent, name), get(getter)
