@@ -24,7 +24,31 @@ BatteryWidget::BatteryWidget(Page* parent, GETU8 getter)
 
 void BatteryWidget::drawInPage(Renderer* render, Rect* area)
 {
-    render->drawBitmap(area->x1 - w, area->y0, w, h, battery_bitmap);
+    uint8_t sx = area->x1 - w;
+    render->drawBitmap(sx , area->y0, w, h, battery_bitmap);
+
+    uint8_t level = get();
+    uint8_t space = bar_w + bar_s;
+
+    if(level > BATTERY_BAR1)
+    {
+        render->fillRect(sx + 1 + bar_s, area->y0 + 1 + bar_s, bar_w, bar_h);
+    }
+
+    if(level > BATTERY_BAR2)
+    {
+        render->fillRect(sx + 1 + bar_s + space, area->y0 + 1 + bar_s, bar_w, bar_h);
+    }
+
+    if(level > BATTERY_BAR3)
+    {
+        render->fillRect(sx + 1 + bar_s + (space * 2), area->y0 + 1 + bar_s, bar_w, bar_h);
+    }
+
+    if(level > BATTERY_BAR4)
+    {
+        render->fillRect(sx + 1 + bar_s + (space * 3), area->y0 + 1 + bar_s, bar_w, bar_h);
+    }
 }
 
 bool BatteryWidget::canDrawInPage(const Renderer* render, Rect* area) const
