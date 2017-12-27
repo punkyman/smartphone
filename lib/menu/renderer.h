@@ -3,12 +3,11 @@
 
 namespace Menu
 {
-    // has to be synced with module_display.h
     enum FONT_SIZE
     {
         NORMAL   = 1,
         BIG      = 2,
-        HUGE     = 4,
+        HUGE     = 3,
     };
 
     // text, width, height, font_size
