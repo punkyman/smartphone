@@ -10,3 +10,6 @@ uint8_t g_get_battery_level();
 
 // boolean returns if controller is calibrated or not
 bool g_get_compass_data(float* roll, float* pitch /*, float* yaw*/);
+
+// returns clock under format HH:MM
+const char* g_get_clock();

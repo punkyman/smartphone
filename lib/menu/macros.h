@@ -6,6 +6,9 @@
 #define MENU_NEW_BATTERY_AT(idx, page, getter) \
     page->setitem(idx, new Menu::BatteryWidget(page, getter))
 
+#define MENU_NEW_CLOCK_AT(idx, page, getter) \
+    page->setitem(idx, new Menu::ClockWidget(page, getter))
+
 #define MENU_NEW_LIST(page, parent, text, nb) \
     Menu::Page* page = new Menu::VerticalListPage(parent, text, nb)
 

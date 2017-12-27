@@ -25,4 +25,14 @@ namespace Menu
 
         GETU8 get;
     };
+
+    struct ClockWidget : Widget
+    {
+        ClockWidget(Page* parent, GETSTR getter);
+
+        virtual void drawInPage(Renderer* render, Rect* area);
+        virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
+
+        GETSTR get;
+    };
 };

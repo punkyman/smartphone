@@ -38,3 +38,9 @@ bool g_get_compass_data(float* roll, float* pitch/*, float* yaw*/)
 
     return !ModuleCompass::calibrateMag;
 }
+
+const char* g_get_clock()
+{
+    snprintf(str, 16, "%i:%i", 12, 59);
+    return str;
+}
