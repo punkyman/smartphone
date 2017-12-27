@@ -8,6 +8,7 @@
 #include "modules/module_display.h"
 #include "modules/module_battery.h"
 #include "modules/module_input.h"
+#include "modules/module_gps.h"
 
 namespace Hardware
 {
@@ -22,6 +23,7 @@ namespace Hardware
         ModuleDisplay::setup();
         ModuleBattery::setup();
         ModuleInput::setup();
+        ModuleGps::setup();
     }
 
     void update()
@@ -32,5 +34,6 @@ namespace Hardware
         ModuleBarometer::update();
         ModuleBattery::update();
         ModuleInput::update();
+        ModuleGps::update();
     }
 }
