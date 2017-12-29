@@ -30,7 +30,7 @@ const uint8_t PROGMEM signal_bitmap[SignalWidget::bw * SignalWidget::bh] =
 };
 
 BatteryWidget::BatteryWidget(Page* parent, GETU8 getter)
-: Widget(parent, F("battery")), get(getter)
+: Widget(parent, nullptr), get(getter)
 {
 }
 
@@ -69,7 +69,7 @@ bool BatteryWidget::canDrawInPage(const Renderer* render, Rect* area) const
 }
 
 SignalWidget::SignalWidget(Page* parent, GETU8 getter)
-: Widget(parent, F("signal")), get(getter)
+: Widget(parent, nullptr), get(getter)
 {
 }
 
@@ -104,7 +104,7 @@ bool SignalWidget::canDrawInPage(const Renderer* render, Rect* area) const
 }
 
 ClockWidget::ClockWidget(Page* parent, GETSTR getter)
-: Widget(parent, F("clock")), get(getter)
+: Widget(parent, nullptr), get(getter)
 {
 }
 
