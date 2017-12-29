@@ -17,7 +17,6 @@ namespace ModuleBattery
     void update()
     {
         batterylevel = battery.level();
-        delay(100);
     }
 };
 
