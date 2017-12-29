@@ -11,12 +11,13 @@ namespace ModuleBattery
     void setup()
     {
         batterylevel = 0;
-        battery.begin();
+        battery.begin(3300, 1.47);
     }
 
     void update()
     {
         batterylevel = battery.level();
+        delay(100);
     }
 };
 
