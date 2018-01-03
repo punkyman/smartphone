@@ -6,8 +6,8 @@
 #define MENU_NEW_BATTERY_AT(idx, page, getter) \
     page->setitem(idx, new Menu::BatteryWidget(page, getter))
 
-#define MENU_NEW_CLOCK_AT(idx, page, getter) \
-    page->setitem(idx, new Menu::ClockWidget(page, getter))
+#define MENU_NEW_CLOCK_AT(idx, page, getclock, getdate) \
+    page->setitem(idx, new Menu::ClockWidget(page, getclock, getdate))
 
 #define MENU_NEW_SIGNAL_AT(idx, page, getter) \
     page->setitem(idx, new Menu::SignalWidget(page, getter))

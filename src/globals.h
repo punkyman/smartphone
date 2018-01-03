@@ -14,6 +14,9 @@ bool g_get_compass_data(float* roll, float* pitch /*, float* yaw*/);
 // returns clock under format HH:MM
 const char* g_get_clock();
 
+// returns date under DD/MM/YYYY format
+const char* g_get_date();
+
 // returns signal strength according to module data sheet
 uint8_t g_get_rssi();
 

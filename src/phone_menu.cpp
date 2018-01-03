@@ -10,7 +10,7 @@ PhoneMenu::PhoneMenu()
 {
     MENU_NEW_MAIN(main, 3);
     MENU_NEW_BATTERY_AT(0, main, g_get_battery_level);
-    MENU_NEW_CLOCK_AT(1, main, g_get_clock);
+    MENU_NEW_CLOCK_AT(1, main, g_get_clock, g_get_date);
     MENU_NEW_SIGNAL_AT(2, main, g_get_rssi);
 
     MENU_NEW_LIST(menu, main, F("menu"), 3);

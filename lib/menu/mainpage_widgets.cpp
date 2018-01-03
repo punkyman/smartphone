@@ -103,19 +103,25 @@ bool SignalWidget::canDrawInPage(const Renderer* render, Rect* area) const
     return true; // widgets are absolute, no space computation
 }
 
-ClockWidget::ClockWidget(Page* parent, GETSTR getter)
-: Widget(parent, nullptr), get(getter)
+ClockWidget::ClockWidget(Page* parent, GETSTR getclock, GETSTR getdate)
+: Widget(parent, nullptr), getclock(getclock), getdate(getdate)
 {
 }
 
 void ClockWidget::drawInPage(Renderer* render, Rect* area)
 {
     uint8_t textw, texth;
-    const char* str = get();
+    const char* str = getclock();
     render->getTextSizeChar(str, &textw, &texth, BIG);
     uint8_t x = area->x0 + ((area->x1 - area->x0) / 2) - (textw / 2);
     uint8_t y = area->y0 + ((area->y1 - area->y0) / 2) - (texth / 2);
     render->drawTextChar(x, y, str, BIG);
+    
+    y += texth + space;
+    str = getdate();
+    render->getTextSizeChar(str, &textw, &texth, NORMAL);
+    x = area->x0 + ((area->x1 - area->x0) / 2) - (textw / 2);
+    render->drawTextChar(x, y, str, NORMAL);
 }
 
 bool ClockWidget::canDrawInPage(const Renderer* render, Rect* area) const

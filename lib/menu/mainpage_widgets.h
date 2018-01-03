@@ -57,11 +57,13 @@ namespace Menu
 
     struct ClockWidget : Widget
     {
-        ClockWidget(Page* parent, GETSTR getter);
+        static const uint8_t space = 2;
+        ClockWidget(Page* parent, GETSTR getclock, GETSTR getdate);
 
         virtual void drawInPage(Renderer* render, Rect* area);
         virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
 
-        GETSTR get;
+        GETSTR getclock;
+        GETSTR getdate;
     };
 };

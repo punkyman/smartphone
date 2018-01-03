@@ -1,10 +1,16 @@
 #include "globals.h"
 #include "hardware_config.h"
 
+#if defined(HARDWARE_ENABLE_SENSORS)
 #include "modules/module_barometer.h"
 #include "modules/module_compass.h"
+#endif
+#if defined(HARDWARE_ENABLE_BATTERY)
 #include "modules/module_battery.h"
+#endif
+#if defined (HARDWARE_ENABLE_GPS)
 #include "modules/module_gps.h"
+#endif
 
 // temporary string for all the operations; keep it low!
 // also consider that snprintf functions support passing identical destination and source  
@@ -12,15 +18,23 @@ char str[16];
 
 const char* g_get_temperature()
 {
+#if defined(HARDWARE_ENABLE_SENSORS)
     dtostrf(ModuleBarometer::baroTemperature / 100.0f, 2, 2, str); // according to module_barometer.cpp
     snprintf_P(str, 16, PSTR("%s C"), str);
+#else
+    strcpy_P(str, PSTR("No sensor"));
+#endif
     return str; 
 }
 
 const char* g_get_pressure()
 {
+#if defined(HARDWARE_ENABLE_SENSORS)
     dtostrf(ModuleBarometer::baroPressure / 100.0f, 4, 0, str); // according to module_barometer.cpp
     snprintf_P(str, 16, PSTR("%s hPa"), str);
+#else
+    strcpy_P(str, PSTR("No sensor"));
+#endif
     return str;
 }
 
@@ -35,6 +49,7 @@ uint8_t g_get_battery_level()
 
 bool g_get_compass_data(float* roll, float* pitch/*, float* yaw*/)
 {
+#if defined(HARDWARE_ENABLE_SENSORS)
     *roll = ModuleCompass::magADC[ModuleCompass::ROLL];
     *pitch = -ModuleCompass::magADC[ModuleCompass::PITCH]; // board placement correction
     /* *yaw = ModuleCompass::magADC[ModuleCompass::YAW]; */
@@ -45,16 +60,42 @@ bool g_get_compass_data(float* roll, float* pitch/*, float* yaw*/)
     /* *yaw /= norm; */
 
     return !ModuleCompass::calibrateMag;
+#else
+    *roll = 0.0f;
+    *pitch = 0.0f;
+    return false;
+#endif
 }
 
 const char* g_get_clock()
 {
-#ifdef HARDWARE_ENABLE_CLOCK
+#if defined(HARDWARE_ENABLE_CLOCK)
 // TODO CR3231
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t hours, minutes;
+    ModuleGps::get_time(&hours, &minutes);
+    snprintf_P(str, 16, PSTR("%02i:%02i"), hours, minutes);
 #else
-    snprintf_P(str, 16, PSTR("%i:%i"), 12, 59);
-    return str;
+    snprintf_P(str, 16, PSTR("%02i:%02i"), 12, 59);
 #endif
+
+    return str;
+}
+
+const char* g_get_date()
+{
+#if defined(HARDWARE_ENABLE_CLOCK)
+// TODO CR3231
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleGps::get_date(&day, &month, &year);
+    snprintf_P(str, 16, PSTR("%02i/%02i/%i"), day, month, year);
+#else
+    snprintf_P(str, 16, PSTR("%02i/%02i/%i"), 21, 01, 2018);
+#endif
+
+    return str;
 }
 
 uint8_t g_get_rssi()
@@ -73,16 +114,15 @@ uint8_t g_get_rssi()
 const char* g_get_location()
 {
 #ifdef HARDWARE_ENABLE_GPS
-    uint16_t lat_deg, long_deg;
-    double lat_bil, long_bil;
+    double latitude, longitude;
     char str_double[8];
 
-    if(ModuleGps::get_location(&lat_deg, &lat_bil, &long_deg, &long_bil))
+    if(ModuleGps::get_location(&latitude,&longitude))
     {
-        dtostrf(lat_bil, 2, 2, str_double);
-        snprintf_P(str, 16, PSTR("N %i/%s"), lat_deg, str_double);
-        dtostrf(long_deg, 2, 2, str_double);
-        snprintf_P(str, 16, PSTR("%s E %i/%s"), str, long_deg, str_double);
+        dtostrf(latitude, 2, 2, str_double);
+        snprintf_P(str, 16, PSTR("N%s"), str_double);
+        dtostrf(longitude, 2, 2, str_double);
+        snprintf_P(str, 16, PSTR("%s E%s"), str, str_double);
     }
     else
     {
