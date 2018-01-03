@@ -13,7 +13,7 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_CLOCK_AT(1, main, g_get_clock);
     MENU_NEW_SIGNAL_AT(2, main, g_get_rssi);
 
-    MENU_NEW_LIST(menu, main, F("menu"), 2);
+    MENU_NEW_LIST(menu, main, F("menu"), 3);
 
     MENU_NEW_LIST_AT(0, menu, climate, F("climate"), 2);
     MENU_NEW_TEXT_AT(0, climate, F("temperature"), g_get_temperature);
@@ -21,6 +21,10 @@ PhoneMenu::PhoneMenu()
 
     MENU_NEW_LIST_AT(1, menu, compass, F("compass"), 1);
     MENU_NEW_COMPASS_AT(0, compass, g_get_compass_data);
+
+    MENU_NEW_LIST_AT(2, menu, gps, F("GPS"), 2);
+    MENU_NEW_TEXT_AT(0, gps, F("location"), g_get_location);
+    MENU_NEW_TEXT_AT(1, gps, F("satellites"), g_get_satellites);
 
     main->setroot(menu);
     currentPage = main;

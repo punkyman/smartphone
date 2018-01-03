@@ -16,3 +16,9 @@ const char* g_get_clock();
 
 // returns signal strength according to module data sheet
 uint8_t g_get_rssi();
+
+// returns position from gps module
+const char* g_get_location();
+
+// returns number of satellites seen by the gps
+const char* g_get_satellites();

@@ -4,21 +4,23 @@
 #include "modules/module_barometer.h"
 #include "modules/module_compass.h"
 #include "modules/module_battery.h"
+#include "modules/module_gps.h"
 
 // temporary string for all the operations; keep it low!
+// also consider that snprintf functions support passing identical destination and source  
 char str[16];
 
 const char* g_get_temperature()
 {
     dtostrf(ModuleBarometer::baroTemperature / 100.0f, 2, 2, str); // according to module_barometer.cpp
-    snprintf(str, 16, "%s C", str);
+    snprintf_P(str, 16, PSTR("%s C"), str);
     return str; 
 }
 
 const char* g_get_pressure()
 {
     dtostrf(ModuleBarometer::baroPressure / 100.0f, 4, 0, str); // according to module_barometer.cpp
-    snprintf(str, 16, "%s hPa", str);
+    snprintf_P(str, 16, PSTR("%s hPa"), str);
     return str;
 }
 
@@ -50,7 +52,7 @@ const char* g_get_clock()
 #ifdef HARDWARE_ENABLE_CLOCK
 // TODO CR3231
 #else
-    snprintf(str, 16, "%i:%i", 12, 59);
+    snprintf_P(str, 16, PSTR("%i:%i"), 12, 59);
     return str;
 #endif
 }
@@ -66,4 +68,36 @@ uint8_t g_get_rssi()
 #else
     return 31;
 #endif
+}
+
+const char* g_get_location()
+{
+#ifdef HARDWARE_ENABLE_GPS
+    uint16_t lat_deg, long_deg;
+    double lat_bil, long_bil;
+    char str_double[8];
+
+    if(ModuleGps::get_location(&lat_deg, &lat_bil, &long_deg, &long_bil))
+    {
+        dtostrf(lat_bil, 2, 2, str_double);
+        snprintf_P(str, 16, PSTR("N %i/%s"), lat_deg, str_double);
+        dtostrf(long_deg, 2, 2, str_double);
+        snprintf_P(str, 16, PSTR("%s E %i/%s"), str, long_deg, str_double);
+    }
+    else
+    {
+        strcpy_P(str, PSTR("No fix"));
+    }
+#else
+    strcpy_P(str, PSTR("No Gps"));
+#endif
+
+    return str;
+}
+
+const char* g_get_satellites()
+{
+    snprintf_P(str, 16, PSTR("%i"), ModuleGps::get_satellites());
+
+    return str;
 }
