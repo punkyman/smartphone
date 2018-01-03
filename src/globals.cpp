@@ -137,7 +137,10 @@ const char* g_get_location()
 
 const char* g_get_satellites()
 {
+#if defined(HARDWARE_ENABLE_GPS)
     snprintf_P(str, 16, PSTR("%i"), ModuleGps::get_satellites());
-
+#else
+    strcpy_P(str, PSTR("No Gps"));
+#endif
     return str;
 }
