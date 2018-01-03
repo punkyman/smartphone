@@ -22,9 +22,11 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_LIST_AT(1, menu, compass, F("compass"), 1);
     MENU_NEW_COMPASS_AT(0, compass, g_get_compass_data);
 
-    MENU_NEW_LIST_AT(2, menu, gps, F("GPS"), 2);
+    MENU_NEW_LIST_AT(2, menu, gps, F("GPS"), 4);
     MENU_NEW_TEXT_AT(0, gps, F("location"), g_get_location);
-    MENU_NEW_TEXT_AT(1, gps, F("satellites"), g_get_satellites);
+    MENU_NEW_TEXT_AT(1, gps, F("altitude"), g_get_altitude);
+    MENU_NEW_TEXT_AT(2, gps, F("speed"), g_get_speed);
+    MENU_NEW_TEXT_AT(3, gps, F("satellites"), g_get_satellites);
 
     main->setroot(menu);
     currentPage = main;

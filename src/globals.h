@@ -25,3 +25,9 @@ const char* g_get_location();
 
 // returns number of satellites seen by the gps
 const char* g_get_satellites();
+
+// returns altitude in meters
+const char* g_get_altitude();
+
+// returns speed in kph
+const char* g_get_speed();

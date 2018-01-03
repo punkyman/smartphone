@@ -144,3 +144,23 @@ const char* g_get_satellites()
 #endif
     return str;
 }
+
+const char* g_get_altitude()
+{
+#if defined(HARDWARE_ENABLE_GPS)
+    snprintf_P(str, 16, PSTR("%i m"), (uint32_t)ModuleGps::get_altitude());
+#else
+    strcpy_P(str, PSTR("No Gps"));
+#endif
+    return str;
+}
+
+const char* g_get_speed()
+{
+#if defined(HARDWARE_ENABLE_GPS)
+    snprintf_P(str, 16, PSTR("%i km/h"), (uint32_t)ModuleGps::get_speed());
+#else
+    strcpy_P(str, PSTR("No Gps"));
+#endif
+    return str;
+}

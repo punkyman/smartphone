@@ -49,4 +49,14 @@ namespace ModuleGps
         *month = gps.date.month();
         *year = gps.date.year();
     }
+
+    double get_altitude()
+    {
+        return gps.altitude.meters();
+    }
+
+    double get_speed()
+    {
+        return gps.speed.kmph();
+    }
 }
