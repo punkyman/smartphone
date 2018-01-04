@@ -4,7 +4,7 @@
 #include "renderer.h"
 
 #include "page.h"
-#include "mainpage.h"
+#include "fullscreenpage.h"
 #include "verticallistpage.h"
 
 #include "vertical_widgets.h"

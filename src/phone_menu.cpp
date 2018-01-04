@@ -8,7 +8,7 @@
 
 PhoneMenu::PhoneMenu()
 {
-    MENU_NEW_MAIN(main, 3);
+    MENU_NEW_FULLSCREEN(main, nullptr, nullptr, 3);
     MENU_NEW_BATTERY_AT(0, main, g_get_battery_level);
     MENU_NEW_CLOCK_AT(1, main, g_get_clock, g_get_date);
     MENU_NEW_SIGNAL_AT(2, main, g_get_rssi);
@@ -19,7 +19,7 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_TEXT_AT(0, climate, F("temperature"), g_get_temperature);
     MENU_NEW_TEXT_AT(1, climate, F("pressure"), g_get_pressure);
 
-    MENU_NEW_LIST_AT(1, menu, compass, F("compass"), 1);
+    MENU_NEW_FULLSCREEN_AT(1, menu, compass, F("compass"), 1);
     MENU_NEW_COMPASS_AT(0, compass, g_get_compass_data);
 
     MENU_NEW_LIST_AT(2, menu, gps, F("GPS"), 4);
@@ -28,7 +28,7 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_TEXT_AT(2, gps, F("speed"), g_get_speed);
     MENU_NEW_TEXT_AT(3, gps, F("satellites"), g_get_satellites);
 
-    main->setroot(menu);
+    main->setmenu(menu);
     currentPage = main;
     currentPage->enter();
 
