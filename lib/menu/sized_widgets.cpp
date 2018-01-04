@@ -1,4 +1,4 @@
-#include "vertical_widgets.h"
+#include "sized_widgets.h"
 #include "types.h"
 #include "renderer.h"
 
@@ -42,38 +42,6 @@ bool DisplayTextWidget::canDrawInPage(const Renderer* render, Rect* area) const
     area->y0 += texth;    
 
     return area->y0 <= area->y1;
-}
-
-
-CompassWidget::CompassWidget(Page* parent, GETCOMPASSDATA getter)
-: Widget(parent, F("compass")), get(getter)
-{
-
-}
-
-void CompassWidget::drawInPage(Renderer* render, Rect* area)
-{
-    uint8_t cx = area->x0 + ((area->x1 - area->x0) / 2);
-    uint8_t cy = area->y0 + ((area->y1 - area->y0) / 2);
-    uint8_t r = ((area->y1 -area->y0) / 2) - circle_margin;
-    render->drawCircle(cx, cy, r);
-
-    float x, y;
-    get(&x, &y);
-    int16_t sx = (float)x * (float)r;
-    int16_t sy = (float)y * (float)r;
-    render->drawLine(cx, cy, cx + sx, cy + sy);
-
-    area->x0 = area->x1;
-    area->y0 += area->y1;
-}
-
-bool CompassWidget::canDrawInPage(const Renderer* render, Rect* area) const
-{
-    area->x0 = area->x1;
-    area->y0 += area->y1;
-
-    return true;
 }
 
 };

@@ -4,10 +4,10 @@
 #include "renderer.h"
 
 #include "page.h"
-#include "fullscreenpage.h"
-#include "verticallistpage.h"
+#include "fullscreen_page.h"
+#include "list_page.h"
 
-#include "vertical_widgets.h"
-#include "mainpage_widgets.h"
+#include "sized_widgets.h"
+#include "absolute_widgets.h"
 
  

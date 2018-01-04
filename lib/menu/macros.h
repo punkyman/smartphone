@@ -10,10 +10,10 @@
     parent->setitem(idx,page)
 
 #define MENU_NEW_LIST(page, parent, text, nb) \
-    Menu::Page* page = new Menu::VerticalListPage(parent, text, nb)
+    Menu::Page* page = new Menu::ListPage(parent, text, nb)
 
 #define MENU_NEW_LIST_AT(idx, parent, page, text, nb) \
-    Menu::Page* page = new Menu::VerticalListPage(parent, text, nb);\
+    Menu::Page* page = new Menu::ListPage(parent, text, nb);\
     parent->setitem(idx,page)
 
 /*******************  Widgets  ***********************/

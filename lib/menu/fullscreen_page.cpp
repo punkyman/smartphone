@@ -1,4 +1,4 @@
-#include "fullscreenpage.h"
+#include "fullscreen_page.h"
 #include "types.h"
 #include "renderer.h"
 

@@ -1,4 +1,4 @@
-#include "mainpage_widgets.h"
+#include "absolute_widgets.h"
 #include "types.h"
 #include "renderer.h"
 
@@ -30,7 +30,7 @@ const uint8_t PROGMEM signal_bitmap[SignalWidget::bw * SignalWidget::bh] =
 };
 
 BatteryWidget::BatteryWidget(Page* parent, GETU8 getter)
-: Widget(parent, nullptr), get(getter)
+: AbsoluteWidget(parent), get(getter)
 {
 }
 
@@ -63,13 +63,8 @@ void BatteryWidget::drawInPage(Renderer* render, Rect* area)
     }
 }
 
-bool BatteryWidget::canDrawInPage(const Renderer* render, Rect* area) const
-{
-    return true; // widgets are absolute, no space computation
-}
-
 SignalWidget::SignalWidget(Page* parent, GETU8 getter)
-: Widget(parent, nullptr), get(getter)
+: AbsoluteWidget(parent), get(getter)
 {
 }
 
@@ -98,13 +93,8 @@ void SignalWidget::drawInPage(Renderer* render, Rect* area)
     }
 }
 
-bool SignalWidget::canDrawInPage(const Renderer* render, Rect* area) const
-{
-    return true; // widgets are absolute, no space computation
-}
-
 ClockWidget::ClockWidget(Page* parent, GETSTR getclock, GETSTR getdate)
-: Widget(parent, nullptr), getclock(getclock), getdate(getdate)
+: AbsoluteWidget(parent), getclock(getclock), getdate(getdate)
 {
 }
 
@@ -124,9 +114,27 @@ void ClockWidget::drawInPage(Renderer* render, Rect* area)
     render->drawTextChar(x, y, str, NORMAL);
 }
 
-bool ClockWidget::canDrawInPage(const Renderer* render, Rect* area) const
+CompassWidget::CompassWidget(Page* parent, GETCOMPASSDATA getter)
+: AbsoluteWidget(parent), get(getter)
 {
-    return true; // widgets are absolute, no space computation
+
+}
+
+void CompassWidget::drawInPage(Renderer* render, Rect* area)
+{
+    uint8_t cx = area->x0 + ((area->x1 - area->x0) / 2);
+    uint8_t cy = area->y0 + ((area->y1 - area->y0) / 2);
+    uint8_t r = ((area->y1 -area->y0) / 2) - circle_margin;
+    render->drawCircle(cx, cy, r);
+
+    float x, y;
+    get(&x, &y);
+    int16_t sx = (float)x * (float)r;
+    int16_t sy = (float)y * (float)r;
+    render->drawLine(cx, cy, cx + sx, cy + sy);
+
+    area->x0 = area->x1;
+    area->y0 += area->y1;
 }
 
 }; // namespace Menu

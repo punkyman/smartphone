@@ -7,9 +7,9 @@ namespace Menu
     static const int scrollbar_width = 2;
     static const int scrollbar_spacing = 1;
 
-    struct VerticalListPage : Page
+    struct ListPage : Page
     {
-        VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems);
+        ListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems);
 
         virtual void draw(Renderer* render);
 

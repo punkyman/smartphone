@@ -1,6 +1,6 @@
 #pragma once
 #include "widget.h"
-#include "functor_declarations.h"
+#include "functors.h"
 
 #define BATTERY_BAR1 10
 #define BATTERY_BAR2 25
@@ -19,7 +19,15 @@
 
 namespace Menu
 {
-    struct BatteryWidget : Widget
+    struct AbsoluteWidget : Widget
+    {
+        // no name for these widgets 
+        AbsoluteWidget(Page* parent) : Widget(parent, nullptr) {} 
+        // no space computation
+        bool canDrawInPage(const Renderer* render, Rect* area) const { return true; }
+    };
+
+    struct BatteryWidget : AbsoluteWidget
     {
         static const uint8_t w = 16;
         static const uint8_t h = 8;
@@ -31,12 +39,11 @@ namespace Menu
         BatteryWidget(Page* parent, GETU8 getter);
 
         virtual void drawInPage(Renderer* render, Rect* area);
-        virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
 
         GETU8 get;
     };
 
-    struct SignalWidget : Widget
+    struct SignalWidget : AbsoluteWidget
     {
         static const uint8_t w = 16;
         static const uint8_t h = 8;
@@ -50,20 +57,28 @@ namespace Menu
         SignalWidget(Page* parent, GETU8 getter);
 
         virtual void drawInPage(Renderer* render, Rect* area);
-        virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
 
         GETU8 get;
     };
 
-    struct ClockWidget : Widget
+    struct ClockWidget : AbsoluteWidget
     {
         static const uint8_t space = 2;
         ClockWidget(Page* parent, GETSTR getclock, GETSTR getdate);
 
         virtual void drawInPage(Renderer* render, Rect* area);
-        virtual bool canDrawInPage(const Renderer* render, Rect* area) const;
 
         GETSTR getclock;
         GETSTR getdate;
     };
+
+    struct CompassWidget : AbsoluteWidget
+    {
+        CompassWidget(Page* parent, GETCOMPASSDATA getter);
+
+        virtual void drawInPage(Renderer* render, Rect* area);
+
+        GETCOMPASSDATA get;
+    };
+
 };

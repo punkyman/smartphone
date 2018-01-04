@@ -1,4 +1,4 @@
-#include "verticallistpage.h"
+#include "list_page.h"
 #include "types.h"
 #include "renderer.h"
 
@@ -55,12 +55,12 @@ void drawScrollBar(Renderer* render, uint8_t start_index, uint8_t end_index, uin
     area->x1 -= (2 * scrollbar_spacing) - scrollbar_width;
 }
 
-VerticalListPage::VerticalListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
+ListPage::ListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
 : Page(parent, name, nbitems), index(0), draw_start_index(0)
 {
 }
 
-void VerticalListPage::enter()
+void ListPage::enter()
 {
     // for now, avoid implementation of leave() by unfocusing previous item here
     if(nb)
@@ -77,7 +77,7 @@ void VerticalListPage::enter()
     }
 }
 
-void VerticalListPage::draw(Renderer* render)
+void ListPage::draw(Renderer* render)
 {
     Rect area(0,0, render->screenWidth, render->screenHeight);
     uint8_t textw, texth;
@@ -113,7 +113,7 @@ void VerticalListPage::draw(Renderer* render)
     }
 }
 
-void VerticalListPage::next()
+void ListPage::next()
 {
     if(index < nb - 1)
     {
@@ -121,7 +121,7 @@ void VerticalListPage::next()
         content[++index]->focus();
     }
 }
-void VerticalListPage::previous()
+void ListPage::previous()
 {
     if(index > 0)
     {
@@ -130,12 +130,12 @@ void VerticalListPage::previous()
     }
 }
 
-Page* VerticalListPage::back()
+Page* ListPage::back()
 {
     return parent;
 }
 
-Page* VerticalListPage::validate()
+Page* ListPage::validate()
 {
     if(content[index]->ispage())
         return (Page*) content[index];
