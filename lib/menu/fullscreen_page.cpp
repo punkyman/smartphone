@@ -24,6 +24,7 @@ Item* FullscreenPage::back()
 {
     return parent ? parent : this;
 }
+
 Item* FullscreenPage::validate()
 {
     return menu;

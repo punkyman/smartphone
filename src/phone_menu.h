@@ -2,8 +2,9 @@
 
 namespace Menu
 {
-    struct Page;
     struct Renderer;
+    struct Page;
+    struct Widget;
 }
 
 struct PhoneMenu
@@ -14,5 +15,6 @@ struct PhoneMenu
 
     Menu::Renderer* render;
     Menu::Page* currentPage;
+    Menu::Widget* currentWidget;
 };
 

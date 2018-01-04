@@ -18,9 +18,4 @@ void Item::unfocus()
     focused = false;
 }
 
-Page* Item::getparent()
-{
-    return parent;
-}
-
 }; // namespace Menu

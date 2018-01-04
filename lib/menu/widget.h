@@ -20,5 +20,9 @@ namespace Menu
 
         virtual bool isinteractive() const { return false; }
 
+        virtual void next() {}
+        virtual void previous() {}
+        virtual Item* back() { return nullptr; }
+        virtual Item* validate() {return nullptr; }
     };
 }

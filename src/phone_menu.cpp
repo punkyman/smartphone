@@ -6,7 +6,7 @@
 #include "modules/module_input.h"
 #include "globals.h"
 
-PhoneMenu::PhoneMenu()
+PhoneMenu::PhoneMenu() : currentWidget(nullptr)
 {
     MENU_NEW_FULLSCREEN(main, nullptr, nullptr, 3);
     MENU_NEW_BATTERY_AT(0, main, g_get_battery_level);
@@ -47,32 +47,49 @@ PhoneMenu::PhoneMenu()
 void PhoneMenu::update()
 {
     const ModuleInput::Inputs* inputs = ModuleInput::getInputs();
-    Menu::Page* previousPage = currentPage;
+    Menu::Item* currentItem = currentWidget ? (Menu::Item*)currentWidget : (Menu::Item*)currentPage;
+    Menu::Item* nextItem = currentItem;
 
     if(inputs->pressed_up)
     {
-        currentPage->previous();
+        currentItem->previous();
     }
     if(inputs->pressed_down)
     {
-        currentPage->next();
+        currentItem->next();
     }
     if(inputs->pressed_validate)
     {
-        Menu::Item* item = currentPage->validate();
-        if(item->ispage())
-            currentPage = (Menu::Page*) item;
+        nextItem = currentItem->validate();
     }
     if(inputs->pressed_left)
     {
-        Menu::Item* item = currentPage->back();
-        if(item->ispage())
-            currentPage = (Menu::Page*) item;
+        nextItem = currentItem->back();
     }
 
-    if(previousPage != currentPage)
+    if(currentItem != nextItem)
     {
-        currentPage->enter();
+        if(nextItem == nullptr)
+        {
+            // no interaction with the widget
+            currentWidget = nullptr;
+        }
+        else if(nextItem->ispage())
+        {
+            if(currentPage != nextItem)
+            {
+                currentPage = (Menu::Page*) nextItem;
+                currentPage->enter();
+            }
+        }
+        else
+        {
+            Menu::Widget* widget = (Menu::Widget*) nextItem;
+            if(widget->isinteractive())
+            {
+                currentWidget = widget;
+            }
+        }
     }
 }
     

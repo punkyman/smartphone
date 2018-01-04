@@ -24,9 +24,12 @@ namespace Menu
         void focus();
         void unfocus();
 
-
-        Page* getparent();
-
+        // navigation methods
+        virtual void next() = 0;
+        virtual void previous() = 0;
+        virtual Item* back() = 0;
+        virtual Item* validate() = 0;
+        
         Page* parent;
         const __FlashStringHelper* name;
         bool focused;

@@ -15,6 +15,8 @@ namespace Menu
 
         virtual void draw(Renderer* render);
 
+        virtual void next() {}
+        virtual void previous() {}
         virtual Item* back();
         virtual Item* validate();
 
