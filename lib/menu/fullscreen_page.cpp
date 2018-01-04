@@ -20,11 +20,11 @@ void FullscreenPage::draw(Renderer* render)
     }
 }
 
-Page* FullscreenPage::back()
+Item* FullscreenPage::back()
 {
     return parent ? parent : this;
 }
-Page* FullscreenPage::validate()
+Item* FullscreenPage::validate()
 {
     return menu;
 }

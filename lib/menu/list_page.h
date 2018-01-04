@@ -15,8 +15,8 @@ namespace Menu
 
         virtual void next();
         virtual void previous();
-        virtual Page* back();
-        virtual Page* validate();
+        virtual Item* back();
+        virtual Item* validate();
 
         virtual void enter();
 

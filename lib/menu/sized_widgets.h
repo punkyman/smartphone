@@ -5,7 +5,7 @@
 
 namespace Menu
 {
-    struct DisplayTextWidget : Widget
+    struct DisplayTextWidget : DisplayWidget
     {
         DisplayTextWidget(Page* parent, const __FlashStringHelper * name, GETSTR getter);
 

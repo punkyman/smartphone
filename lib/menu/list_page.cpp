@@ -130,12 +130,12 @@ void ListPage::previous()
     }
 }
 
-Page* ListPage::back()
+Item* ListPage::back()
 {
     return parent;
 }
 
-Page* ListPage::validate()
+Item* ListPage::validate()
 {
     if(content[index]->ispage())
         return (Page*) content[index];

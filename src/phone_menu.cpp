@@ -59,11 +59,15 @@ void PhoneMenu::update()
     }
     if(inputs->pressed_validate)
     {
-        currentPage = currentPage->validate();
+        Menu::Item* item = currentPage->validate();
+        if(item->ispage())
+            currentPage = (Menu::Page*) item;
     }
     if(inputs->pressed_left)
     {
-        currentPage = currentPage->back();
+        Menu::Item* item = currentPage->back();
+        if(item->ispage())
+            currentPage = (Menu::Page*) item;
     }
 
     if(previousPage != currentPage)

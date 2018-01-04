@@ -19,10 +19,10 @@
 
 namespace Menu
 {
-    struct AbsoluteWidget : Widget
+    struct AbsoluteWidget : DisplayWidget
     {
         // no name for these widgets 
-        AbsoluteWidget(Page* parent) : Widget(parent, nullptr) {} 
+        AbsoluteWidget(Page* parent) : DisplayWidget(parent, nullptr) {} 
         // no space computation
         bool canDrawInPage(const Renderer* render, Rect* area) const { return true; }
     };

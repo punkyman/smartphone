@@ -6,7 +6,7 @@ namespace Menu
 {
 
 DisplayTextWidget::DisplayTextWidget(Page* parent, const __FlashStringHelper* name, GETSTR getter)
-: Widget(parent, name), get(getter)
+: DisplayWidget(parent, name), get(getter)
 {
 }
 

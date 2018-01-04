@@ -17,12 +17,13 @@ namespace Menu
         // returns if the widget can fit in the area, and updates the area with its size
         virtual bool canDrawInPage(const Renderer* render, Rect* area) const = 0;
 
+        // rtti like to know if the item is of type page
+        virtual bool ispage() const = 0;
+
         // in-page selection
         void focus();
         void unfocus();
 
-        // rtti like to know if the item is of type page
-        virtual bool ispage() const = 0;
 
         Page* getparent();
 

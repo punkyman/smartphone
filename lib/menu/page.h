@@ -26,8 +26,8 @@ namespace Menu
         // navigation methods
         virtual void next() {}
         virtual void previous() {}
-        virtual Page* back() = 0;
-        virtual Page* validate() = 0;
+        virtual Item* back() = 0;
+        virtual Item* validate() = 0;
 
         // page initialisation
         virtual void enter() {}

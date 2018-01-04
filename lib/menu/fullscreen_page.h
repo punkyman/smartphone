@@ -15,8 +15,8 @@ namespace Menu
 
         virtual void draw(Renderer* render);
 
-        virtual Page* back();
-        virtual Page* validate();
+        virtual Item* back();
+        virtual Item* validate();
 
         void setmenu(Page* page);
 
