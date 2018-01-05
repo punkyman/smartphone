@@ -15,6 +15,5 @@ struct PhoneMenu
 
     Menu::Renderer* render;
     Menu::Page* currentPage;
-    Menu::Widget* currentWidget;
 };
 

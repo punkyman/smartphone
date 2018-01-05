@@ -23,12 +23,6 @@ namespace Menu
         // in-page selection
         void focus();
         void unfocus();
-
-        // navigation methods
-        virtual void next() = 0;
-        virtual void previous() = 0;
-        virtual Item* back() = 0;
-        virtual Item* validate() = 0;
         
         Page* parent;
         const __FlashStringHelper* name;

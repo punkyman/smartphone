@@ -113,34 +113,44 @@ void ListPage::draw(Renderer* render)
     }
 }
 
-void ListPage::next()
+Page* ListPage::update(Inputs inputs)
 {
-    if(index < nb - 1)
+    if(inputs & INPUT_PREVIOUS)
     {
-        content[index]->unfocus();
-        content[++index]->focus();
-    }
-}
-void ListPage::previous()
-{
-    if(index > 0)
-    {
-        content[index]->unfocus();
-        content[--index]->focus();
-    }
-}
+        if(index > 0)
+        {
+            content[index]->unfocus();
+            content[--index]->focus();
+        }
 
-Item* ListPage::back()
-{
-    return parent;
-}
-
-Item* ListPage::validate()
-{
-    if(content[index]->ispage())
-        return (Page*) content[index];
-    else
         return this;
+    }
+
+    if(inputs & INPUT_NEXT)
+    {
+        if(index < nb - 1)
+        {
+            content[index]->unfocus();
+            content[++index]->focus();
+        }
+
+        return this;
+    }
+
+    if(inputs & INPUT_BACK)
+    {
+        return parent;
+    }
+
+    if(inputs & INPUT_VALIDATE)
+    {
+        if(content[index]->ispage())
+            return (Page*) content[index];
+        else
+            return this;
+    }
+
+    return this;
 }
 
 };

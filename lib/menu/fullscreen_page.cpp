@@ -20,14 +20,18 @@ void FullscreenPage::draw(Renderer* render)
     }
 }
 
-Item* FullscreenPage::back()
+Page* FullscreenPage::update(Inputs inputs)
 {
-    return parent ? parent : this;
-}
+    if(inputs & INPUT_BACK)
+    {
+        return parent ? parent : this;
+    }
+    if(inputs & INPUT_VALIDATE)
+    {
+        return menu;
+    }
 
-Item* FullscreenPage::validate()
-{
-    return menu;
+    return this;
 }
 
 void FullscreenPage::setmenu(Page* page)

@@ -1,6 +1,7 @@
 #pragma once
 #include <Arduino.h>
 
+#include "inputs.h"
 #include "item.h"
 
 namespace Menu
@@ -25,6 +26,9 @@ namespace Menu
 
         // page initialisation
         virtual void enter() {}
+
+        // interactions update
+        virtual Page* update(Inputs inputs) = 0;
 
         Item** content;
         uint8_t nb;
