@@ -4,6 +4,7 @@
 #include "renderer.h"
 
 #include "page.h"
+#include "mess_page.h"
 #include "fullscreen_page.h"
 #include "list_page.h"
 

@@ -1,12 +1,13 @@
 #include "fullscreen_page.h"
 #include "types.h"
+#include "widget.h"
 #include "renderer.h"
 
 namespace Menu
 {
 
-FullscreenPage::FullscreenPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems)
-: Page(parent, name, nbitems), menu(nullptr)
+FullscreenPage::FullscreenPage(Page* parent, const __FlashStringHelper * name)
+: Page(parent, name, 1)
 {
 }
 
@@ -14,30 +15,21 @@ void FullscreenPage::draw(Renderer* render)
 {
     Rect area(0,0, render->screenWidth, render->screenHeight);
 
-    for(uint8_t i = 0; i < nb; ++i)
-    {
-        content[i]->drawInPage(render, &area);
-    }
+    content[0]->drawInPage(render, &area);
 }
 
 Page* FullscreenPage::update(Inputs inputs)
 {
-    // No inputs passed to the widgets here
+    Menu::Widget* widget = (Menu::Widget*) content[0]; // better be a widget !
+    if(widget->update(inputs))
+        return this;
+
     if(inputs & INPUT_BACK)
     {
         return parent ? parent : this;
     }
-    if(inputs & INPUT_VALIDATE)
-    {
-        return menu;
-    }
 
     return this;
-}
-
-void FullscreenPage::setmenu(Page* page)
-{
-    menu = page;
 }
 
 };

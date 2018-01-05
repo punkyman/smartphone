@@ -1,5 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
-// Page made to handle one widget fullscreen
+// Page that draws all content fullscreen without its title
+// and returns a hidden menu on interaction
 ///////////////////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -8,13 +9,17 @@
 
 namespace Menu
 {
-    struct FullscreenPage : Page 
+    struct MessPage : Page 
     {
-        FullscreenPage(Page* parent, const __FlashStringHelper * name);
+        MessPage(Page* parent, const __FlashStringHelper * name, uint8_t nbitems);
 
         virtual void draw(Renderer* render);
 
         virtual Page* update(Inputs inputs);
+
+        void setmenu(Page* page);
+
+        Page* menu;
     };
 };
 

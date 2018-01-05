@@ -2,11 +2,11 @@
 
 /*******************  Pages  ***********************/
 
-#define MENU_NEW_FULLSCREEN(page, parent, text, nb) \
-    Menu::FullscreenPage* page = new Menu::FullscreenPage(parent, text, nb)
+#define MENU_NEW_MESS(page, parent, text, nb) \
+    Menu::MessPage* page = new Menu::MessPage(parent, text, nb)
 
-#define MENU_NEW_FULLSCREEN_AT(idx, parent, page, text, nb) \
-    Menu::FullscreenPage* page = new Menu::FullscreenPage(parent, text, nb);\
+#define MENU_NEW_FULLSCREEN_AT(idx, parent, page, text) \
+    Menu::FullscreenPage* page = new Menu::FullscreenPage(parent, text);\
     parent->setitem(idx,page)
 
 #define MENU_NEW_LIST(page, parent, text, nb) \
