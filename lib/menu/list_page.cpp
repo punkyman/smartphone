@@ -64,18 +64,12 @@ ListPage::ListPage(Page* parent, const __FlashStringHelper * name, uint8_t nbite
 void ListPage::enter()
 {
     // for now, avoid implementation of leave() by unfocusing previous item here
-    if(nb)
-    {
-        content[index]->unfocus();
-    }
+    content[index]->unfocus();
 
     index = 0;
     draw_start_index = 0;
 
-    if(nb)
-    {
-        content[index]->focus();
-    }
+    content[index]->focus();
 }
 
 void ListPage::draw(Renderer* render)
@@ -96,21 +90,18 @@ void ListPage::draw(Renderer* render)
     render->drawLine(area.x0, area.y0, area.x1, area.y0);
     area.y0 += 1; // line;
 
-    if(nb)
+    uint8_t draw_end_index = nb;
+
+    computeWindow(render, &area, (const Menu::Item**) content, index, &draw_start_index, &draw_end_index);
+
+    if( (draw_end_index - draw_start_index) != nb )
     {
-        uint8_t draw_end_index = nb;
+        drawScrollBar(render, draw_start_index, draw_end_index, nb, &area);
+    }
 
-        computeWindow(render, &area, (const Menu::Item**) content, index, &draw_start_index, &draw_end_index);
-
-        if( (draw_end_index - draw_start_index) != nb )
-        {
-            drawScrollBar(render, draw_start_index, draw_end_index, nb, &area);
-        }
-
-        for(uint8_t i = draw_start_index; i < draw_end_index; ++i)
-        {
-            content[i]->drawInPage(render, &area);
-        }
+    for(uint8_t i = draw_start_index; i < draw_end_index; ++i)
+    {
+        content[i]->drawInPage(render, &area);
     }
 }
 

@@ -1,5 +1,6 @@
 #include "phone_menu.h"
 #include <Arduino.h>
+#include "assert.h"
 
 #include <menu.h>
 #include "modules/module_display.h"

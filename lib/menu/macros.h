@@ -10,9 +10,11 @@
     parent->setitem(idx,page)
 
 #define MENU_NEW_LIST(page, parent, text, nb) \
+    STATIC_ASSERT_MESSAGE(nb > 0, need_at_least_one_item_in_the_list); \
     Menu::Page* page = new Menu::ListPage(parent, text, nb)
 
 #define MENU_NEW_LIST_AT(idx, parent, page, text, nb) \
+    STATIC_ASSERT_MESSAGE(nb > 0, need_at_least_one_item_in_the_list); \
     Menu::Page* page = new Menu::ListPage(parent, text, nb);\
     parent->setitem(idx,page)
 
