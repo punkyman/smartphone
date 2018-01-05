@@ -21,6 +21,10 @@
 #include "modules/module_gps.h"
 #endif
 
+#if defined(HARDWARE_ENABLE_RTC)
+#include "modules/module_rtc.h"
+#endif
+
 namespace Hardware
 {
     void setup()
@@ -43,6 +47,10 @@ namespace Hardware
 #if defined(HARDWARE_ENABLE_GPS)
         ModuleGps::setup();
 #endif
+
+#if defined(HARDWARE_ENABLE_RTC)
+        ModuleRtc::setup();
+#endif
     }
 
     void update()
@@ -61,6 +69,9 @@ namespace Hardware
 #endif
 #if defined(HARDWARE_ENABLE_GPS)
         ModuleGps::update();
+#endif
+#if defined(HARDWARE_ENABLE_RTC)
+        ModuleRtc::update();
 #endif
     }
 }

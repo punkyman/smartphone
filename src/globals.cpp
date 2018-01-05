@@ -8,8 +8,11 @@
 #if defined(HARDWARE_ENABLE_BATTERY)
 #include "modules/module_battery.h"
 #endif
-#if defined (HARDWARE_ENABLE_GPS)
+#if defined(HARDWARE_ENABLE_GPS)
 #include "modules/module_gps.h"
+#endif
+#if defined(HARDWARE_ENABLE_RTC)
+#include "modules/module_rtc.h"
 #endif
 
 // temporary string for all the operations; keep it low!
@@ -20,6 +23,9 @@ const char* g_get_temperature()
 {
 #if defined(HARDWARE_ENABLE_SENSORS)
     dtostrf(ModuleBarometer::baroTemperature / 100.0f, 2, 2, str); // according to module_barometer.cpp
+    snprintf_P(str, 16, PSTR("%s C"), str);
+#elif defined(HARDWARE_ENABLE_RTC)
+    dtostrf(ModuleRtc::get_temperature(), 2, 2, str);
     snprintf_P(str, 16, PSTR("%s C"), str);
 #else
     strcpy_P(str, PSTR("No sensor"));
@@ -69,8 +75,10 @@ bool g_get_compass_data(float* roll, float* pitch/*, float* yaw*/)
 
 const char* g_get_clock()
 {
-#if defined(HARDWARE_ENABLE_CLOCK)
-// TODO CR3231
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t hours, minutes;
+    ModuleRtc::get_time(&hours, &minutes);
+    snprintf_P(str, 16, PSTR("%02i:%02i"), hours, minutes);
 #elif defined(HARDWARE_ENABLE_GPS)
     uint8_t hours, minutes;
     ModuleGps::get_time(&hours, &minutes);
@@ -84,8 +92,11 @@ const char* g_get_clock()
 
 const char* g_get_date()
 {
-#if defined(HARDWARE_ENABLE_CLOCK)
-// TODO CR3231
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    snprintf_P(str, 16, PSTR("%02i/%02i/%i"), day, month, year);
 #elif defined(HARDWARE_ENABLE_GPS)
     uint8_t day, month;
     uint16_t year;
