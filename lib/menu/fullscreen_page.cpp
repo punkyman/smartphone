@@ -22,6 +22,7 @@ void FullscreenPage::draw(Renderer* render)
 
 Page* FullscreenPage::update(Inputs inputs)
 {
+    // No inputs passed to the widgets here
     if(inputs & INPUT_BACK)
     {
         return parent ? parent : this;

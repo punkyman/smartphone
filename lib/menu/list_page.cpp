@@ -1,6 +1,7 @@
 #include "list_page.h"
 #include "types.h"
 #include "renderer.h"
+#include "widget.h"
 
 namespace Menu
 {
@@ -115,6 +116,13 @@ void ListPage::draw(Renderer* render)
 
 Page* ListPage::update(Inputs inputs)
 {
+    if(!content[index]->ispage())
+    {
+        Menu::Widget* widget = (Menu::Widget*)content[index];
+        if(widget->update(inputs))
+            return this;
+    }
+
     if(inputs & INPUT_PREVIOUS)
     {
         if(index > 0)
