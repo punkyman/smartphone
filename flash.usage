@@ -1,152 +1,116 @@
-00004128 T main
-00001954 t global constructors keyed to 65535_0_globals.o.3985
+00001814 t global constructors keyed to 65535_0_globals.o.3703
+00001476 T main
 00001280 t font
 00001068 t Adafruit_GFX::drawChar(int, int, unsigned char, unsigned int, unsigned int, unsigned char)
 00000932 T vfprintf
-00000796 T dtoa_prf
-00000706 T Adafruit_GFX::charBounds(char, int*, int*, int*, int*, int*, int*) [clone .constprop.15]
+00000706 T Adafruit_GFX::charBounds(char, int*, int*, int*, int*, int*, int*) [clone .constprop.16]
 00000604 T __vector_24
 00000546 T Menu::ListPage::draw(Menu::Renderer*)
 00000508 T ModuleDisplay::drawCircle(unsigned char, unsigned char, unsigned char)
 00000504 D pcd8544_buffer
-00000432 T __ftoa_engine
 00000428 T Adafruit_GFX::write(unsigned char)
-00000400 T g_get_location()
+00000354 T ModuleDisplay::getTextSize(char const*, bool, unsigned char*, unsigned char*, unsigned char)
 00000340 T Adafruit_GFX::writeLine(int, int, int, int, unsigned int)
 00000304 T free
 00000302 T Adafruit_PCD8544::drawPixel(int, int, unsigned int)
 00000300 T Menu::ListPage::update(unsigned char)
+00000298 T Menu::ClockWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000298 T malloc
-00000294 T Menu::ClockWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000284 T Menu::CompassWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
-00000272 T TinyGPSPlus::parseDegrees(char const*, RawDegrees&)
-00000270 T Menu::DisplayTextWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
+00000274 T Menu::DisplayTextWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000270 T ModuleDisplay::drawBitmap(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char const*)
-00000266 T ModuleDisplay::getTextSizeFSH(__FlashStringHelper const*, unsigned char*, unsigned char*, unsigned char)
-00000260 T ModuleDisplay::getTextSizeChar(char const*, unsigned char*, unsigned char*, unsigned char)
 00000244 T __vector_5
 00000244 T __vector_4
 00000244 T __vector_3
 00000238 T Adafruit_GFX::drawLine(int, int, int, int, unsigned int)
-00000220 T __divsf3x
 00000218 T Menu::BatteryWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000210 T __mulsf3x
 00000204 T Menu::SignalWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000204 T __addsf3x
 00000190 T Adafruit_GFX::drawRect(int, int, int, int, unsigned int)
 00000188 T __ultoa_invert
-00000186 T TwoWire::endTransmission(unsigned char) [clone .constprop.72]
-00000182 T TinyGPSPlus::parseDecimal(char const*)
-00000174 T Menu::Page::drawInPage(Menu::Renderer*, Menu::Rect*)
+00000178 T Menu::Page::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000168 T SoftwareSerial::write(unsigned char)
 00000160 T Adafruit_GFX::fillRect(int, int, int, int, unsigned int)
-00000150 T Menu::DisplayTextWidget::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
+00000152 T Menu::DisplayTextWidget::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
 00000148 T __vector_16
-00000146 T TwoWire::requestFrom(int, int) [clone .constprop.47]
-00000138 T HardwareSerial::write(unsigned char)
 00000138 T Adafruit_GFX::drawFastVLine(int, int, int, unsigned int)
 00000136 T Adafruit_GFX::drawFastHLine(int, int, int, unsigned int)
-00000134 T Print::printNumber(unsigned long, unsigned char) [clone .constprop.27]
 00000128 t Menu::battery_bitmap
 00000128 T Menu::MessPage::draw(Menu::Renderer*)
-00000126 T Adafruit_PCD8544::display() [clone .constprop.58]
+00000126 T Adafruit_PCD8544::display() [clone .constprop.31]
+00000124 T ModuleDisplay::drawText(unsigned char, unsigned char, char const*, bool, unsigned char)
 00000122 T __floatunsisf
 00000120 T pinMode
-00000116 t Adafruit_PCD8544::spiWrite(unsigned char) [clone .constprop.60]
-00000116 T delay
+00000116 t Adafruit_PCD8544::spiWrite(unsigned char) [clone .constprop.33]
+00000116 t delay
 00000112 T fputc
-00000108 T g_get_speed()
-00000100 T __vector_18
-00000096 T TwoWire::write(unsigned char const*, unsigned int)
-00000096 T g_get_altitude()
 00000096 T snprintf_P
 00000096 T digitalWrite
-00000094 T TwoWire::write(unsigned char)
 00000094 T __fixunssfsi
-00000088 T Menu::Page::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
+00000090 T Menu::Page::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
 00000086 T Print::write(unsigned char const*, unsigned int)
-00000084 T g_get_temperature()
-00000082 T turnOffPWM.lto_priv.93
+00000082 T turnOffPWM.lto_priv.45
 00000080 T Menu::FullscreenPage::draw(Menu::Renderer*)
 00000080 t twi_transmit
-00000078 T atol
-00000076 T __vector_19
-00000074 T micros
-00000072 T Print::print(__FlashStringHelper const*)
-00000072 T g_get_satellites()
-00000072 T g_get_date()
+00000074 t micros
 00000072 T __fp_cmp
-00000068 T HardwareSerial::flush()
+00000068 T g_get_date()
 00000068 T __udivmodsi4
 00000068 T __fp_split3
 00000066 T SoftwareSerial::read()
 00000064 t Menu::signal_bitmap
-00000064 t HardwareSerial::_tx_udr_empty_irq()
-00000064 T g_get_clock()
-00000064 T dtostrf
 00000062 T Menu::ListPage::enter()
 00000060 T Menu::FullscreenPage::update(unsigned char)
 00000060 T Adafruit_GFX::fillScreen(unsigned int)
+00000060 T g_get_clock()
 00000056 T __prologue_saves__
-00000054 T Adafruit_PCD8544::command(unsigned char) [clone .constprop.59]
+00000056 t _GLOBAL__sub_D__ZN9ModuleGps3gpsE
+00000054 T Adafruit_PCD8544::command(unsigned char) [clone .constprop.32]
 00000054 T __epilogue_restores__
 00000048 T SoftwareSerial::available()
 00000048 T SoftwareSerial::peek()
 00000048 T ModuleDisplay::fillRect(unsigned char, unsigned char, unsigned char, unsigned char)
 00000048 T ModuleDisplay::drawRect(unsigned char, unsigned char, unsigned char, unsigned char)
 00000048 T ModuleDisplay::drawLine(unsigned char, unsigned char, unsigned char, unsigned char)
-00000046 T TinyGPSDecimal::commit()
 00000046 T analogRead
 00000044 d vtable for Adafruit_PCD8544
-00000044 T SoftwareSerial::stopListening()
-00000042 T Print::write(char const*)
-00000042 T ModuleDisplay::drawTextChar(unsigned char, unsigned char, char const*, unsigned char)
-00000042 T ModuleDisplay::drawTextFSH(unsigned char, unsigned char, __FlashStringHelper const*, unsigned char)
 00000042 T Adafruit_GFX::setRotation(unsigned char)
-00000040 T TwoWire::read()
-00000040 T HardwareSerial::read()
+00000040 T TwoWire::write(unsigned char const*, unsigned int)
 00000040 T __udivmodhi4
 00000040 T __divmodhi4
+00000034 T TwoWire::write(unsigned char)
 00000034 T __fp_round
 00000032 T Adafruit_GFX::writeFillRect(int, int, int, int, unsigned int)
-00000032 T __mulsi3
-00000030 T TwoWire::peek()
+00000030 T TwoWire::read()
 00000030 T Menu::Page::setitem(unsigned char, Menu::Item*)
-00000030 T HardwareSerial::availableForWrite()
-00000030 T __umulhisi3
-00000030 T strncpy
+00000028 T TwoWire::peek()
 00000028 T Menu::MessPage::update(unsigned char)
-00000028 T HardwareSerial::peek()
 00000024 T Adafruit_GFX::writeFastVLine(int, int, int, unsigned int)
 00000024 T Adafruit_GFX::writeFastHLine(int, int, int, unsigned int)
 00000024 T g_get_compass_data(float*, float*)
-00000024 T millis
-00000022 T HardwareSerial::available()
 00000022 T strnlen_P
 00000022 T strnlen
-00000022 T __muluhisi3
 00000022 T __do_global_dtors
 00000022 T __do_global_ctors
 00000022 T __do_copy_data
-00000020 t Serial0_available()
-00000020 T serialEventRun()
 00000020 t twi_stop
-00000020 t _GLOBAL__sub_D__ZN9ModuleGps3gpsE
 00000020 T digital_pin_to_timer_PGM
 00000020 T digital_pin_to_port_PGM
 00000020 T digital_pin_to_bit_mask_PGM
 00000018 d vtable for TwoWire
 00000018 D vtable for SoftwareSerial
-00000018 d vtable for HardwareSerial
+00000018 T g_get_temperature()
+00000018 T g_get_satellites()
 00000018 T g_get_pressure()
-00000018 T strcmp
+00000018 T g_get_location()
+00000018 T g_get_altitude()
+00000018 T g_get_speed()
 00000016 d vtable for Menu::MessPage
 00000016 d vtable for Menu::ListPage
 00000016 d vtable for Menu::FullscreenPage
 00000016 T TwoWire::available()
 00000016 T __do_clear_bss
-00000015 t loop::__c
-00000015 t loop::__c
 00000014 d vtable for Menu::DisplayTextWidget
 00000014 d vtable for Menu::CompassWidget
 00000014 d vtable for Menu::BatteryWidget
@@ -155,23 +119,21 @@
 00000014 T Adafruit_GFX::writePixel(int, int, unsigned int)
 00000014 T __subsf3
 00000014 T strcpy_P
-00000014 T strcpy
 00000014 T __fp_zero
 00000014 T __fp_pscB
 00000014 T __fp_pscA
 00000014 T __fixsfsi
-00000013 t loop::__c
 00000013 t g_get_date()::__c
 00000012 t PhoneMenu::PhoneMenu()::__c
 00000012 T __tablejump2__
 00000012 T __fp_inf
 00000011 t PhoneMenu::PhoneMenu()::__c
+00000010 t g_get_temperature()::__c
 00000010 t g_get_pressure()::__c
 00000010 t g_get_clock()::__c
 00000010 T port_to_output_PGM
 00000010 T port_to_mode_PGM
 00000010 T port_to_input_PGM
-00000010 T __mulohisi3
 00000010 T __gesf2
 00000010 T __cmpsf2
 00000010 T abort
@@ -180,20 +142,16 @@
 00000009 t PhoneMenu::PhoneMenu()::__c
 00000008 t PhoneMenu::PhoneMenu()::__c
 00000008 t PhoneMenu::PhoneMenu()::__c
-00000008 t g_get_speed()::__c
 00000008 T __mulsf3
-00000008 T __divsf3
+00000007 t g_get_satellites()::__c
 00000007 t g_get_location()::__c
-00000007 t g_get_location()::__c
+00000007 t g_get_altitude()::__c
+00000007 t g_get_speed()::__c
 00000006 t PhoneMenu::PhoneMenu()::__c
 00000006 T Print::availableForWrite()
-00000006 T __mulshisi3
 00000006 T __fp_nan
 00000005 t PhoneMenu::PhoneMenu()::__c
-00000005 t g_get_temperature()::__c
-00000005 t g_get_altitude()::__c
 00000004 t PhoneMenu::PhoneMenu()::__c
-00000004 t g_get_location()::__c
 00000004 T Menu::Widget::ispage() const
 00000004 T Menu::Page::ispage() const
 00000004 T Menu::AbsoluteWidget::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
@@ -202,7 +160,6 @@
 00000004 T g_get_battery_level()
 00000004 T g_get_rssi()
 00000004 T __cxa_pure_virtual
-00000003 t g_get_satellites()::__c
 00000002 T TwoWire::flush()
 00000002 T Print::flush()
 00000002 T Menu::Page::enter()
