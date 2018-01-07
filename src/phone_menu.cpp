@@ -34,10 +34,8 @@ PhoneMenu::PhoneMenu()
     currentPage->enter();
 
     render = new Menu::Renderer(ModuleDisplay::getScreenWidth(), ModuleDisplay::getScreenHeight());
-    render->getTextSizeChar = ModuleDisplay::getTextSizeChar;
-    render->getTextSizeFSH = ModuleDisplay::getTextSizeFSH;
-    render->drawTextChar = ModuleDisplay::drawTextChar;
-    render->drawTextFSH = ModuleDisplay::drawTextFSH;
+    render->getTextSize = ModuleDisplay::getTextSize;
+    render->drawText = ModuleDisplay::drawText;
     render->drawLine = ModuleDisplay::drawLine;
     render->drawRect = ModuleDisplay::drawRect;
     render->fillRect = ModuleDisplay::fillRect;

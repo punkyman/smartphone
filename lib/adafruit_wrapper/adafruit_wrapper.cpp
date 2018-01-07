@@ -52,24 +52,15 @@ void adafruit_setfontsize(uint8_t size)
   display.setTextSize(size);
 }
 
-void adafruit_get_text_size(const char* text, uint16_t* width, uint16_t* height)
+void adafruit_get_text_size(const char* text, bool progmem, uint16_t* width, uint16_t* height)
 {
-  char* str = (char*) text; // beurk...
   
   int16_t x, y;
   uint16_t w, h;
-  display.getTextBounds(str, 0, 0, &x, &y, &w, &h);
-
-  // according to comments, getTextBounds returns UL corner and W,H
-  *width = w;
-  *height = h;
-}
-
-void adafruit_get_text_size(const __FlashStringHelper* text, uint16_t* width, uint16_t* height)
-{ 
-  int16_t x, y;
-  uint16_t w, h;
-  display.getTextBounds(text, 0, 0, &x, &y, &w, &h);
+  if(progmem)
+    display.getTextBounds((const __FlashStringHelper*) text, 0, 0, &x, &y, &w, &h);  
+  else
+    display.getTextBounds((char*) text, 0, 0, &x, &y, &w, &h); // beurk...
 
   // according to comments, getTextBounds returns UL corner and W,H
   *width = w;
@@ -86,16 +77,13 @@ void adafruit_end()
   display.display();
 }
 
-void adafruit_drawtext(uint16_t x, uint16_t y, const char* text)
+void adafruit_drawtext(uint16_t x, uint16_t y, const char* text, bool progmem)
 {
   display.setCursor(x,y);
-  display.print(text);
-}
-
-void adafruit_drawtext(uint16_t x, uint16_t y, const __FlashStringHelper* text)
-{
-  display.setCursor(x,y);
-  display.print(text);
+  if(progmem)
+    display.print((const __FlashStringHelper*) text);
+  else
+    display.print(text);
 }
 
 void adafruit_drawline(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1)

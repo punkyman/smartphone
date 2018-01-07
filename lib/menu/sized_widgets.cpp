@@ -13,9 +13,9 @@ DisplayTextWidget::DisplayTextWidget(Page* parent, const __FlashStringHelper* na
 void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
 {
     uint8_t namew, nameh, textw, texth;
-    render->getTextSizeFSH(name, &namew, &nameh, NORMAL);
+    render->getTextSize(name, true, &namew, &nameh, NORMAL);
     const char* str = get();
-    render->getTextSizeChar(str, &textw, &texth, NORMAL);
+    render->getTextSize(str, false, &textw, &texth, NORMAL);
 
     if(focused)
         render->fillRect(area->x0, area->y0,
@@ -23,19 +23,19 @@ void DisplayTextWidget::drawInPage(Renderer* render, Rect* area)
         nameh + texth + 3 * text_spacing);
 
     area->y0 += text_margin;
-    render->drawTextFSH(area->x0 + text_margin, area->y0, name, NORMAL);
+    render->drawText(area->x0 + text_margin, area->y0, name, true, NORMAL);
     area->y0 += texth + text_spacing;
 
-    render->drawTextChar(area->x0 + text_margin,area->y0, str, NORMAL);
+    render->drawText(area->x0 + text_margin,area->y0, str, false, NORMAL);
     area->y0 += texth;
 }
 
 bool DisplayTextWidget::canDrawInPage(const Renderer* render, Rect* area) const
 {
     uint8_t namew, nameh, textw, texth;
-    render->getTextSizeFSH(name, &namew, &nameh, NORMAL);
+    render->getTextSize(name, true, &namew, &nameh, NORMAL);
     const char* str = get();
-    render->getTextSizeChar(str, &textw, &texth, NORMAL);
+    render->getTextSize(str, false, &textw, &texth, NORMAL);
 
     area->y0 += text_margin;
     area->y0 += texth + text_spacing;

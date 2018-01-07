@@ -102,16 +102,16 @@ void ClockWidget::drawInPage(Renderer* render, Rect* area)
 {
     uint8_t textw, texth;
     const char* str = getclock();
-    render->getTextSizeChar(str, &textw, &texth, BIG);
+    render->getTextSize(str, false, &textw, &texth, BIG);
     uint8_t x = area->x0 + ((area->x1 - area->x0) / 2) - (textw / 2);
     uint8_t y = area->y0 + ((area->y1 - area->y0) / 2) - (texth / 2);
-    render->drawTextChar(x, y, str, BIG);
+    render->drawText(x, y, str, false, BIG);
     
     y += texth + space;
     str = getdate();
-    render->getTextSizeChar(str, &textw, &texth, NORMAL);
+    render->getTextSize(str, false, &textw, &texth, NORMAL);
     x = area->x0 + ((area->x1 - area->x0) / 2) - (textw / 2);
-    render->drawTextChar(x, y, str, NORMAL);
+    render->drawText(x, y, str, false, NORMAL);
 }
 
 CompassWidget::CompassWidget(Page* parent, GETCOMPASSDATA getter)

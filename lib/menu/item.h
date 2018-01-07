@@ -10,7 +10,7 @@ namespace Menu
 
     struct Item
     {
-        Item(Page* parent,  const __FlashStringHelper * name); // support for F() macro
+        Item(Page* parent,  const __FlashStringHelper * name); // force name to be made with F() macro
 
         // in-page draw
         virtual void drawInPage(Renderer* render, Rect* area) = 0;
@@ -25,7 +25,7 @@ namespace Menu
         void unfocus();
         
         Page* parent;
-        const __FlashStringHelper* name;
+        const char * name;
         bool focused;
     };
 };

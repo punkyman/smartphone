@@ -10,14 +10,10 @@ namespace Menu
         HUGE     = 3,
     };
 
-    // text, width, height, font_size
-    typedef void (*GETTEXTSIZECHAR)(const char *, uint8_t*, uint8_t*, uint8_t);
-    // text, width, height, font_size
-    typedef void (*GETTEXTSIZEFSH)(const __FlashStringHelper *, uint8_t*, uint8_t*, uint8_t);
-    // x, y, text, font_size
-    typedef void (*DRAWTEXTCHAR)(uint8_t, uint8_t, const char *, uint8_t);
-    // x, y, text, font_size
-    typedef void (*DRAWTEXTFSH)(uint8_t, uint8_t, const __FlashStringHelper *, uint8_t);
+    // text, is_in_progmem, width, height, font_size
+    typedef void (*GETTEXTSIZE)(const char *, bool, uint8_t*, uint8_t*, uint8_t);
+    // x, y, text, is_in_progmem, font_size
+    typedef void (*DRAWTEXT)(uint8_t, uint8_t, const char *, bool, uint8_t);
     // x0, y0, x1, y1 
     typedef void (*DRAWLINE)(uint8_t, uint8_t, uint8_t, uint8_t);
     // x, y, w, h
@@ -38,10 +34,8 @@ struct Renderer
     Renderer(int screenWidth, int screenHeight)
     : screenWidth(screenWidth), screenHeight(screenHeight) {}
 
-    GETTEXTSIZECHAR getTextSizeChar;
-    GETTEXTSIZEFSH getTextSizeFSH;
-    DRAWTEXTCHAR drawTextChar;
-    DRAWTEXTFSH drawTextFSH;
+    GETTEXTSIZE getTextSize;
+    DRAWTEXT drawText;
     DRAWLINE drawLine;
     DRAWRECT drawRect;
     FILLRECT fillRect;
