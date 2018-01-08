@@ -1,6 +1,6 @@
 #include "fullscreen_page.h"
 #include "types.h"
-#include "widget.h"
+#include "widgets/widget.h"
 #include "renderer.h"
 
 namespace Menu

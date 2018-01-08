@@ -1,7 +1,7 @@
 #include "list_page.h"
 #include "types.h"
 #include "renderer.h"
-#include "widget.h"
+#include "widgets/widget.h"
 
 namespace Menu
 {
