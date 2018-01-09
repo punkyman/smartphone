@@ -1,6 +1,5 @@
 #include "module_battery.h"
 #include <Battery.h>
-#include "globals.h"
 
 
 namespace ModuleBattery

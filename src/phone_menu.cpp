@@ -5,7 +5,9 @@
 #include <menu.h>
 #include "modules/module_display.h"
 #include "modules/module_input.h"
-#include "globals.h"
+#include "globals/text.h"
+#include "globals/accessors.h"
+
 
 PhoneMenu::PhoneMenu()
 {
