@@ -34,3 +34,6 @@
 
 #define MENU_NEW_COMPASS_AT(idx, page, getter) \
     page->setitem(idx, new Menu::CompassWidget(page, getter))
+
+#define MENU_NEW_MODIFYINT_AT(idx, page, text, getter, setter, minimum, maximum) \
+    page->setitem(idx, new Menu::ModifyIntWidget(page, text, getter, setter, minimum, maximum))

@@ -32,7 +32,7 @@ namespace ModuleRtc
 
     void set_time(uint8_t hour, uint8_t minutes)
     {
-        DS3231_get(&t);
+        DS3231_get(&t); // need to refresh here because t contains more than what we want to change
         t.hour = hour;
         t.min = minutes;
         DS3231_set(t);

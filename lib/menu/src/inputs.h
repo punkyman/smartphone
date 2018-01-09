@@ -9,6 +9,7 @@ namespace Menu
         INPUT_PREVIOUS  = 1 << 0,
         INPUT_NEXT      = 1 << 1,
         INPUT_BACK      = 1 << 2,
-        INPUT_VALIDATE  = 1 << 3,
+        INPUT_FORWARD   = 1 << 3,
+        INPUT_VALIDATE  = 1 << 4,
     };
 }

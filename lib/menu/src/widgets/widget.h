@@ -19,8 +19,6 @@ namespace Menu
     {
         DisplayWidget(Page* parent, const __FlashStringHelper * name) : Widget(parent, name) {}
 
-        virtual bool isinteractive() const { return false; }
-
         virtual bool update(Inputs inputs) { (void) inputs; return false; }
     };
 }

@@ -14,7 +14,7 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_CLOCK_AT(1, main, g_get_clock, g_get_date);
     MENU_NEW_SIGNAL_AT(2, main, g_get_rssi);
 
-    MENU_NEW_LIST(menu, main, F("menu"), 3);
+    MENU_NEW_LIST(menu, main, F("menu"), 4);
 
     MENU_NEW_LIST_AT(0, menu, climate, F("climate"), 2);
     MENU_NEW_TEXT_AT(0, climate, F("temperature"), g_get_temperature);
@@ -28,6 +28,13 @@ PhoneMenu::PhoneMenu()
     MENU_NEW_TEXT_AT(1, gps, F("altitude"), g_get_altitude);
     MENU_NEW_TEXT_AT(2, gps, F("speed"), g_get_speed);
     MENU_NEW_TEXT_AT(3, gps, F("satellites"), g_get_satellites);
+
+    MENU_NEW_LIST_AT(3, menu, setup, F("setup"), 5);
+    MENU_NEW_MODIFYINT_AT(0, setup, F("hour"), g_get_hour, g_set_hour, 0, 24);    
+    MENU_NEW_MODIFYINT_AT(1, setup, F("minutes"), g_get_minutes, g_set_minutes, 0, 59);
+    MENU_NEW_MODIFYINT_AT(2, setup, F("day"), g_get_day, g_set_day, 1, 31);
+    MENU_NEW_MODIFYINT_AT(3, setup, F("month"), g_get_month, g_set_month, 1, 12);
+    MENU_NEW_MODIFYINT_AT(4, setup, F("year"), g_get_year, g_set_year, 1910, 2110);
 
     main->setmenu(menu);
     currentPage = main;
@@ -59,6 +66,10 @@ void PhoneMenu::update()
     if(inputs->pressed_left)
     {
         input_values |= Menu::INPUT_BACK;
+    }
+    if(inputs->pressed_right)
+    {
+        input_values |= Menu::INPUT_FORWARD;
     }
     if(inputs->pressed_validate)
     {

@@ -90,6 +90,56 @@ const char* g_get_clock()
     return str;
 }
 
+int32_t g_get_hour()
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t hours, minutes;
+    ModuleRtc::get_time(&hours, &minutes);
+    return hours;
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t hours, minutes;
+    ModuleGps::get_time(&hours, &minutes);
+    return hours;
+#else
+    return 12;
+#endif
+}
+void g_set_hour(int32_t value)
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t hours, minutes;
+    ModuleRtc::get_time(&hours, &minutes);
+    ModuleRtc::set_time(value, minutes);
+#else
+    return;
+#endif
+}
+
+int32_t g_get_minutes()
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t hours, minutes;
+    ModuleRtc::get_time(&hours, &minutes);
+    return minutes;
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t hours, minutes;
+    ModuleGps::get_time(&hours, &minutes);
+    return minutes;
+#else
+    return 59;
+#endif
+}
+void g_set_minutes(int32_t value)
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t hours, minutes;
+    ModuleRtc::get_time(&hours, &minutes);
+    ModuleRtc::set_time(hours, value);
+#else
+    return;
+#endif
+}
+
 const char* g_get_date()
 {
 #if defined(HARDWARE_ENABLE_RTC)
@@ -107,6 +157,91 @@ const char* g_get_date()
 #endif
 
     return str;
+}
+
+int32_t g_get_day()
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    return day;
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleGps::get_date(&day, &month, &year);
+    return day;
+#else
+    return 21;
+#endif
+}
+
+void g_set_day(int32_t value)
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    ModuleRtc::set_date(value, month, year);
+#else
+    return;
+#endif
+}
+
+int32_t g_get_month()
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    return month;
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleGps::get_date(&day, &month, &year);
+    return month;
+#else
+    return 01;
+#endif
+}
+void g_set_month(int32_t value)
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    ModuleRtc::set_date(day, value, year);
+#else
+    return;
+#endif
+}
+
+int32_t g_get_year()
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    return year;
+#elif defined(HARDWARE_ENABLE_GPS)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleGps::get_date(&day, &month, &year);
+    return year;
+#else
+    return 2018;
+#endif
+}
+void g_set_year(int32_t value)
+{
+#if defined(HARDWARE_ENABLE_RTC)
+    uint8_t day, month;
+    uint16_t year;
+    ModuleRtc::get_date(&day, &month, &year);
+    ModuleRtc::set_date(day, month, value);
+#else
+    return;
+#endif
 }
 
 uint8_t g_get_rssi()
