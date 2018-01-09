@@ -38,10 +38,10 @@ void update()
 
 #ifdef USE_JOYSTICK
     joystick_read_values();
-    inputs.down = joystick_analog_Y < -analog_treshold;
-    inputs.up = joystick_analog_Y > analog_treshold;
-    inputs.left = joystick_analog_X < -analog_treshold;
-    inputs.right = joystick_analog_X > analog_treshold;
+    inputs.down = joystick_analog_Y < (ANALOG_CENTER - analog_treshold);
+    inputs.up = joystick_analog_Y > (ANALOG_CENTER + analog_treshold);
+    inputs.left = joystick_analog_X < (ANALOG_CENTER -analog_treshold);
+    inputs.right = joystick_analog_X > (ANALOG_CENTER + analog_treshold);
     inputs.validate = joystick_switch;
 #endif
     

@@ -1,10 +1,11 @@
 #pragma once
+#include <Arduino.h>
 
 #define USE_JOYSTICK
 
 namespace ModuleInput
 {
-    static const float analog_treshold = 0.5f;
+    static const uint16_t analog_treshold = 256;
     
     struct Inputs
     {

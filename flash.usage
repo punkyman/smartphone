@@ -1,5 +1,5 @@
-00003942 T main
-00002496 t global constructors keyed to 65535_0_globals.o.4013
+00006762 T main
+00002496 t global constructors keyed to 65535_0_accessors.o.4057
 00001280 t font
 00001068 t Adafruit_GFX::drawChar(int, int, unsigned char, unsigned int, unsigned int, unsigned char)
 00000932 T vfprintf
@@ -24,7 +24,8 @@
 00000274 T Menu::DisplayTextWidget::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000272 T TinyGPSPlus::parseDegrees(char const*, RawDegrees&)
 00000270 T ModuleDisplay::drawBitmap(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char const*)
-00000248 T DS3231_get(ts*) [clone .constprop.63]
+00000254 T g_get_compass_data(float*, float*)
+00000248 T DS3231_get(ts*) [clone .constprop.73]
 00000244 T __vector_5
 00000244 T __vector_4
 00000244 T __vector_3
@@ -39,28 +40,33 @@
 00000190 T Adafruit_GFX::drawRect(int, int, int, int, unsigned int)
 00000188 T Menu::ModifyIntWidget::update(unsigned char)
 00000188 T __ultoa_invert
-00000186 T TwoWire::endTransmission() [clone .constprop.72]
+00000186 T TwoWire::endTransmission() [clone .constprop.82]
 00000182 T TinyGPSPlus::parseDecimal(char const*)
 00000178 T Menu::Page::drawInPage(Menu::Renderer*, Menu::Rect*)
 00000168 T SoftwareSerial::write(unsigned char)
 00000160 T Adafruit_GFX::fillRect(int, int, int, int, unsigned int)
 00000152 T Menu::DisplayTextWidget::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
+00000150 T TwoWire::requestFrom(unsigned char, unsigned char, unsigned char) [clone .constprop.75]
 00000148 T __vector_16
-00000146 T TwoWire::requestFrom(int, int) [clone .constprop.64]
+00000140 T sqrt
 00000138 T HardwareSerial::write(unsigned char)
 00000138 T Adafruit_GFX::drawFastVLine(int, int, int, unsigned int)
 00000136 T Adafruit_GFX::drawFastHLine(int, int, int, unsigned int)
 00000134 T Print::printNumber(unsigned long, unsigned char) [clone .constprop.27]
+00000132 T ModuleCompass::bias_collect(unsigned char) [clone .lto_priv.102]
 00000128 t Menu::battery_bitmap
 00000128 T Menu::MessPage::draw(Menu::Renderer*)
-00000126 T Adafruit_PCD8544::display() [clone .constprop.51]
+00000126 T Adafruit_PCD8544::display() [clone .constprop.56]
 00000122 T __floatunsisf
 00000120 T pinMode
-00000116 t Adafruit_PCD8544::spiWrite(unsigned char) [clone .constprop.53]
+00000116 t Adafruit_PCD8544::spiWrite(unsigned char) [clone .constprop.58]
 00000116 T delay
 00000112 T fputc
 00000110 t ModuleRtc::set_date(unsigned char, unsigned char, unsigned int)
+00000108 T i2c::read_reg_to_buf(unsigned char, unsigned char, unsigned char*, unsigned char)
 00000108 T g_get_speed()
+00000100 T g_get_temperature()
+00000100 T g_get_pressure()
 00000100 T __vector_18
 00000096 T TwoWire::write(unsigned char const*, unsigned int)
 00000096 T g_get_altitude()
@@ -70,11 +76,11 @@
 00000094 T TwoWire::write(unsigned char)
 00000094 T __fixunssfsi
 00000090 T Menu::Page::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
+00000090 T ModuleCompass::getADC()
 00000086 T Print::write(unsigned char const*, unsigned int)
-00000084 T g_get_temperature()
 00000082 T g_set_minutes(long)
 00000082 T g_set_hour(long)
-00000082 T turnOffPWM.lto_priv.93
+00000082 T turnOffPWM.lto_priv.101
 00000080 T Menu::FullscreenPage::draw(Menu::Renderer*)
 00000080 t twi_transmit
 00000078 T atol
@@ -84,6 +90,7 @@
 00000072 T g_get_satellites()
 00000072 T g_get_date()
 00000072 T __fp_cmp
+00000070 T i2c::read_to_buf(unsigned char, unsigned char*, unsigned char) [clone .constprop.35]
 00000068 T HardwareSerial::flush()
 00000068 T __udivmodsi4
 00000068 T __fp_split3
@@ -94,10 +101,11 @@
 00000064 T dtostrf
 00000062 T Menu::ListPage::enter()
 00000060 T Menu::FullscreenPage::update(unsigned char)
+00000060 T i2c::writeReg(unsigned char, unsigned char, unsigned char)
 00000060 T ModuleDisplay::drawText(unsigned char, unsigned char, char const*, bool, unsigned char)
 00000060 T Adafruit_GFX::fillScreen(unsigned int)
 00000056 T __prologue_saves__
-00000054 T Adafruit_PCD8544::command(unsigned char) [clone .constprop.52]
+00000054 T Adafruit_PCD8544::command(unsigned char) [clone .constprop.57]
 00000054 T __epilogue_restores__
 00000048 T SoftwareSerial::available()
 00000048 T SoftwareSerial::peek()
@@ -105,8 +113,10 @@
 00000048 T ModuleDisplay::drawRect(unsigned char, unsigned char, unsigned char, unsigned char)
 00000048 T ModuleDisplay::drawLine(unsigned char, unsigned char, unsigned char, unsigned char)
 00000046 T TinyGPSDecimal::commit()
+00000046 T __divmodsi4
 00000046 T analogRead
 00000044 d vtable for Adafruit_PCD8544
+00000044 T ModuleBarometer::i2c_BMP085_UT_Start()
 00000044 T SoftwareSerial::stopListening()
 00000042 T Print::write(char const*)
 00000042 T Adafruit_GFX::setRotation(unsigned char)
@@ -119,14 +129,15 @@
 00000032 T __mulsi3
 00000030 T TwoWire::peek()
 00000030 T Menu::Page::setitem(unsigned char, Menu::Item*)
+00000030 T i2c::swap_endianness(void*, unsigned int)
 00000030 T HardwareSerial::availableForWrite()
 00000030 T __umulhisi3
 00000030 T strncpy
 00000028 T Menu::MessPage::update(unsigned char)
 00000028 T HardwareSerial::peek()
+00000028 T __fp_mpack
 00000024 T Adafruit_GFX::writeFastVLine(int, int, int, unsigned int)
 00000024 T Adafruit_GFX::writeFastHLine(int, int, int, unsigned int)
-00000024 T g_get_compass_data(float*, float*)
 00000024 T __udivmodqi4
 00000024 T millis
 00000022 T HardwareSerial::available()
@@ -146,13 +157,13 @@
 00000018 d vtable for TwoWire
 00000018 D vtable for SoftwareSerial
 00000018 d vtable for HardwareSerial
-00000018 T g_get_pressure()
 00000018 T strcmp
 00000016 d vtable for Menu::MessPage
 00000016 d vtable for Menu::ListPage
 00000016 d vtable for Menu::FullscreenPage
 00000016 T TwoWire::available()
 00000016 T g_set_day(long)
+00000016 T __negsi2
 00000016 T __do_clear_bss
 00000015 t loop::__c
 00000015 t loop::__c
@@ -166,6 +177,7 @@
 00000014 T __fp_zero
 00000014 T __fp_pscB
 00000014 T __fp_pscA
+00000014 T __fp_norm2
 00000014 T __fixsfsi
 00000013 t loop::__c
 00000013 t g_get_date()::__c
@@ -176,6 +188,7 @@
 00000012 d vtable for Menu::BatteryWidget
 00000012 d vtable for Menu::SignalWidget
 00000012 d vtable for Menu::ClockWidget
+00000012 d ModuleCompass::magGain
 00000012 T g_get_day()
 00000012 T g_get_minutes()
 00000012 T g_get_month()
@@ -183,7 +196,6 @@
 00000012 T __tablejump2__
 00000012 T __fp_inf
 00000011 t PhoneMenu::PhoneMenu()::__c
-00000010 t g_get_pressure()::__c
 00000010 t g_get_clock()::__c
 00000010 T port_to_output_PGM
 00000010 T port_to_mode_PGM
@@ -201,12 +213,14 @@
 00000008 t g_get_speed()::__c
 00000008 T __mulsf3
 00000008 T __divsf3
+00000007 t g_get_pressure()::__c
 00000007 t g_get_location()::__c
 00000007 t g_get_location()::__c
 00000006 t PhoneMenu::PhoneMenu()::__c
 00000006 t PhoneMenu::PhoneMenu()::__c
 00000006 t PhoneMenu::PhoneMenu()::__c
 00000006 T Print::availableForWrite()
+00000006 T g_get_battery_level()
 00000006 T __mulshisi3
 00000006 T __fp_nan
 00000005 t PhoneMenu::PhoneMenu()::__c
@@ -221,13 +235,14 @@
 00000004 T Menu::Page::ispage() const
 00000004 T Menu::AbsoluteWidget::canDrawInPage(Menu::Renderer const*, Menu::Rect*) const
 00000004 T Menu::DisplayWidget::update(unsigned char)
-00000004 T g_get_battery_level()
 00000004 T g_get_rssi()
 00000004 T __cxa_pure_virtual
 00000003 t g_get_satellites()::__c
 00000002 T TwoWire::flush()
 00000002 T Print::flush()
 00000002 T Menu::Page::enter()
+00000002 d ModuleAcceleration::calibratingA
+00000002 d ModuleGyroscope::calibratingG
 00000002 T SoftwareSerial::flush()
 00000002 T Adafruit_GFX::endWrite()
 00000002 T Adafruit_GFX::invertDisplay(bool)
@@ -235,3 +250,4 @@
 00000002 D __malloc_margin
 00000002 D __malloc_heap_start
 00000002 D __malloc_heap_end
+00000001 D ModuleCompass::calibrateMag
