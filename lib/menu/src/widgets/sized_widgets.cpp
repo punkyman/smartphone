@@ -88,7 +88,7 @@ bool ModifyIntWidget::canDrawInPage(const Renderer* render, Rect* area) const
     uint8_t namew, nameh, textw, texth;
     render->getTextSize(name, true, &namew, &nameh, NORMAL);
     char str[16];
-    snprintf(str, 16, "< %d >", value);
+    snprintf(str, 16, "< %d >", (int) value);
     render->getTextSize(str, false, &textw, &texth, NORMAL);
 
     area->y0 += text_margin;
@@ -103,7 +103,7 @@ void ModifyIntWidget::drawInPage(Renderer* render, Rect* area)
     uint8_t namew, nameh, textw, texth;
     render->getTextSize(name, true, &namew, &nameh, NORMAL);
     char str[16];
-    snprintf(str, 16, "< %d >", value);
+    snprintf(str, 16, "< %d >", (int) value);
     render->getTextSize(str, false, &textw, &texth, NORMAL);
 
     if(interacting)
