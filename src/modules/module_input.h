@@ -2,6 +2,7 @@
 #include <Arduino.h>
 
 #define USE_JOYSTICK
+#define USE_ENCODER
 
 namespace ModuleInput
 {

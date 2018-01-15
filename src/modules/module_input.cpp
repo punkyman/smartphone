@@ -1,7 +1,11 @@
 #include "module_input.h"
 
-#ifdef USE_JOYSTICK
+#if defined(USE_JOYSTICK)
 #include <joystick.h>
+#endif
+
+#if defined(USE_ENCODER)
+#include <encoder.h>
 #endif
 
 namespace ModuleInput
@@ -23,8 +27,12 @@ const Inputs* getInputs()
 
 void setup()
 {
-#ifdef USE_JOYSTICK
+#if defined(USE_JOYSTICK)
 joystick_init();
+#endif
+
+#if defined(USE_ENCODER)
+encoder_init();
 #endif
 }
 
@@ -36,13 +44,20 @@ void update()
     bool previous_right = inputs.right;
     bool previous_validate = inputs.validate;
 
-#ifdef USE_JOYSTICK
+#if defined(USE_JOYSTICK)
     joystick_read_values();
     inputs.down = joystick_analog_Y < (ANALOG_CENTER - analog_treshold);
     inputs.up = joystick_analog_Y > (ANALOG_CENTER + analog_treshold);
     inputs.left = joystick_analog_X < (ANALOG_CENTER -analog_treshold);
     inputs.right = joystick_analog_X > (ANALOG_CENTER + analog_treshold);
     inputs.validate = joystick_switch;
+#endif
+#if defined(USE_ENCODER)
+    encoder_read_values();
+    inputs.down = (encoder_scrolls < 0);
+    inputs.up = (encoder_scrolls > 0);
+    inputs.validate = encoder_switch;
+    encoder_clear_readings();
 #endif
     
     inputs.pressed_down = (!previous_down && inputs.down);

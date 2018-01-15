@@ -15,7 +15,7 @@ void encoder_interrupt()
     }
 }
 
-void init()
+void encoder_init()
 {
     encoder_scrolls = 0;
     encoder_switch = false;
