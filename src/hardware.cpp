@@ -13,12 +13,16 @@
 #include "modules/module_gyroscope.h"
 #endif
 
-#if defined(HARDWARE_ENABLE_BATTERY)
-#include "modules/module_battery.h"
-#endif
-
 #if defined(HARDWARE_ENABLE_GPS)
 #include "modules/module_gps.h"
+#endif
+
+#if defined(HARDWARE_ENABLE_GSM)
+#include "modules/module_gsm.h"
+#endif
+
+#if defined(HARDWARE_ENABLE_BATTERY)
+#include "modules/module_battery.h"
 #endif
 
 #if defined(HARDWARE_ENABLE_RTC)
@@ -42,12 +46,16 @@ namespace Hardware
         ModuleBarometer::setup();
 #endif
 
-#if defined(HARDWARE_ENABLE_BATTERY)
-        ModuleBattery::setup();
-#endif
-
 #if defined(HARDWARE_ENABLE_GPS)
         ModuleGps::setup();
+#endif
+
+#if defined(HARDWARE_ENABLE_GSM)
+        ModuleGsm::setup();
+#endif
+
+#if defined(HARDWARE_ENABLE_BATTERY)
+        ModuleBattery::setup();
 #endif
 
 #if defined(HARDWARE_ENABLE_RTC)
@@ -75,11 +83,14 @@ namespace Hardware
         if(updateTime > SLOW_UPDATE)
         {
                 updateTime -= SLOW_UPDATE;
-#if defined(HARDWARE_ENABLE_BATTERY)
-                ModuleBattery::update();
-#endif
 #if defined(HARDWARE_ENABLE_GPS)
                 ModuleGps::update();
+#endif
+#if defined(HARDWARE_ENABLE_GSM)
+                ModuleGsm::update();
+#endif
+#if defined(HARDWARE_ENABLE_BATTERY)
+                ModuleBattery::update();
 #endif
 #if defined(HARDWARE_ENABLE_RTC)
                 ModuleRtc::update();

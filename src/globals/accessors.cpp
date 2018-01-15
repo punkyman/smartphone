@@ -5,11 +5,14 @@
 #include "modules/module_barometer.h"
 #include "modules/module_compass.h"
 #endif
-#if defined(HARDWARE_ENABLE_BATTERY)
-#include "modules/module_battery.h"
-#endif
 #if defined(HARDWARE_ENABLE_GPS)
 #include "modules/module_gps.h"
+#endif
+#if defined(HARDWARE_ENABLE_GSM)
+#include "modules/module_gsm.h"
+#endif
+#if defined(HARDWARE_ENABLE_BATTERY)
+#include "modules/module_battery.h"
 #endif
 #if defined(HARDWARE_ENABLE_RTC)
 #include "modules/module_rtc.h"
@@ -180,7 +183,7 @@ void g_set_year(int32_t value)
 #endif
 }
 
-uint8_t g_get_rssi()
+uint8_t g_get_signal_level()
 {
 #ifdef HARDWARE_ENABLE_GSM
     // 0             -115  dBm  or  less    
@@ -188,6 +191,7 @@ uint8_t g_get_rssi()
     // 2...30      -110... -54 dBm 
     // 31            -52  dBm  or  greater  
     // 99            not  known  or  not  detectable  
+    return ModuleGsm::get_signal_level();
 #else
     return 31;
 #endif

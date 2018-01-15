@@ -20,5 +20,6 @@ void g_set_month(int32_t value);
 int32_t g_get_year();
 void g_set_year(int32_t value);
 
+// GSM
 // returns signal strength according to module data sheet
-uint8_t g_get_rssi();
+uint8_t g_get_signal_level();
