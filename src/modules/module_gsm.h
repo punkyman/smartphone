@@ -7,5 +7,7 @@ namespace ModuleGsm
 
     void update();
 
+    bool is_command_running();
+
     uint8_t get_signal_level();
 }
