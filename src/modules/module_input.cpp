@@ -1,10 +1,11 @@
 #include "module_input.h"
+#include "hardware_config.h"
 
-#if defined(USE_JOYSTICK)
+#if defined(HARDWARE_USE_JOYSTICK)
 #include <joystick.h>
 #endif
 
-#if defined(USE_ENCODER)
+#if defined(HARDWARE_USE_ENCODER)
 #include <encoder.h>
 #endif
 
@@ -27,12 +28,12 @@ const Inputs* getInputs()
 
 void setup()
 {
-#if defined(USE_JOYSTICK)
-joystick_init();
+#if defined(HARDWARE_USE_JOYSTICK)
+joystick_init(JOYSTICK_ANALOG_X, JOYSTICK_ANALOG_Y, JOYSTICK_DIGITAL_SWITCH);
 #endif
 
-#if defined(USE_ENCODER)
-encoder_init();
+#if defined(HARDWARE_USE_ENCODER)
+encoder_init(ENCODER_DIGITAL_CLOCK, ENCODER_DIGITAL_DATA, ENCODER_DIGITAL_SWITCH);
 #endif
 }
 
@@ -44,7 +45,7 @@ void update()
     bool previous_right = inputs.right;
     bool previous_validate = inputs.validate;
 
-#if defined(USE_JOYSTICK)
+#if defined(HARDWARE_USE_JOYSTICK)
     joystick_read_values();
     inputs.down = joystick_analog_Y < (ANALOG_CENTER - analog_treshold);
     inputs.up = joystick_analog_Y > (ANALOG_CENTER + analog_treshold);
@@ -52,7 +53,7 @@ void update()
     inputs.right = joystick_analog_X > (ANALOG_CENTER + analog_treshold);
     inputs.validate = joystick_switch;
 #endif
-#if defined(USE_ENCODER)
+#if defined(HARDWARE_USE_ENCODER)
     encoder_read_values();
     inputs.down = (encoder_scrolls < 0);
     inputs.up = (encoder_scrolls > 0);

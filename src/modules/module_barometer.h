@@ -4,8 +4,6 @@
 #pragma once
 
 #include <Arduino.h>
-
-#define BMP085_ADDRESS 0x77 // I2C address of BMP085
 //#define BARO_TAB_SIZE 2
 
 namespace ModuleBarometer

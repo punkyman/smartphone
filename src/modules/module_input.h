@@ -1,9 +1,6 @@
 #pragma once
 #include <Arduino.h>
 
-#define USE_JOYSTICK
-#define USE_ENCODER
-
 namespace ModuleInput
 {
     static const uint16_t analog_treshold = 256;

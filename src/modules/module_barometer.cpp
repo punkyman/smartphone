@@ -1,5 +1,6 @@
 #include "module_barometer.h"
 #include "i2c_communication.h"
+#include "hardware_config.h"
 
 // principle:
 //  1) read the calibration register (only once at the initialization)

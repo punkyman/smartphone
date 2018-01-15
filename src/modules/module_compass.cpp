@@ -1,7 +1,7 @@
 #include "module_compass.h"
 #include <Arduino.h>
 #include "i2c_communication.h"
-
+#include "hardware_config.h"
 
 #define MAG_ORIENTATION(X, Y, Z) \
   {                              \

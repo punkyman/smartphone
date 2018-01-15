@@ -1,5 +1,6 @@
 #include "module_gyroscope.h"
 #include "i2c_communication.h"
+#include "hardware_config.h"
 
 enum rc {
   ROLL,

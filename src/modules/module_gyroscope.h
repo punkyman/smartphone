@@ -5,8 +5,6 @@
 
 #include <Arduino.h>
 
-#define L3G4200D_ADDRESS 0x69
-
 namespace ModuleGyroscope
 {
     extern int16_t gyroADC[3];

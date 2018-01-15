@@ -1,11 +1,12 @@
 #include "module_gps.h"
 #include <SoftwareSerial.h>
 #include "TinyGPS++.h"
+#include "hardware_config.h"
 
 namespace ModuleGps
 {
     TinyGPSPlus gps;
-    SoftwareSerial ss(GPS_RX_PIN, GPS_TX_PIN);
+    SoftwareSerial ss(GPS_SS_RX, GPS_SS_TX);
 
     void setup()
     {

@@ -1,11 +1,13 @@
 #include "encoder.h"
 
+uint8_t encoder_clock_pin, encoder_data_pin, encoder_switch_pin;
+
 volatile int8_t encoder_scrolls;
 bool encoder_switch;
 
 void encoder_interrupt()
 {
-    if(digitalRead(ENCODER_DIGITAL_DATA))
+    if(digitalRead(encoder_data_pin))
     {
         --encoder_scrolls; // CCW
     }
@@ -15,16 +17,20 @@ void encoder_interrupt()
     }
 }
 
-void encoder_init()
+void encoder_init(uint8_t clock_pin, uint8_t data_pin, uint8_t switch_pin)
 {
+    encoder_clock_pin = clock_pin;
+    encoder_data_pin = data_pin;
+    encoder_switch_pin = switch_pin;
+
     encoder_scrolls = 0;
     encoder_switch = false;
 
-    pinMode(ENCODER_DIGITAL_CLOCK, INPUT);
-    pinMode(ENCODER_DIGITAL_DATA, INPUT);
-    pinMode(ENCODER_DIGITAL_SWITCH, INPUT_PULLUP);
+    pinMode(encoder_clock_pin, INPUT);
+    pinMode(encoder_data_pin, INPUT);
+    pinMode(encoder_switch_pin, INPUT_PULLUP);
 
-    attachInterrupt(digitalPinToInterrupt(ENCODER_DIGITAL_CLOCK), encoder_interrupt, RISING);
+    attachInterrupt(digitalPinToInterrupt(encoder_clock_pin), encoder_interrupt, RISING);
 }
 
 void encoder_clear_readings()
@@ -34,6 +40,6 @@ void encoder_clear_readings()
 
 void encoder_read_values()
 {
-    encoder_switch = digitalRead(ENCODER_DIGITAL_SWITCH) != HIGH;
+    encoder_switch = digitalRead(encoder_switch_pin) != HIGH;
 }
 

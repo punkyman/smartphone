@@ -1,5 +1,6 @@
 #include "module_acceleration.h"
 #include "i2c_communication.h"
+#include "hardware_config.h"
 
 #define ACC_1G 265
 #define ACCZ_25deg   (int16_t)(ACC_1G * 0.90631) // 0.90631 = cos(25deg) (cos(theta) of accZ comparison)

@@ -5,8 +5,6 @@
 
 #include <Arduino.h>
 
-#define MAG_ADDRESS 0x1E
-
 namespace ModuleCompass
 {
     enum rc {
