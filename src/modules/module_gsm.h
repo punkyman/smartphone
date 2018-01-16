@@ -1,6 +1,8 @@
 #pragma once
 #include <Arduino.h>
 
+#define SIGNAL_UPDATE 10000
+
 namespace ModuleGsm
 {
     void setup();

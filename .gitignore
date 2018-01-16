@@ -4,3 +4,4 @@
 firmware.map
 memory.usage
 flash.usage
+.vscode/launch.json
