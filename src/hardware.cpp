@@ -31,7 +31,8 @@
 
 namespace Hardware
 {
-    unsigned long updateTime;
+    unsigned long last_time;
+    unsigned long update_time;
 
     void setup()
     {
@@ -62,12 +63,14 @@ namespace Hardware
         ModuleRtc::setup();
 #endif
 
-        updateTime = micros();
+        last_time = micros();
     }
 
     void update()
     {
-        updateTime = micros();
+        update_time += (micros() - last_time);
+        last_time = micros();
+
         // no ModuleDisplay::update, as it is handled by the menu
         ModuleInput::update();
 
@@ -80,9 +83,9 @@ namespace Hardware
 #endif
 
         // everything that does not need frame update goes there
-        if(updateTime > SLOW_UPDATE)
+        if(update_time > SLOW_UPDATE)
         {
-                updateTime -= SLOW_UPDATE;
+                update_time -= SLOW_UPDATE;
 #if defined(HARDWARE_ENABLE_GPS)
                 ModuleGps::update();
 #endif
