@@ -14,7 +14,7 @@ enum SIM800L_MESSAGES
 // the function can parse the answer once it's received by the serial
 ///////////////////////////////////////////////////////////////////////////////
 typedef uint8_t (*COMMANDCALLBACK)(String);
-COMMANDCALLBACK send_sms(SoftwareSerial* ss, const char* number,const char* text);
+COMMANDCALLBACK Sim800l_send_sms(SoftwareSerial* ss, const char* number,const char* text);
 
 ///////////////////////////////////////////////////////////////////////////////
 // immediate commands

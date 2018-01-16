@@ -31,11 +31,32 @@ bool serial_get_tag(SoftwareSerial* ss, const char* tag, uint8_t* value)
 
 uint8_t send_sms_callback(String str)
 {
-    return SIM800L_OK;
+    if(str.indexOf("CMSG") == -1)
+    {
+        return SIM800L_FAILURE;
+    }
+    else
+    {
+        return SIM800L_OK;
+    }
 }
 
-COMMANDCALLBACK send_sms(SoftwareSerial* ss, const char* number, const char* text)
+COMMANDCALLBACK Sim800l_send_sms(SoftwareSerial* ss, const char* number, const char* text)
 {
+    ss->print(F("AT+CMGF=1")); // set sms system into text mode
+    if(!serial_wait_for_ok(ss))
+        return nullptr;
+
+    ss->print(F("AT+CSCS=1")); // set charset to GSM 7 bit default alphabet
+    if(!serial_wait_for_ok(ss))
+        return nullptr;
+    
+    ss->print(F("AT+CGMS=\""));
+    ss->print(number);
+    ss->print(F("\"\r"));
+    ss->print(text);
+    ss->print((char)26); // seems to be equivalent to <Ctrl+Z>
+
     return send_sms_callback;
 }
 

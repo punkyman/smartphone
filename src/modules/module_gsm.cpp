@@ -45,6 +45,16 @@ namespace ModuleGsm
         return callback != nullptr;
     }
 
+    bool send_sms(const char* number, const char* text)
+    {
+        if(is_command_running())
+            return false;
+
+        callback = Sim800l_send_sms(&ss, number, text);
+
+        return callback != nullptr;
+    }
+
     uint8_t get_signal_level()
     {
         return signal_level;
