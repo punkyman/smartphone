@@ -33,13 +33,10 @@ namespace ModuleGsm
                 callback = nullptr;
             }
         }
-        else if(SIGNAL_UPDATE)
+        else if(update_time >= SIGNAL_UPDATE)
         {
-            if(update_time >= SIGNAL_UPDATE)
-            {
-                Sim800l_get_signal_level(&ss, &signal_level);
-                update_time -= SIGNAL_UPDATE;
-            }
+            Sim800l_get_signal_level(&ss, &signal_level);
+            update_time -= SIGNAL_UPDATE;
         }
    }
 
