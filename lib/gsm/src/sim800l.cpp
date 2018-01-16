@@ -29,6 +29,16 @@ bool serial_get_tag(SoftwareSerial* ss, const char* tag, uint8_t* value)
     }
 }
 
+uint8_t send_sms_callback(String str)
+{
+    return SIM800L_OK;
+}
+
+COMMANDCALLBACK send_sms(SoftwareSerial* ss, const char* number, const char* text)
+{
+    return send_sms_callback;
+}
+
 uint8_t Sim800l_init(SoftwareSerial* ss)
 {
     ss->print(F("AT\r\n")); // global test command

@@ -8,7 +8,7 @@ namespace ModuleGsm
     uint8_t signal_level = 0;
     SoftwareSerial ss(GSM_SS_RX, GSM_SS_TX);
     COMMANDCALLBACK callback = nullptr;
-    
+
     unsigned long update_time = 0;
     unsigned long last_time = 0;
 
@@ -29,7 +29,7 @@ namespace ModuleGsm
         {
             if(ss.available())
             {
-                callback(ss.readString().c_str());
+                uint8_t code = callback(ss.readString());
                 callback = nullptr;
             }
         }
@@ -41,7 +41,7 @@ namespace ModuleGsm
                 update_time -= SIGNAL_UPDATE;
             }
         }
-    }
+   }
 
     bool is_command_running()
     {
