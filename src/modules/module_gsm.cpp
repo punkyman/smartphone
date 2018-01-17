@@ -29,7 +29,7 @@ namespace ModuleGsm
         {
             if(ss.available())
             {
-                uint8_t code = callback(ss.readString());
+                bool result = callback(ss.readString());
                 callback = nullptr;
             }
         }
