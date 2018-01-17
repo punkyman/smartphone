@@ -5,7 +5,7 @@ ATSerial::ATSerial(uint8_t receivePin, uint8_t transmitPin)
 {
 }
 
-bool ATSerial::at_wait_for_ok()
+bool ATSerial::at_get_ok()
 {
     while(available()){} // wait for the beginning of an answer in the pipe
     return readString().indexOf("OK") != -1; // text cannot be in progmem here
@@ -29,4 +29,15 @@ bool ATSerial::at_get_tag(const char* tag, uint8_t* value)
 
         return true;
     }
+}
+
+bool at_stop_messages()
+{
+    return true;
+//AT+EXUNSOL=SQ, 0
+}
+
+bool at_resume_messages()
+{
+    return true;
 }

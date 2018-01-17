@@ -28,7 +28,7 @@ namespace ModuleGsm
         {
             if(atserial.available())
             {
-                bool result = callback(atserial.readString());
+                bool result = callback(&atserial);
                 callback = nullptr;
             }
         }
