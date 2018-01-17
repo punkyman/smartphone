@@ -25,10 +25,27 @@ bool at_init(ATSerial* as)
 bool at_get_signal_level(ATSerial* as, uint8_t* value)
 {
     const char* tag = "+SCQ: ";
-    as->print(F("AT+CSQ\r\n"));
+    as->print(F("AT+CSQ\r"));
 
     if(!as->at_get_tag(tag, value))
         return false;
 
+    return true;
+}
+
+bool at_set_microphone_gain(ATSerial* as, uint8_t value)
+{
+    if(value > 15)
+    {
+        return true; // who cares
+    }
+
+    as->print(F("ATAT+CMIC=0,"));
+    as->print(value);
+    as->print('\r');
+
+    if(!as->at_get_ok())
+        return false;
+    
     return true;
 }

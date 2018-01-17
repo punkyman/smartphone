@@ -54,6 +54,14 @@ namespace ModuleGsm
         return callback != nullptr;
     }
 
+    bool set_microphone_gain(uint8_t value)
+    {
+        if(is_command_running())
+            return false;
+        
+        return at_set_microphone_gain(&atserial, value);
+    }
+
     uint8_t get_signal_level()
     {
         return signal_level;
