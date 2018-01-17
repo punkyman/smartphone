@@ -1,6 +1,6 @@
 #include "module_gsm.h"
 #include <SoftwareSerial.h>
-#include <sim800l.h>
+#include <gsm.h>
 #include "hardware_config.h"
 
 namespace ModuleGsm
@@ -15,7 +15,7 @@ namespace ModuleGsm
     void setup()
     {
         ss.begin(9600);
-        Sim800l_init(&ss);
+        at_init(&ss);
 
         last_time = micros();
     }
@@ -35,7 +35,7 @@ namespace ModuleGsm
         }
         else if(update_time >= SIGNAL_UPDATE)
         {
-            Sim800l_get_signal_level(&ss, &signal_level);
+            at_get_signal_level(&ss, &signal_level);
             update_time -= SIGNAL_UPDATE;
         }
    }
@@ -50,7 +50,7 @@ namespace ModuleGsm
         if(is_command_running())
             return false;
 
-        callback = Sim800l_send_sms(&ss, number, text);
+        callback = at_send_sms(&ss, number, text);
 
         return callback != nullptr;
     }
