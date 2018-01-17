@@ -21,7 +21,10 @@ COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number, const char* text)
 
     as->print(F("AT+CSCS=1")); // set charset to GSM 7 bit default alphabet
     if(!as->at_get_ok())
+    {
+        as->at_resume_messages();
         return nullptr;
+    }
     
     as->print(F("AT+CMGS=\""));
     as->print(number);
