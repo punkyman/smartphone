@@ -31,7 +31,7 @@ bool serial_get_tag(SoftwareSerial* ss, const char* tag, uint8_t* value)
 
 uint8_t send_sms_callback(String str)
 {
-    if(str.indexOf("CMSG") == -1)
+    if(str.indexOf("CMGS") == -1)
     {
         return SIM800L_FAILURE;
     }
@@ -51,7 +51,7 @@ COMMANDCALLBACK Sim800l_send_sms(SoftwareSerial* ss, const char* number, const c
     if(!serial_wait_for_ok(ss))
         return nullptr;
     
-    ss->print(F("AT+CGMS=\""));
+    ss->print(F("AT+CMGS=\""));
     ss->print(number);
     ss->print(F("\"\r"));
     ss->print(text);
