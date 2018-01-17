@@ -1,16 +1,20 @@
 #include "ATSerial.h"
-#include <SoftwareSerial.h>
 
-bool serial_wait_for_ok(SoftwareSerial* ss)
+ATSerial::ATSerial(uint8_t receivePin, uint8_t transmitPin)
+: SoftwareSerial(receivePin,transmitPin)
 {
-    while(!ss->available()){} // wait for the beginning of an answer in the pipe
-    return ss->readString().indexOf("OK") != -1; // text cannot be in progmem here
 }
 
-bool serial_get_tag(SoftwareSerial* ss, const char* tag, uint8_t* value)
+bool ATSerial::at_wait_for_ok()
 {
-    while(!ss->available()){} // wait for the beginning of an answer in the pipe
-    String rsp = ss->readString(); // some copy happens here, not the best...
+    while(available()){} // wait for the beginning of an answer in the pipe
+    return readString().indexOf("OK") != -1; // text cannot be in progmem here
+}
+
+bool ATSerial::at_get_tag(const char* tag, uint8_t* value)
+{
+    while(!available()){} // wait for the beginning of an answer in the pipe
+    String rsp = readString(); // some copy happens here, not the best...
     int index = rsp.indexOf(tag);
     if(index == -1)
     {

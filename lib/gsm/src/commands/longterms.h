@@ -1,7 +1,6 @@
 #pragma once
 #include <Arduino.h>
-
-class SoftwareSerial;
+class ATSerial;
 
 ///////////////////////////////////////////////////////////////////////////////
 // long delay commands
@@ -9,4 +8,4 @@ class SoftwareSerial;
 // the function can parse the answer once it's received by the serial
 ///////////////////////////////////////////////////////////////////////////////
 typedef bool (*COMMANDCALLBACK)(String);
-COMMANDCALLBACK at_send_sms(SoftwareSerial* ss, const char* number,const char* text);
+COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number,const char* text);

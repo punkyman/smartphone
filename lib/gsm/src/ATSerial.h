@@ -1,6 +1,11 @@
 #pragma once
 #include <Arduino.h>
-class SoftwareSerial;
+#include <SoftwareSerial.h>
 
-bool serial_wait_for_ok(SoftwareSerial* ss);
-bool serial_get_tag(SoftwareSerial* ss, const char* tag, uint8_t* value);
+struct ATSerial : SoftwareSerial
+{   
+    ATSerial(uint8_t receivePin, uint8_t transmitPin);
+
+    bool at_wait_for_ok();
+    bool at_get_tag(const char* tag, uint8_t* value);
+};

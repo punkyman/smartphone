@@ -1,9 +1,9 @@
 #pragma once
 #include <Arduino.h>
-class SoftwareSerial;
+class ATSerial;
 
 ///////////////////////////////////////////////////////////////////////////////
 // immediate commands
 ///////////////////////////////////////////////////////////////////////////////
-bool at_init(SoftwareSerial* ss); // init is blocking, but we can accept that
-bool at_get_signal_level(SoftwareSerial* ss, uint8_t* value);
+bool at_init(ATSerial* ss); // init is blocking, but we can accept that
+bool at_get_signal_level(ATSerial* as, uint8_t* value);
