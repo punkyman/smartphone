@@ -5,6 +5,26 @@ ATSerial::ATSerial(uint8_t receivePin, uint8_t transmitPin)
 {
 }
 
+String ATSerial::at_read_response()
+{
+  String ret;
+
+  // AT response is supposed to follow format : <CR><LF>response<CR><LF>
+  int c = timedRead();
+  while (c != '\n') // <LF>
+  {
+    c = timedRead();
+  }
+  while (c != '\r') // <CR>
+  {
+    ret += (char)c;
+    c = timedRead();
+  }
+  c = timedRead(); // to remove LF from stream
+
+  return ret;
+}
+
 bool ATSerial::at_get_ok()
 {
     while(available()){} // wait for the beginning of an answer in the pipe
@@ -31,13 +51,13 @@ bool ATSerial::at_get_tag(const char* tag, uint8_t* value)
     }
 }
 
-bool at_stop_messages()
+bool ATSerial::at_stop_messages()
 {
     return true;
 //AT+EXUNSOL=SQ, 0
 }
 
-bool at_resume_messages()
+bool ATSerial::at_resume_messages()
 {
     return true;
 }
