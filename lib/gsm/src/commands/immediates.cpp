@@ -11,6 +11,8 @@ bool at_init(ATSerial* as)
     if(!as->at_get_ok())
         return false;
 
+    as->print(F("ATE0")); // query no echo on serial output
+
     as->print(F("AT+CFUN=1\r")); // query full phone functionality, can take up to 10s...
     if(!as->at_get_ok())
         return false;
@@ -40,7 +42,7 @@ bool at_set_microphone_gain(ATSerial* as, uint8_t value)
         return true; // who cares
     }
 
-    as->print(F("ATAT+CMIC=0,"));
+    as->print(F("AT+CMIC=0,"));
     as->print(value);
     as->print('\r');
 
