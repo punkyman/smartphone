@@ -67,7 +67,7 @@ void begin()
 
   void drawText(uint8_t x, uint8_t y, const char * text, bool progmem, uint8_t size)
   {
-#ifdef HARDWARE_sUSE_ADAFRUIT
+#ifdef HARDWARE_USE_ADAFRUIT
     adafruit_setfontsize(size);
     adafruit_drawtext(x, y, text, progmem);
 #endif
