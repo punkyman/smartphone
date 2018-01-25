@@ -2,6 +2,8 @@
 #include <gsm.h>
 #include "hardware_config.h"
 
+#if defined(HARDWARE_ENABLE_GSM)
+
 namespace ModuleGsm
 {
     uint8_t signal_level = 0;
@@ -67,3 +69,5 @@ namespace ModuleGsm
         return signal_level;
     }
 }
+
+#endif

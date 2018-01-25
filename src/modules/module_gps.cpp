@@ -3,6 +3,8 @@
 #include "TinyGPS++.h"
 #include "hardware_config.h"
 
+#if defined(HARDWARE_ENABLE_GPS)
+
 namespace ModuleGps
 {
     TinyGPSPlus gps;
@@ -61,3 +63,5 @@ namespace ModuleGps
         return gps.speed.kmph();
     }
 }
+
+#endif
