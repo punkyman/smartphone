@@ -15,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #define HARDWARE_USE_JOYSTICK
-#define HARDWARE_USE_ENCODER
+//#define HARDWARE_USE_ENCODER
 
 ///////////////////////////////////////////////////////////////////////////////
 // Displays
@@ -63,5 +63,5 @@
 #define JOYSTICK_DIGITAL_SWITCH 2
 
 #define ENCODER_DIGITAL_CLOCK 2 // needs to be on an interrupt compatible pin, on arduino mini : 2 or 3
-#define ENCODER_DIGITAL_DATA 4
-#define ENCODER_DIGITAL_SWITCH 5
+#define ENCODER_DIGITAL_DATA 5
+#define ENCODER_DIGITAL_SWITCH 6
