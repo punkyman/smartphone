@@ -1,5 +1,6 @@
 #pragma once
 #include <Arduino.h>
+#include "../result_codes.h"
 class ATSerial;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -7,7 +8,7 @@ class ATSerial;
 // each command will return either nullptr or a function pointer of this kind
 // the function can parse the answer once it's received by the serial
 ///////////////////////////////////////////////////////////////////////////////
-typedef bool (*COMMANDCALLBACK)(ATSerial* as);
+typedef GSM_RESULT (*COMMANDCALLBACK)(ATSerial* as);
 
 #define AT_INIT_GSM_TIMEOUT 10000 
 COMMANDCALLBACK at_init_gsm(ATSerial* as);

@@ -1,9 +1,9 @@
 #include "longterms.h"
 #include "../ATSerial.h"
 
-bool init_callback(ATSerial* as)
+GSM_RESULT init_callback(ATSerial* as)
 {
-    return as->at_is_response_ok();    
+    return (as->at_is_response_ok() ? GSM_OK : GSM_ERROR);
 }
 
 COMMANDCALLBACK at_init_gsm(ATSerial* as)
@@ -13,9 +13,9 @@ COMMANDCALLBACK at_init_gsm(ATSerial* as)
     return init_callback;
 }
 
-bool sim_unlocked_callback(ATSerial* as)
+GSM_RESULT sim_unlocked_callback(ATSerial* as)
 {
-    return as->at_is_response_ok();    
+    return (as->at_is_response_ok() ? GSM_OK : GSM_ERROR);
 }
 
 COMMANDCALLBACK at_sim_unlocked(ATSerial* as)
@@ -25,9 +25,9 @@ COMMANDCALLBACK at_sim_unlocked(ATSerial* as)
     return sim_unlocked_callback;
 }
 
-bool send_sms_callback(ATSerial* as)
+GSM_RESULT send_sms_callback(ATSerial* as)
 {
-    return (as->at_is_response("CMGS"));
+    return (as->at_is_response("CMGS") ? GSM_OK : GSM_ERROR);
 }
 
 COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number, const char* text)
@@ -53,9 +53,9 @@ COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number, const char* text)
     return send_sms_callback;
 }
 
-bool call_number_callback(ATSerial* as)
+GSM_RESULT call_number_callback(ATSerial* as)
 {
-    return as->at_is_response_ok();
+    return (as->at_is_response_ok() ? GSM_OK : GSM_ERROR);
 }
 
 COMMANDCALLBACK at_call_number(ATSerial* as, const char* number)
