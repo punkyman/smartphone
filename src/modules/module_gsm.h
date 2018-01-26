@@ -9,6 +9,8 @@ namespace ModuleGsm
 
     void update();
 
+    bool call_number(const char* number);
+
     bool send_sms(const char* number, const char* text);
 
     bool is_command_running();
