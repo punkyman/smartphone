@@ -9,5 +9,6 @@ class ATSerial;
 ///////////////////////////////////////////////////////////////////////////////
 typedef bool (*COMMANDCALLBACK)(ATSerial* as);
 
+COMMANDCALLBACK at_init(ATSerial* as, bool what);
 COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number,const char* text);
 COMMANDCALLBACK at_call_number(ATSerial* as, const char* number);

@@ -1,43 +1,53 @@
 #include "longterms.h"
 #include "../ATSerial.h"
 
+bool init_callback(ATSerial* as)
+{
+    return as->at_is_response_ok();    
+}
+
+COMMANDCALLBACK at_init(ATSerial* as, bool what)
+{
+    as->at_command(F("AT+CFUN=1")); // query full phone functionality, can take up to 10s...
+ /*   
+    as->print(F("AT+CPIN?\r")); // query sim unlocked, can take up to 5s...
+    if(!as->at_get_ok())
+        return false;
+*/    
+    return nullptr;
+}
+
 bool send_sms_callback(ATSerial* as)
 {
-    as->at_resume_messages();
-    return (as->readString().indexOf("CMGS") != -1);
+    return (as->at_is_response("CMGS"));
 }
 
 COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number, const char* text)
 {
-    if(!as->at_stop_messages())
+    as->at_command(F("AT+CMGF=1")); // set sms system into text mode
+    if(!as->at_get_response())
+        return nullptr;
+    if(!as->at_is_response_ok())
         return nullptr;
 
-    as->print(F("AT+CMGF=1")); // set sms system into text mode
-    if(!as->at_get_ok())
-    {
-        as->at_resume_messages();
+    as->at_command(F("AT+CSCS=\"GSM\"")); // set charset to GSM 7 bit default alphabet
+    if(!as->at_get_response())
         return nullptr;
-    }
+    if(!as->at_is_response_ok())
+        return nullptr;
 
-    as->print(F("AT+CSCS=\"GSM\"")); // set charset to GSM 7 bit default alphabet
-    if(!as->at_get_ok())
-    {
-        as->at_resume_messages();
-        return nullptr;
-    }
-    
-    as->print(F("AT+CMGS=\""));
-    as->print(number);
-    as->print(F("\"\r"));
-    as->print(text);
-    as->print((char)26); // seems to be equivalent to <Ctrl+Z>
+    char str[20];    
+    snprintf_P(str, 20, PSTR("\"%s\""), number);
+
+    as->at_command(F("AT+CMGS="), number);
+    as->at_text(text);
 
     return send_sms_callback;
 }
 
 bool call_number_callback(ATSerial* as)
 {
-    return as->at_get_ok();
+    return as->at_is_response_ok();
 }
 
 COMMANDCALLBACK at_call_number(ATSerial* as, const char* number)

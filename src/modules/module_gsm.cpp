@@ -28,7 +28,7 @@ namespace ModuleGsm
 
         if(callback)
         {
-            if(atserial.available())
+            if(atserial.at_is_response_available())
             {
                 bool result = callback(&atserial);
                 callback = nullptr;
