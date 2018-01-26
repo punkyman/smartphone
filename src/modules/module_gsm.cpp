@@ -16,7 +16,7 @@ namespace ModuleGsm
     void reset()
     {
         if(at_init(&atserial) == GSM_OK)
-            callback = at_init_gsm(&atserial);
+            at_init_gsm(&atserial, &callback);
     }
 
     void setup()
@@ -63,9 +63,8 @@ namespace ModuleGsm
         if(is_command_running())
             return false;
 
-        callback = at_send_sms(&atserial, number, text);
+        return at_send_sms(&atserial, number, text, &callback) == GSM_OK;
 
-        return callback != nullptr;
     }
 
     bool set_microphone_gain(uint8_t value)

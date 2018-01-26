@@ -11,13 +11,13 @@ class ATSerial;
 typedef GSM_RESULT (*COMMANDCALLBACK)(ATSerial* as);
 
 #define AT_INIT_GSM_TIMEOUT 10000 
-COMMANDCALLBACK at_init_gsm(ATSerial* as);
+GSM_RESULT at_init_gsm(ATSerial* as, COMMANDCALLBACK* callback);
 
 #define AT_SIM_UNLOCKED_TIMEOUT 5000
-COMMANDCALLBACK at_sim_unlocked(ATSerial* as);
+GSM_RESULT at_sim_unlocked(ATSerial* as, COMMANDCALLBACK* callback);
 
 #define AT_SEND_SMS_TIMEOUT 60000
-COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number,const char* text);
+GSM_RESULT at_send_sms(ATSerial* as, const char* number, const char* text, COMMANDCALLBACK* callback);
 
 #define AT_CALL_NUMBER_TIMEOUT 20000
-COMMANDCALLBACK at_call_number(ATSerial* as, const char* number);
+GSM_RESULT at_call_number(ATSerial* as, const char* number, COMMANDCALLBACK* callback);
