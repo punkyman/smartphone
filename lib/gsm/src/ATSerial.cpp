@@ -57,7 +57,7 @@ bool ATSerial::at_get_response()
         if(c == '\n')
         {
             ++nb;
-            if(nb > 2)
+            if(nb == 2)
                 return true;
         }
     }
