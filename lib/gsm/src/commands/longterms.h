@@ -9,6 +9,14 @@ class ATSerial;
 ///////////////////////////////////////////////////////////////////////////////
 typedef bool (*COMMANDCALLBACK)(ATSerial* as);
 
-COMMANDCALLBACK at_init(ATSerial* as, bool what);
+#define AT_INIT_GSM_TIMEOUT 10000 
+COMMANDCALLBACK at_init_gsm(ATSerial* as);
+
+#define AT_SIM_UNLOCKED_TIMEOUT 5000
+COMMANDCALLBACK at_sim_unlocked(ATSerial* as);
+
+#define AT_SEND_SMS_TIMEOUT 60000
 COMMANDCALLBACK at_send_sms(ATSerial* as, const char* number,const char* text);
+
+#define AT_CALL_NUMBER_TIMEOUT 20000
 COMMANDCALLBACK at_call_number(ATSerial* as, const char* number);

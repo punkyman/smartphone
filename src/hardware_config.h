@@ -53,8 +53,8 @@
 #define GPS_SS_RX 3
 #define GPS_SS_TX 4
 
-#define GSM_SS_RX 5
-#define GSM_SS_TX 6
+#define GSM_SS_RX 4
+#define GSM_SS_TX 3
 
 #define BATTERY_ANALOG_READ A2
 

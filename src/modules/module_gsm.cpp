@@ -16,7 +16,10 @@ namespace ModuleGsm
     void setup()
     {
         atserial.begin(9600);
-        at_init(&atserial);
+        if(!at_init(&atserial))
+            Serial.println("Failed init");
+
+        callback = at_init_gsm(&atserial);
 
         last_time = micros();
     }
@@ -31,6 +34,10 @@ namespace ModuleGsm
             if(atserial.at_is_response_available())
             {
                 bool result = callback(&atserial);
+                if(result)
+                    Serial.println("*** Succeeded callback for at command");
+                else
+                    Serial.println("*** Failed callback for at command");
                 callback = nullptr;
             }
         }

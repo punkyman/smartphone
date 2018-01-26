@@ -66,19 +66,17 @@ bool ATSerial::at_get_response()
 bool ATSerial::at_is_response_available()
 {
     while(available())
-        buffer += read();
+        buffer += (char) read(); // force usage of the char method, otherwise it makes int
 
-    const char* ptr = buffer.c_str();
     uint8_t nb = 0;
-    while(*ptr != 0)
+    for(unsigned int i = 0; i < buffer.length(); ++i)
     {
-        if(*ptr == '\n')
+        if(buffer[i] == '\n')
         {
             ++nb;
             if(nb == 2)
                 return true;
         }
-        ++ptr;
     }
     return false;
 }

@@ -6,15 +6,23 @@ bool init_callback(ATSerial* as)
     return as->at_is_response_ok();    
 }
 
-COMMANDCALLBACK at_init(ATSerial* as, bool what)
+COMMANDCALLBACK at_init_gsm(ATSerial* as)
 {
     as->at_command(F("AT+CFUN=1")); // query full phone functionality, can take up to 10s...
- /*   
-    as->print(F("AT+CPIN?\r")); // query sim unlocked, can take up to 5s...
-    if(!as->at_get_ok())
-        return false;
-*/    
-    return nullptr;
+
+    return init_callback;
+}
+
+bool sim_unlocked_callback(ATSerial* as)
+{
+    return as->at_is_response_ok();    
+}
+
+COMMANDCALLBACK at_sim_unlocked(ATSerial* as)
+{
+    as->at_command(F("AT+CPIN?")); // query sim unlocked, can take up to 5s...
+
+    return sim_unlocked_callback;
 }
 
 bool send_sms_callback(ATSerial* as)
