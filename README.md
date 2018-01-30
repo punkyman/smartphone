@@ -10,4 +10,7 @@ The current hardware is based on :
 - DS3231 RTC module
 - NEO6MV2 gps module
 - Sim800l GPRS module
-and for the inputs, a Playstation2 joystick, and a rotary encoder.
+
+The display part is made of a PCD8544 screen (the same as the nokia 5110), and for the inputs, a Playstation2 joystick, and a rotary encoder.
+
+![](./hardware.jpg)
