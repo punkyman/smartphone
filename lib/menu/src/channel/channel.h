@@ -1,10 +1,10 @@
 #pragma once
+#include "listener.h"
 
 namespace Menu
 {
     namespace Channel
     {
-        typedef bool (*LISTENER)(int);
         static const unsigned int max_listeners = 8;
         enum MESSAGES
         {
@@ -14,8 +14,8 @@ namespace Menu
 
         void init();
 
-        bool Register(LISTENER elt);
-        bool Unregister(LISTENER elt);
+        bool Register(Listener* obj);
+        bool Unregister(Listener* obj);
 
         void Notify(int msg);
     }

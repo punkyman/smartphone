@@ -1,6 +1,7 @@
 #include "modal.h"
 #include "renderer.h"
 #include "types.h"
+#include "channel/channel.h"
 
 namespace Menu
 {
@@ -8,11 +9,17 @@ namespace Menu
 Modal::Modal()
 : active(false)
 {
+    Channel::Register(this);
+}
+
+bool Modal::listener(int msg)
+{
+
 }
 
 bool Modal::update(Inputs inputs)
 {
-
+    return false;
 }
 
 void Modal::draw(Renderer* render)
