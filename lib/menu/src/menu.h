@@ -5,12 +5,12 @@
 
 #include "modal.h"
 
-#include "pages/page.h"
-#include "pages/mess_page.h"
-#include "pages/fullscreen_page.h"
-#include "pages/list_page.h"
+#include "items/pages/page.h"
+#include "items/pages/mess_page.h"
+#include "items/pages/fullscreen_page.h"
+#include "items/pages/list_page.h"
 
-#include "widgets/sized_widgets.h"
-#include "widgets/absolute_widgets.h"
+#include "items/widgets/sized_widgets.h"
+#include "items/widgets/absolute_widgets.h"
 
  
