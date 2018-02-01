@@ -12,7 +12,7 @@ Modal::Modal()
     Channel::Register(this);
 }
 
-bool Modal::listener(int msg)
+bool Modal::listener(Channel::Message msg)
 {
 
 }

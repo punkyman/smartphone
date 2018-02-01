@@ -1,9 +1,13 @@
 #pragma once
+#include "messages.h"
 
 namespace Menu
 {
-    struct Listener
+    namespace Channel
     {
-        virtual bool listener(int msg) = 0; // returns true if message is intercepted
-    };
+        struct Listener
+        {
+            virtual bool listener(Message msg) = 0; // returns true if message is intercepted
+        };
+    }
 }

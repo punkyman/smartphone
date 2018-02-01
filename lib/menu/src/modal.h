@@ -7,7 +7,7 @@ namespace Menu
 {
     struct Renderer;
 
-    struct Modal : Listener
+    struct Modal : Channel::Listener
     {
         static const int screen_margin = 4;
 
@@ -17,7 +17,7 @@ namespace Menu
 
         void draw(Renderer* render);
 
-        virtual bool listener(int msg);
+        virtual bool listener(Channel::Message msg);
 
         bool active;
     };

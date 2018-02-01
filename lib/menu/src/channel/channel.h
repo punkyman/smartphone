@@ -1,16 +1,12 @@
 #pragma once
-#include "listener.h"
 
 namespace Menu
 {
     namespace Channel
     {
+        struct Listener;
+
         static const unsigned int max_listeners = 8;
-        enum MESSAGES
-        {
-            MSG_OK,
-            MSG_ERROR,
-        };
 
         void init();
 
