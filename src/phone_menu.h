@@ -5,6 +5,7 @@ namespace Menu
     struct Renderer;
     struct Page;
     struct Widget;
+    struct Modal;
 }
 
 struct PhoneMenu
@@ -15,5 +16,6 @@ struct PhoneMenu
 
     Menu::Renderer* render;
     Menu::Page* currentPage;
+    Menu::Modal* modal;
 };
 

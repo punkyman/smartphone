@@ -11,6 +11,8 @@
 
 PhoneMenu::PhoneMenu()
 {
+    modal = new Menu::Modal();
+
     MENU_NEW_MESS(main, nullptr, nullptr, 3);
     MENU_NEW_BATTERY_AT(0, main, g_get_battery_level);
     MENU_NEW_CLOCK_AT(1, main, g_get_clock, g_get_date);
@@ -48,6 +50,7 @@ PhoneMenu::PhoneMenu()
     render->drawLine = ModuleDisplay::drawLine;
     render->drawRect = ModuleDisplay::drawRect;
     render->fillRect = ModuleDisplay::fillRect;
+    render->eraseRect = ModuleDisplay::eraseRect;
     render->drawCircle = ModuleDisplay::drawCircle;
     render->drawBitmap = ModuleDisplay::drawBitmap;
 }
@@ -78,6 +81,11 @@ void PhoneMenu::update()
         input_values |= Menu::INPUT_VALIDATE;
     }
 
+    if(modal->update(input_values))
+    {
+        return; // modal intercepts all inputs
+    }
+
     Menu::Page* previousPage = currentPage;
     currentPage = currentPage->update(input_values);
 
@@ -91,5 +99,6 @@ void PhoneMenu::draw()
 {
     ModuleDisplay::begin();
     currentPage->draw(render);
+    modal->draw(render);
     ModuleDisplay::end();
 }

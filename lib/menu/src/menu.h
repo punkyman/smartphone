@@ -3,6 +3,8 @@
 
 #include "renderer.h"
 
+#include "modal.h"
+
 #include "pages/page.h"
 #include "pages/mess_page.h"
 #include "pages/fullscreen_page.h"

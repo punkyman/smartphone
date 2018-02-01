@@ -4,11 +4,12 @@
         {
             "type": "gdb",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "name": "PlatformIO Debugger",
-            "target": "/media/data/hubic/work/arduino/platformio/smartphone/.pioenvs/sparkfun_promicro16/firmware.elf",
+            "target": "/media/data/hubic/work/arduino/platformio/smartphone-github/.pioenvs/sparkfun_promicro16/firmware.elf",
             "gdbpath": "/home/punky/.platformio/penv/bin/piodebuggdb",
-            "autorun": [ "source .pioinit" ]
+            "autorun": [ "source .pioinit" ],
+            "preLaunchTask": "PlatformIO: Pre-Debug"
         }
     ]
 }

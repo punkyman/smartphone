@@ -24,6 +24,8 @@ namespace ModuleDisplay
 
     void fillRect(uint8_t x, uint8_t y, uint8_t w, uint8_t h);
 
+    void eraseRect(uint8_t x, uint8_t y, uint8_t w, uint8_t h);
+
     void drawCircle(uint8_t x, uint8_t y, uint8_t r);
 
     // draw a bitmap of size w,h that sits in progmem

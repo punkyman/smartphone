@@ -20,6 +20,8 @@ namespace Menu
     typedef void (*DRAWRECT)(uint8_t, uint8_t, uint8_t, uint8_t);
     // x, y, w, h
     typedef void (*FILLRECT)(uint8_t, uint8_t, uint8_t, uint8_t);
+    // x, y, w, h
+    typedef void (*ERASERECT)(uint8_t, uint8_t, uint8_t, uint8_t);
     // x, y, r
     typedef void (*DRAWCIRCLE)(uint8_t, uint8_t, uint8_t);
     // x, y, w, h, data(in progmem)
@@ -39,6 +41,7 @@ struct Renderer
     DRAWLINE drawLine;
     DRAWRECT drawRect;
     FILLRECT fillRect;
+    ERASERECT eraseRect;
     DRAWCIRCLE drawCircle;
     DRAWBITMAP drawBitmap;
 
