@@ -46,7 +46,7 @@ void Notify(int msg)
     for(unsigned int i = 0; i < max_listeners; ++i)
     {
         if(listeners[i] != nullptr)
-            if(listeners[i]->notification(msg))
+            if(listeners[i]->listener(msg))
                 return;
     }    
 }
