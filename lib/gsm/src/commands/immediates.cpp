@@ -30,7 +30,7 @@ GSM_RESULT at_get_signal_level(ATSerial* as, uint8_t* value)
     if(!as->at_get_response())
         return GSM_TIMEOUT;
 
-    if(!as->at_get_response_tag("+SCQ:", value))
+    if(!as->at_get_response_tag("+CSQ:", value))
         return GSM_ERROR;
 
     return GSM_OK;

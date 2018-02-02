@@ -11,15 +11,14 @@ namespace ModuleGsm
     COMMANDCALLBACK callback = nullptr;
 
     unsigned long callback_timeout = 0;
-    unsigned long update_time = 0;
-    unsigned long last_time = 0;
+    unsigned long signal_time = 0;
 
     void reset()
     {
         if(at_init(&atserial) == GSM_OK)
         {
             at_init_gsm(&atserial, &callback);
-            callback_timeout = micros() + AT_INIT_GSM_TIMEOUT;
+            callback_timeout = millis() + AT_INIT_GSM_TIMEOUT;
         }
     }
 
@@ -27,17 +26,14 @@ namespace ModuleGsm
     {
         atserial.begin(9600);
         reset();
-        last_time = micros();
+        signal_time = SIGNAL_UPDATE;
     }
 
     void update()
     {
-        update_time += (micros() - last_time);
-        last_time = micros();
-
         if(callback)
         {
-            if(micros() > callback_timeout)
+            if(millis() > callback_timeout)
             {
                 reset();
             }
@@ -54,10 +50,11 @@ namespace ModuleGsm
                 }
             }
         }
-        else if(update_time >= SIGNAL_UPDATE)
+        else if(millis() >= signal_time)
         {
-            at_get_signal_level(&atserial, &signal_level);
-            update_time -= SIGNAL_UPDATE;
+            if(at_get_signal_level(&atserial, &signal_level) != GSM_OK)
+                reset();
+            signal_time = millis() + SIGNAL_UPDATE;
         }
    }
 
@@ -71,7 +68,7 @@ namespace ModuleGsm
         if(is_command_running())
             return false;
 
-        callback_timeout = micros() + AT_CALL_NUMBER_TIMEOUT;
+        callback_timeout = millis() + AT_CALL_NUMBER_TIMEOUT;
         return at_call_number(&atserial, number, &callback) == GSM_OK;
     }
 
@@ -80,7 +77,7 @@ namespace ModuleGsm
         if(is_command_running())
             return false;
 
-        callback_timeout = micros() + AT_SEND_SMS_TIMEOUT;
+        callback_timeout = millis() + AT_SEND_SMS_TIMEOUT;
         return at_send_sms(&atserial, number, text, &callback) == GSM_OK;
     }
 

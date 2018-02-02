@@ -7,6 +7,14 @@ ATSerial::ATSerial(uint8_t receivePin, uint8_t transmitPin)
 
 void ATSerial::at_flush()
 {
+#ifdef SERIAL_DEBUG
+if(buffer.length())
+{
+    Serial.println(F("## Flushing :"));
+    Serial.println(buffer);
+    Serial.println(F("##"));
+}
+#endif
     buffer = "";
     while(available())
     {
