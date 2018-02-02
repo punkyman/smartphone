@@ -5,7 +5,7 @@
 #include "hardware.h"
 #include "phone_menu.h"
 
-#define DEBUG
+//#define TIMINGS_DEBUG
 
 // tick every 66 ms, that makes it 15fps
 #define TIME_FRAME 66
@@ -13,10 +13,7 @@
 PhoneMenu menu;
 
 void setup(void) {
-#if defined(DEBUG)
   Serial.begin(9600);
-#endif
-
   Hardware::setup();
 }
 
@@ -27,7 +24,7 @@ void loop(void) {
   Hardware::update();
   menu.update();
 
-#if defined(DEBUG)
+#if defined(TIMINGS_DEBUG)
   unsigned long endUpdateTime = micros();
 #endif
 
@@ -35,7 +32,7 @@ void loop(void) {
 
   unsigned long endTime = micros();
 
-#if defined(DEBUG)
+#if defined(TIMINGS_DEBUG)
   Serial.print(F("Update time : "));
   Serial.println(endUpdateTime - startTime);
 

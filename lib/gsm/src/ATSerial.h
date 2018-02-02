@@ -2,6 +2,8 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
+#define SERIAL_DEBUG
+
 struct ATSerial : SoftwareSerial
 {   
     ATSerial(uint8_t receivePin, uint8_t transmitPin);

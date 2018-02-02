@@ -19,20 +19,33 @@ void ATSerial::at_command(const __FlashStringHelper * cmd)
     at_flush();
     print(cmd);
     print('\r');
+#ifdef SERIAL_DEBUG
+Serial.println(cmd);
+#endif    
 }
 
 void ATSerial::at_command(const __FlashStringHelper * cmd, int arg)
 {
     at_flush();
+    print(cmd);
     print(arg);
     print('\r');
+#ifdef SERIAL_DEBUG
+Serial.print(cmd);
+Serial.println(arg);
+#endif    
 }
 
 void ATSerial::at_command(const __FlashStringHelper * cmd, const char* arg)
 {
     at_flush();
+    print(cmd);
     print(arg);
     print('\r');
+#ifdef SERIAL_DEBUG
+Serial.print(cmd);
+Serial.println(arg);
+#endif
 }
 
 void ATSerial::at_text(const char* text)
@@ -40,6 +53,9 @@ void ATSerial::at_text(const char* text)
     at_flush();
     print(text);
     print((char)26);
+#ifdef SERIAL_DEBUG
+Serial.println(text);
+#endif
 }
 
 bool ATSerial::at_get_response()
@@ -51,14 +67,24 @@ bool ATSerial::at_get_response()
         char c = timedRead();
         
         if(c == -1)
+        {
+#ifdef SERIAL_DEBUG
+            Serial.println(F("No response"));
+#endif    
             return false;
+        }
 
         buffer += c;
         if(c == '\n')
         {
             ++nb;
             if(nb == 2)
+            {
+#ifdef SERIAL_DEBUG
+                Serial.println(buffer.c_str());
+#endif    
                 return true;
+            }
         }
     }
 }
@@ -75,7 +101,12 @@ bool ATSerial::at_is_response_available()
         {
             ++nb;
             if(nb == 2)
+            {
+#ifdef SERIAL_DEBUG
+                Serial.println(buffer.c_str());
+#endif    
                 return true;
+            }
         }
     }
     return false;
