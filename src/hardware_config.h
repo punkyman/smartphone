@@ -55,6 +55,7 @@
 
 #define GSM_SS_RX 4
 #define GSM_SS_TX 3
+#define GSM_RESET 6
 
 #define BATTERY_ANALOG_READ A2
 

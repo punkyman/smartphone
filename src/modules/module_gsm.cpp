@@ -15,6 +15,7 @@ namespace ModuleGsm
 
     void reset()
     {
+        gsm_hard_reset(GSM_RESET);
         while(at_init(&atserial) != GSM_OK);
 
         at_init_gsm(&atserial, &callback);
