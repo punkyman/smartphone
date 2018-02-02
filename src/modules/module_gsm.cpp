@@ -15,11 +15,10 @@ namespace ModuleGsm
 
     void reset()
     {
-        if(at_init(&atserial) == GSM_OK)
-        {
-            at_init_gsm(&atserial, &callback);
-            callback_timeout = millis() + AT_INIT_GSM_TIMEOUT;
-        }
+        while(at_init(&atserial) != GSM_OK);
+
+        at_init_gsm(&atserial, &callback);
+        callback_timeout = millis() + AT_INIT_GSM_TIMEOUT;
     }
 
     void setup()

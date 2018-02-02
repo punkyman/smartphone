@@ -1,7 +1,7 @@
 #pragma once
 #include <Arduino.h>
 
-#define SIGNAL_UPDATE 10000
+#define SIGNAL_UPDATE 5000
 
 namespace ModuleGsm
 {
