@@ -37,3 +37,7 @@
 
 #define MENU_NEW_MODIFYINT_AT(idx, page, text, getter, setter, minimum, maximum) \
     page->setitem(idx, new Menu::ModifyIntWidget(page, text, getter, setter, minimum, maximum))
+
+#define MENU_NEW_CALLNUMBER_AT(idx, page, setter) \
+    page->setitem(idx, new Menu::CallWidget(page, setter))
+

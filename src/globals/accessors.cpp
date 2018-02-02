@@ -197,3 +197,12 @@ uint8_t g_get_signal_level()
 #endif
 }
 
+bool g_call_number(const char* number)
+{
+#ifdef HARDWARE_ENABLE_GSM
+    return ModuleGsm::call_number(number);
+#else
+    return false;
+#endif
+}
+

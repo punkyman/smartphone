@@ -137,4 +137,82 @@ void CompassWidget::drawInPage(Renderer* render, Rect* area)
     area->y0 += area->y1;
 }
 
+char nextInCharset(char value)
+{
+    if(value == ' ')
+        return '0';
+    if(value == '9')
+        return '+';
+    if(value == '+')
+        return ' ';
+
+    return ++value;
+}
+
+char previousInCharset(char value)
+{
+    if(value == ' ')
+        return '+';
+    if(value == '+')
+        return '9';
+    if(value == '0')
+        return ' ';
+
+    return --value;
+}
+
+CallWidget::CallWidget(Page* parent, CALLNUMBER setter)
+: AbsoluteWidget(parent), set(setter)
+{
+    num = ' ';
+}
+
+bool CallWidget::update(Inputs inputs)
+{
+    if(inputs & INPUT_BACK)
+    {
+        if(number.length() == 0)
+            return false;
+        else
+        {
+            num = *number.end();
+            number.remove(number.length()-1);
+        }
+    }
+    if(inputs & INPUT_FORWARD)
+    {
+        number += num;
+        num = ' ';
+    }
+    if(inputs & INPUT_NEXT)
+    {
+        num = nextInCharset(num);
+    }
+    if(inputs & INPUT_PREVIOUS)
+    {
+        num = previousInCharset(num);
+    }
+    if(inputs & INPUT_VALIDATE)
+    {
+        set(number.c_str());
+    }
+
+    return true;
+}
+
+void CallWidget::drawInPage(Renderer* render, Rect* area)
+{
+    uint8_t textw, texth;
+
+    number += num;
+
+    const char* str = number.c_str();
+    render->getTextSize(str, false, &textw, &texth, BIG);
+    uint8_t x = area->x0 + ((area->x1 - area->x0) / 2) - (textw / 2);
+    uint8_t y = area->y0 + ((area->y1 - area->y0) / 2) - (texth / 2);
+    render->drawText(x, y, str, false, BIG);
+
+    number.remove(number.length()-1);
+}
+
 }; // namespace Menu

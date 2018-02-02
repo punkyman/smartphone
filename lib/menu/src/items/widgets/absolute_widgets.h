@@ -81,4 +81,17 @@ namespace Menu
         GETCOMPASSDATA get;
     };
 
+    struct CallWidget : AbsoluteWidget
+    {
+        CallWidget(Page* parent, CALLNUMBER set);
+
+        virtual bool update(Inputs inputs);
+
+        virtual void drawInPage(Renderer* render, Rect* area);
+
+        CALLNUMBER set;
+
+        String number;
+        char num;
+    };
 };
