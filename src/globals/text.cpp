@@ -1,5 +1,6 @@
 #include "text.h"
 #include "hardware_config.h"
+#include <hal.h>
 
 #if defined(HARDWARE_ENABLE_SENSORS)
 #include "modules/module_barometer.h"
