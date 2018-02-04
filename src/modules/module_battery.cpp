@@ -10,6 +10,11 @@ namespace ModuleBattery
     void setup()
     {
         batterylevel = 0;
+#if defined(PLATFORM_ststm32)
+        // ADC has to be enabled per pin on the stm32
+        // don't want to modify the lib code, so it's done outside
+        pinMode(BATTERY_ANALOG_READ, INPUT_ANALOG);  
+#endif
         battery.begin(3300, 1.47);
     }
 

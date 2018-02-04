@@ -12,6 +12,10 @@ void joystick_init(uint8_t analog_x_pin, uint8_t analog_y_pin, uint8_t switch_pi
     joystick_analog_y_pin = analog_y_pin;
     joystick_switch_pin = switch_pin;
 
+#if defined(PLATFORM_ststm32)
+    pinMode(joystick_analog_x_pin, INPUT_ANALOG);
+    pinMode(joystick_analog_y_pin, INPUT_ANALOG);
+#endif
     pinMode(joystick_switch_pin, INPUT_PULLUP);
 }
 
