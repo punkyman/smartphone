@@ -1,7 +1,7 @@
 #include "module_gps.h"
-#if defined(PLATFORM_ststm32)
+#if defined(STM32_MCU_SERIES)
 #include <HardwareSerial.h>
-#elif defined(PLATFORM_atmelavr)
+#elif defined(__AVR_ARCH__)
 #include <SoftwareSerial.h>
 #endif
 #include "TinyGPS++.h"
@@ -12,9 +12,9 @@
 namespace ModuleGps
 {
     TinyGPSPlus gps;
-#if defined(PLATFORM_ststm32)
-    HardwareSerial& serial = Serial2;
-#elif defined(PLATFORM_atmelavr)
+#if defined(STM32_MCU_SERIES)
+    HardwareSerial& serial = Serial1;
+#elif defined(__AVR_ARCH__)
     SoftwareSerial serial(GPS_SS_RX, GPS_SS_TX);
 #endif
 

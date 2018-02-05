@@ -36,8 +36,8 @@
 #define SH1106_ADDRESS 0x3C
 //#define DS3231_I2C_ADDR 0x68 // RTC module, defined internally in ds3231.h
 
-#if defined(PLATFORM_ststm32)
+#if defined(STM32_MCU_SERIES)
 #include "hardware_config_stm32.h"
-#elif defined(PLATFORM_atmelavr)
+#elif defined(__AVR_ARCH__)
 #include "hardware_config_avr.h"
 #endif
