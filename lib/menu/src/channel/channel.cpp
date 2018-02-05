@@ -1,4 +1,5 @@
 #include "channel.h"
+#include <hal.h>
 #include "listener.h"
 
 namespace Menu
