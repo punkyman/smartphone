@@ -1,6 +1,8 @@
 #include "absolute_widgets.h"
 #include "types.h"
 #include "renderer.h"
+#include "channel/channel.h"
+#include "channel/messages.h"
 
 namespace Menu
 {
@@ -165,10 +167,19 @@ CallWidget::CallWidget(Page* parent, CALLNUMBER setter)
 : AbsoluteWidget(parent), set(setter)
 {
     num = ' ';
+    success = false;
 }
 
 bool CallWidget::update(Inputs inputs)
 {
+    if(success)
+    {
+        number = "";
+        num = ' ';
+        success = false;
+        return false;
+    }
+
     if(inputs & INPUT_BACK)
     {
         if(number.length() == 0)
@@ -194,10 +205,31 @@ bool CallWidget::update(Inputs inputs)
     }
     if(inputs & INPUT_VALIDATE)
     {
-        set(number.c_str());
+        if(!set(number.c_str()))
+        {
+            Channel::Notify(Channel::MSG_OPERATION_FAILURE);
+        }
+        else
+        {
+            Channel::Notify(Channel::MSG_OPERATION_IN_PROGRESS);
+            Channel::Register(this);
+        }
+        
+        return true; // stay in the page, so that operation can easily be retried
     }
 
     return true;
+}
+
+bool CallWidget::listener(Channel::Message msg)
+{
+    switch(msg)
+    {
+        case Channel::MSG_OPERATION_SUCCESS:
+            success = true;
+        case Channel::MSG_OPERATION_FAILURE:
+            Channel::Unregister(this);
+    }
 }
 
 void CallWidget::drawInPage(Renderer* render, Rect* area)

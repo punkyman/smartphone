@@ -14,12 +14,26 @@ Modal::Modal()
 
 bool Modal::listener(Channel::Message msg)
 {
-
+    switch(msg)
+    {
+        case Channel::MSG_OPERATION_FAILURE:
+        case Channel::MSG_OPERATION_IN_PROGRESS:
+        case Channel::MSG_OPERATION_SUCCESS:
+            active = true;
+    }
 }
 
 bool Modal::update(Inputs inputs)
 {
-    return false;
+    if(!active)
+        return false;
+    else
+    {
+        if(inputs & INPUT_VALIDATE)
+            active = false;
+
+        return true;
+    }
 }
 
 void Modal::draw(Renderer* render)
