@@ -8,7 +8,7 @@ namespace Menu
 {
 
 Modal::Modal()
-: active(false)
+: active(false), style((Style)0)
 {
     Messaging::Register(this, Messages::Channel);
 }
@@ -17,11 +17,20 @@ bool Modal::listener(uint8_t msg)
 {
     switch(msg)
     {
-        case Messages::MSG_OPERATION_FAILURE:
-        case Messages::MSG_OPERATION_IN_PROGRESS:
-        case Messages::MSG_OPERATION_SUCCESS:
+        case Messages::MSG_MODAL_SHOW_FAILURE:
+            style = STYLE_FAILURE;
             active = true;
+            return true;
+        case Messages::MSG_MODAL_SHOW_IN_PROGRESS:
+            style = STYLE_IN_PROGRESS;
+            active = true;
+            return true;
+        case Messages::MSG_MODAL_SHOW_SUCCESS:
+            style = STYLE_SUCCESS;
+            active = true;
+            return true;
     }
+
     return false;
 }
 
@@ -31,8 +40,9 @@ bool Modal::update(Inputs inputs)
         return false;
     else
     {
-        if(inputs & INPUT_VALIDATE)
-            active = false;
+        if(style != STYLE_IN_PROGRESS)
+            if(inputs & INPUT_VALIDATE)
+                active = false;
 
         return true;
     }
@@ -45,6 +55,40 @@ void Modal::draw(Renderer* render)
         Rect frame(screen_margin, screen_margin, render->screenWidth - screen_margin, render->screenHeight - screen_margin);
         render->eraseRect(frame.x0, frame.y0, frame.x1 - frame.x0, frame.y1 - frame.y0);
         render->drawRect(frame.x0, frame.y0, frame.x1 - frame.x0, frame.y1 - frame.y0);
+
+        const char* text = nullptr;
+        bool ok_button = false;
+        switch(style)
+        {
+            case STYLE_SUCCESS :
+                text = PSTR("Operation complete !");
+                ok_button = true;
+                break;
+            case STYLE_IN_PROGRESS :
+                text = PSTR("Operation in progress");
+                break;
+            case STYLE_FAILURE :
+                text = PSTR("Operation failed");
+                ok_button = true;
+                break;
+        }
+
+        uint8_t textw, texth;
+        render->getTextSize(text, true, &textw, &texth, NORMAL);
+        uint8_t x = frame.x0 + ((frame.x1 - frame.x0) / 2) - (textw / 2);
+        uint8_t y = frame.y0 + ((frame.y1 - frame.y0) / 2) - (texth / 2);
+        render->drawText(x, y, text, true, NORMAL);
+
+        if(ok_button)
+        {
+            text = PSTR("OK");
+            render->getTextSize(text, true, &textw, &texth, NORMAL);
+            x = frame.x0 + ((frame.x1 - frame.x0) / 2) - (textw / 2);
+            y = frame.y1 - texth - (2*box_margin);
+            render->fillRect(x, y, frame.x1 - x, frame.y1 - y);
+            y += box_margin;
+            render->drawText(x, y, text, true, NORMAL);
+        }
     }
 }
 }

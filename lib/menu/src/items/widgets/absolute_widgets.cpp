@@ -207,11 +207,11 @@ bool CallWidget::update(Inputs inputs)
     {
         if(!set(number.c_str()))
         {
-            Messaging::Notify(Messages::Channel, Messages::MSG_OPERATION_FAILURE);
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_FAILURE);
         }
         else
         {
-            Messaging::Notify(Messages::Channel, Messages::MSG_OPERATION_IN_PROGRESS);
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_IN_PROGRESS);
             Messaging::Register(this, Messages::Channel);
         }
         
@@ -226,9 +226,14 @@ bool CallWidget::listener(uint8_t msg)
     switch(msg)
     {
         case Messages::MSG_OPERATION_SUCCESS:
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_SUCCESS);
             success = true;
-        case Messages::MSG_OPERATION_FAILURE:
             Messaging::Unregister(this);
+            return true;
+        case Messages::MSG_OPERATION_FAILURE:
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_FAILURE);        
+            Messaging::Unregister(this);
+            return true;
     }
 
     return false;
