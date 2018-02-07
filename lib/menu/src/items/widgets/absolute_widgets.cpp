@@ -207,12 +207,12 @@ bool CallWidget::update(Inputs inputs)
     {
         if(!set(number.c_str()))
         {
-            Messaging::Notify(Messages::MSG_OPERATION_FAILURE);
+            Messaging::Notify(Messages::Channel, Messages::MSG_OPERATION_FAILURE);
         }
         else
         {
-            Messaging::Notify(Messages::MSG_OPERATION_IN_PROGRESS);
-            Messaging::Register(this);
+            Messaging::Notify(Messages::Channel, Messages::MSG_OPERATION_IN_PROGRESS);
+            Messaging::Register(this, Messages::Channel);
         }
         
         return true; // stay in the page, so that operation can easily be retried
@@ -229,7 +229,6 @@ bool CallWidget::listener(uint8_t msg)
             success = true;
         case Messages::MSG_OPERATION_FAILURE:
             Messaging::Unregister(this);
-            return true;
     }
 
     return false;

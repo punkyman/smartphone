@@ -10,7 +10,7 @@ namespace Menu
 Modal::Modal()
 : active(false)
 {
-    Messaging::Register(this);
+    Messaging::Register(this, Messages::Channel);
 }
 
 bool Modal::listener(uint8_t msg)
@@ -22,6 +22,7 @@ bool Modal::listener(uint8_t msg)
         case Messages::MSG_OPERATION_SUCCESS:
             active = true;
     }
+    return false;
 }
 
 bool Modal::update(Inputs inputs)
