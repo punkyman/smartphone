@@ -3,9 +3,9 @@
 
 namespace Menu
 {
-    namespace Channel
+    namespace Messages
     {
-        typedef uint8_t Message; // has to be wide enough to contain the enum values    
+        static const uint8_t Channel = 1;
         enum MESSAGES
         {
             MSG_OPERATION_FAILURE           = 1 << 0,

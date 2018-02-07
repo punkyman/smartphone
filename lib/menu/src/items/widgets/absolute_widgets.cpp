@@ -1,8 +1,8 @@
 #include "absolute_widgets.h"
 #include "types.h"
 #include "renderer.h"
-#include "channel/channel.h"
-#include "channel/messages.h"
+#include <messaging.h>
+#include "messages.h"
 
 namespace Menu
 {
@@ -207,12 +207,12 @@ bool CallWidget::update(Inputs inputs)
     {
         if(!set(number.c_str()))
         {
-            Channel::Notify(Channel::MSG_OPERATION_FAILURE);
+            Messaging::Notify(Messages::MSG_OPERATION_FAILURE);
         }
         else
         {
-            Channel::Notify(Channel::MSG_OPERATION_IN_PROGRESS);
-            Channel::Register(this);
+            Messaging::Notify(Messages::MSG_OPERATION_IN_PROGRESS);
+            Messaging::Register(this);
         }
         
         return true; // stay in the page, so that operation can easily be retried
@@ -221,15 +221,18 @@ bool CallWidget::update(Inputs inputs)
     return true;
 }
 
-bool CallWidget::listener(Channel::Message msg)
+bool CallWidget::listener(uint8_t msg)
 {
     switch(msg)
     {
-        case Channel::MSG_OPERATION_SUCCESS:
+        case Messages::MSG_OPERATION_SUCCESS:
             success = true;
-        case Channel::MSG_OPERATION_FAILURE:
-            Channel::Unregister(this);
+        case Messages::MSG_OPERATION_FAILURE:
+            Messaging::Unregister(this);
+            return true;
     }
+
+    return false;
 }
 
 void CallWidget::drawInPage(Renderer* render, Rect* area)

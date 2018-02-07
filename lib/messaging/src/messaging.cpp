@@ -1,9 +1,7 @@
-#include "channel.h"
+#include "messaging.h"
 #include "listener.h"
 
-namespace Menu
-{
-namespace Channel
+namespace Messaging
 {
 
 Listener* listeners[max_listeners];
@@ -51,5 +49,4 @@ void Notify(int msg)
     }    
 }
 
-} // namespace Channel
-} // namespace Menu
+} // namespace Messaging

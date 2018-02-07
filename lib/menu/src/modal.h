@@ -1,13 +1,13 @@
 #pragma once
 #include <Arduino.h>
 #include "inputs.h"
-#include "channel/listener.h"
+#include <listener.h>
 
 namespace Menu
 {
     struct Renderer;
 
-    struct Modal : Channel::Listener
+    struct Modal : Messaging::Listener
     {
         static const int screen_margin = 4;
 
@@ -17,7 +17,7 @@ namespace Menu
 
         void draw(Renderer* render);
 
-        virtual bool listener(Channel::Message msg);
+        virtual bool listener(uint8_t msg);
 
         bool active;
     };

@@ -1,7 +1,8 @@
 #include "modal.h"
 #include "renderer.h"
 #include "types.h"
-#include "channel/channel.h"
+#include <messaging.h>
+#include "messages.h"
 
 namespace Menu
 {
@@ -9,16 +10,16 @@ namespace Menu
 Modal::Modal()
 : active(false)
 {
-    Channel::Register(this);
+    Messaging::Register(this);
 }
 
-bool Modal::listener(Channel::Message msg)
+bool Modal::listener(uint8_t msg)
 {
     switch(msg)
     {
-        case Channel::MSG_OPERATION_FAILURE:
-        case Channel::MSG_OPERATION_IN_PROGRESS:
-        case Channel::MSG_OPERATION_SUCCESS:
+        case Messages::MSG_OPERATION_FAILURE:
+        case Messages::MSG_OPERATION_IN_PROGRESS:
+        case Messages::MSG_OPERATION_SUCCESS:
             active = true;
     }
 }

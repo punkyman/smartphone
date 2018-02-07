@@ -1,7 +1,7 @@
 #pragma once
 #include "widget.h"
 #include "functors.h"
-#include "channel/listener.h"
+#include <listener.h>
 
 #define BATTERY_BAR1 10
 #define BATTERY_BAR2 25
@@ -82,7 +82,7 @@ namespace Menu
         GETCOMPASSDATA get;
     };
 
-    struct CallWidget : AbsoluteWidget, Channel::Listener
+    struct CallWidget : AbsoluteWidget, Messaging::Listener
     {
         CallWidget(Page* parent, CALLNUMBER set);
 
@@ -90,7 +90,7 @@ namespace Menu
 
         virtual void drawInPage(Renderer* render, Rect* area);
 
-        virtual bool listener(Channel::Message msg);
+        virtual bool listener(uint8_t msg);
 
         CALLNUMBER set;
 
