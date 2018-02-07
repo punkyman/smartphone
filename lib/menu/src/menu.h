@@ -13,4 +13,6 @@
 #include "items/widgets/sized_widgets.h"
 #include "items/widgets/absolute_widgets.h"
 
+#include "messages.h"
+
  

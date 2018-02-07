@@ -1,4 +1,5 @@
 #pragma once
+#include <listener.h>
 
 namespace Menu
 {
@@ -8,11 +9,13 @@ namespace Menu
     struct Modal;
 }
 
-struct PhoneMenu
+struct PhoneMenu : Messaging::Listener
 {
     PhoneMenu();
     void update();
     void draw();
+
+    virtual bool listener(uint8_t msg);
 
     Menu::Renderer* render;
     Menu::Page* currentPage;

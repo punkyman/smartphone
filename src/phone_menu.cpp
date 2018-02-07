@@ -7,10 +7,13 @@
 #include "modules/module_input.h"
 #include "globals/text.h"
 #include "globals/accessors.h"
-
+#include <messaging.h>
+#include "messages.h"
 
 PhoneMenu::PhoneMenu()
 {
+    Messaging::init();
+
     modal = new Menu::Modal();
 
     MENU_NEW_MESS(main, nullptr, nullptr, 3);
@@ -57,6 +60,8 @@ PhoneMenu::PhoneMenu()
     render->eraseRect = ModuleDisplay::eraseRect;
     render->drawCircle = ModuleDisplay::drawCircle;
     render->drawBitmap = ModuleDisplay::drawBitmap;
+
+    Messaging::Register(this, Messages::Channel);
 }
 
 void PhoneMenu::update()
@@ -97,6 +102,19 @@ void PhoneMenu::update()
     {
         currentPage->enter();
     }
+}
+
+bool PhoneMenu::listener(uint8_t msg)
+{
+    switch(msg)
+    {
+        case Messages::MSG_GSM_OPERATION_SUCCESS:
+            Messaging::Notify(Menu::Messages::Channel, Menu::Messages::MSG_OPERATION_SUCCESS);
+        case Messages::MSG_GSM_OPERATION_FAILURE:
+            Messaging::Notify(Menu::Messages::Channel, Menu::Messages::MSG_OPERATION_FAILURE);
+    }
+    
+    return false;
 }
     
 void PhoneMenu::draw()

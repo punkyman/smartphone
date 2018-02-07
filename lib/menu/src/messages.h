@@ -5,7 +5,7 @@ namespace Menu
 {
     namespace Messages
     {
-        static const uint8_t Channel = 1;
+        static const uint8_t Channel = 2;
         enum MESSAGES
         {
             MSG_OPERATION_FAILURE           = 1 << 0,
