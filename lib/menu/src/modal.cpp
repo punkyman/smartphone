@@ -61,14 +61,14 @@ void Modal::draw(Renderer* render)
         switch(style)
         {
             case STYLE_SUCCESS :
-                text = PSTR("Operation complete !");
+                text = PSTR("Operation\n    complete !");
                 ok_button = true;
                 break;
             case STYLE_IN_PROGRESS :
-                text = PSTR("Operation in progress");
+                text = PSTR("Operation\n in progress");
                 break;
             case STYLE_FAILURE :
-                text = PSTR("Operation failed");
+                text = PSTR("Operation\n    failed");
                 ok_button = true;
                 break;
         }
@@ -84,9 +84,8 @@ void Modal::draw(Renderer* render)
             text = PSTR("OK");
             render->getTextSize(text, true, &textw, &texth, NORMAL);
             x = frame.x0 + ((frame.x1 - frame.x0) / 2) - (textw / 2);
-            y = frame.y1 - texth - (2*box_margin);
-            render->fillRect(x, y, frame.x1 - x, frame.y1 - y);
-            y += box_margin;
+            y = frame.y1 - texth - box_margin;
+            render->fillRect(x - box_margin, y - box_margin, textw + 2*box_margin, texth + 2*box_margin);
             render->drawText(x, y, text, true, NORMAL);
         }
     }
