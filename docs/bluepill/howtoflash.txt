@@ -1,0 +1,8 @@
+https://github.com/rogerclarkmelbourne/Arduino_STM32/wiki/Programming-an-STM32F103XXX-with-a-generic-%22ST-Link-V2%22-programmer-from-Linux
+run : sudo openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg
+then telnet 4444
+if device is locked, list banks with :
+flash banks
+then unlock with :
+stm32f1x unlock #banknum
+

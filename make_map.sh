@@ -1,1 +1,1 @@
-~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -Ct .pioenvs/sparkfun_promicro16/firmware.elf > ./firmware.map
+~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -Ct .pioenvs/smartphone/firmware.elf > ./firmware.map
