@@ -1,4 +1,5 @@
 #include "encoder.h"
+#include <hal.h>
 
 uint8_t encoder_clock_pin, encoder_data_pin, encoder_switch_pin;
 

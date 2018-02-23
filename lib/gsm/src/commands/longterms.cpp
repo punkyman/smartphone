@@ -1,5 +1,6 @@
 #include "longterms.h"
 #include "../ATSerial.h"
+#include <hal.h>
 
 GSM_RESULT init_callback(ATSerial* as)
 {

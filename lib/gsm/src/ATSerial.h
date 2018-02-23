@@ -1,12 +1,20 @@
 #pragma once
 #include <Arduino.h>
+#if defined(STM32_MCU_SERIES)
+#include <HardwareSerial.h>
+#elif defined(__AVR_ARCH__)
 #include <SoftwareSerial.h>
+#endif
+
+#define AT_SERIAL_TIMEOUT 1000
 
 #define SERIAL_DEBUG
 
-struct ATSerial : SoftwareSerial
+struct ATSerial
 {   
     ATSerial(uint8_t receivePin, uint8_t transmitPin);
+
+    int timed_read();
 
     void at_flush();
 
@@ -29,4 +37,9 @@ struct ATSerial : SoftwareSerial
     bool at_get_response_tag(const char* tag, uint8_t* value);
 
     String buffer;
+#if defined(STM32_MCU_SERIES)
+    HardwareSerial& serial;
+#elif defined(__AVR_ARCH__)
+    SoftwareSerial serial;
+#endif
 };

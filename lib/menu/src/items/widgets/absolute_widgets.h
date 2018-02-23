@@ -1,4 +1,5 @@
 #pragma once
+#include <hal.h>
 #include "widget.h"
 #include "functors.h"
 #include <listener.h>

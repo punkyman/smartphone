@@ -1,4 +1,5 @@
 #include "mess_page.h"
+#include <hal.h>
 #include "types.h"
 #include "renderer.h"
 

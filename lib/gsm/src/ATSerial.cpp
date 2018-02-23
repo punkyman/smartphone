@@ -1,8 +1,26 @@
 #include "ATSerial.h"
 
 ATSerial::ATSerial(uint8_t receivePin, uint8_t transmitPin)
-: SoftwareSerial(receivePin,transmitPin)
+: 
+#if defined(STM32_MCU_SERIES)
+    serial(Serial2)
+#elif defined(__AVR_ARCH__)
+    serial(receivePin,transmitPin)
+#endif
+
 {
+    serial.begin(9600);
+}
+
+int ATSerial::timed_read()
+{
+  int c;
+  unsigned long startMillis = millis();
+  do {
+    c = serial.read();
+    if (c >= 0) return c;
+  } while(millis() - startMillis < AT_SERIAL_TIMEOUT);
+  return -1;     // -1 indicates timeout
 }
 
 void ATSerial::at_flush()
@@ -16,53 +34,53 @@ if(buffer.length())
 }
 #endif
     buffer = "";
-    while(available())
+    while(serial.available())
     {
-        read();
+        serial.read();
     }
 }
 
 void ATSerial::at_command(const __FlashStringHelper * cmd)
 {
     at_flush();
-    print(cmd);
-    print('\r');
+    serial.print(cmd);
+    serial.print('\r');
 #ifdef SERIAL_DEBUG
-Serial.println(cmd);
+    Serial.println(cmd);
 #endif    
 }
 
 void ATSerial::at_command(const __FlashStringHelper * cmd, int arg)
 {
     at_flush();
-    print(cmd);
-    print(arg);
-    print('\r');
+    serial.print(cmd);
+    serial.print(arg);
+    serial.print('\r');
 #ifdef SERIAL_DEBUG
-Serial.print(cmd);
-Serial.println(arg);
+    Serial.print(cmd);
+    Serial.println(arg);
 #endif    
 }
 
 void ATSerial::at_command(const __FlashStringHelper * cmd, const char* arg)
 {
     at_flush();
-    print(cmd);
-    print(arg);
-    print('\r');
+    serial.print(cmd);
+    serial.print(arg);
+    serial.print('\r');
 #ifdef SERIAL_DEBUG
-Serial.print(cmd);
-Serial.println(arg);
+    Serial.print(cmd);
+    Serial.println(arg);
 #endif
 }
 
 void ATSerial::at_text(const char* text)
 {
     at_flush();
-    print(text);
-    print((char)26);
+    serial.print(text);
+    serial.print((char)26);
 #ifdef SERIAL_DEBUG
-Serial.println(text);
+    Serial.println(text);
 #endif
 }
 
@@ -72,7 +90,7 @@ bool ATSerial::at_get_response()
 
     while(1)
     {
-        char c = timedRead();
+        char c = timed_read();
         
         if(c == -1)
         {
@@ -99,8 +117,8 @@ bool ATSerial::at_get_response()
 
 bool ATSerial::at_is_response_available()
 {
-    while(available())
-        buffer += (char) read(); // force usage of the char method, otherwise it makes int
+    while(serial.available())
+        buffer += (char) serial.read(); // force usage of the char method, otherwise it makes int
 
     uint8_t nb = 0;
     for(unsigned int i = 0; i < buffer.length(); ++i)

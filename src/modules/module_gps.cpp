@@ -1,5 +1,9 @@
 #include "module_gps.h"
+#if defined(STM32_MCU_SERIES)
+#include <HardwareSerial.h>
+#elif defined(__AVR_ARCH__)
 #include <SoftwareSerial.h>
+#endif
 #include "TinyGPS++.h"
 #include "hardware_config.h"
 
@@ -8,18 +12,22 @@
 namespace ModuleGps
 {
     TinyGPSPlus gps;
-    SoftwareSerial ss(GPS_SS_RX, GPS_SS_TX);
+#if defined(STM32_MCU_SERIES)
+    HardwareSerial& serial = Serial1;
+#elif defined(__AVR_ARCH__)
+    SoftwareSerial serial(GPS_SS_RX, GPS_SS_TX);
+#endif
 
     void setup()
     {
-        ss.begin(9600);
+        serial.begin(9600);
     }
 
     void update()
     {
-         while (ss.available() > 0)
+         while (serial.available() > 0)
          {
-            int val = ss.read();
+            int val = serial.read();
             gps.encode(val);
          }
     }

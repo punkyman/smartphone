@@ -1,3 +1,4 @@
+#include <hal.h>
 #include "messaging.h"
 #include "listener.h"
 

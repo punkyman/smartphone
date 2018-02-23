@@ -1,5 +1,6 @@
 #include "module_gsm.h"
 #include <gsm.h>
+#include <hal.h>
 #include "hardware_config.h"
 #include <messaging.h>
 #include "messages.h"
@@ -26,7 +27,6 @@ namespace ModuleGsm
 
     void setup()
     {
-        atserial.begin(9600);
         reset();
         signal_time = SIGNAL_UPDATE;
     }
