@@ -1,6 +1,8 @@
 #include "absolute_widgets.h"
 #include "types.h"
 #include "renderer.h"
+#include <messaging.h>
+#include "messages.h"
 
 namespace Menu
 {
@@ -165,10 +167,19 @@ CallWidget::CallWidget(Page* parent, CALLNUMBER setter)
 : AbsoluteWidget(parent), set(setter)
 {
     num = ' ';
+    success = false;
 }
 
 bool CallWidget::update(Inputs inputs)
 {
+    if(success)
+    {
+        number = "";
+        num = ' ';
+        success = false;
+        return false;
+    }
+
     if(inputs & INPUT_BACK)
     {
         if(number.length() == 0)
@@ -194,10 +205,38 @@ bool CallWidget::update(Inputs inputs)
     }
     if(inputs & INPUT_VALIDATE)
     {
-        set(number.c_str());
+        if(!set(number.c_str()))
+        {
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_FAILURE);
+        }
+        else
+        {
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_IN_PROGRESS);
+            Messaging::Register(this, Messages::Channel);
+        }
+        
+        return true; // stay in the page, so that operation can easily be retried
     }
 
     return true;
+}
+
+bool CallWidget::listener(uint8_t msg)
+{
+    switch(msg)
+    {
+        case Messages::MSG_OPERATION_SUCCESS:
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_SUCCESS);
+            success = true;
+            Messaging::Unregister(this);
+            return true;
+        case Messages::MSG_OPERATION_FAILURE:
+            Messaging::Notify(Messages::Channel, Messages::MSG_MODAL_SHOW_FAILURE);        
+            Messaging::Unregister(this);
+            return true;
+    }
+
+    return false;
 }
 
 void CallWidget::drawInPage(Renderer* render, Rect* area)

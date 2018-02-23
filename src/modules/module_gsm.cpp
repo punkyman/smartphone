@@ -2,6 +2,8 @@
 #include <gsm.h>
 #include <hal.h>
 #include "hardware_config.h"
+#include <messaging.h>
+#include "messages.h"
 
 #if defined(HARDWARE_ENABLE_GSM)
 
@@ -42,10 +44,11 @@ namespace ModuleGsm
                 if(callback(&atserial) == GSM_OK)
                 {
                     callback = nullptr;
-                    Serial.println("Callback succeeded");
+                    Messaging::Notify(Messages::Channel, Messages::MSG_GSM_OPERATION_SUCCESS);
                 }
                 else
                 {
+                    Messaging::Notify(Messages::Channel, Messages::MSG_GSM_OPERATION_FAILURE);
                     reset();
                 }
             }
