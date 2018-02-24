@@ -1,4 +1,5 @@
 #include "modal.h"
+#include <hal.h>
 #include "renderer.h"
 #include "types.h"
 #include <messaging.h>
