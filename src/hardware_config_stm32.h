@@ -19,14 +19,14 @@
 
 #define GSM_SS_RX 4
 #define GSM_SS_TX 3
-#define GSM_RESET 6
+#define GSM_RESET PB8
 
-#define BATTERY_ANALOG_READ PA0
+#define BATTERY_ANALOG_READ PA3
 
-#define JOYSTICK_ANALOG_X PA1
-#define JOYSTICK_ANALOG_Y PA2
-#define JOYSTICK_DIGITAL_SWITCH 2
+#define JOYSTICK_ANALOG_X PA0
+#define JOYSTICK_ANALOG_Y PA1
+#define JOYSTICK_DIGITAL_SWITCH PB9
 
-#define ENCODER_DIGITAL_CLOCK 2 // needs to be on an interrupt compatible pin, on arduino mini : 2 or 3
-#define ENCODER_DIGITAL_DATA 5
-#define ENCODER_DIGITAL_SWITCH 6
+#define ENCODER_DIGITAL_CLOCK PB3 // needs to be on an interrupt compatible pin, on arduino mini : 2 or 3
+#define ENCODER_DIGITAL_DATA PB4
+#define ENCODER_DIGITAL_SWITCH PB5

@@ -5,3 +5,5 @@ firmware.map
 memory.usage
 flash.usage
 .vscode/launch.json
+.vscode/*.db
+.vscode/.browse.c_cpp.db*
