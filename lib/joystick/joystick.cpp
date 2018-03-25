@@ -30,6 +30,11 @@ void joystick_read_values()
 #endif
     joystick_switch = digitalRead(joystick_switch_pin) != HIGH;
 
+#if defined(STM32_MCU_SERIES)
+    joystick_analog_X = joystick_analog_X >> 2;
+    joystick_analog_Y = joystick_analog_Y >> 2;
+#endif
+
     DEADZONE_AXIS(joystick_analog_X);
     DEADZONE_AXIS(joystick_analog_Y);
 }
