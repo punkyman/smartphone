@@ -4,7 +4,7 @@
 // Hardware modules
 ///////////////////////////////////////////////////////////////////////////////
 
-//#define HARDWARE_ENABLE_SENSORS
+#define HARDWARE_ENABLE_SENSORS
 //#define HARDWARE_ENABLE_GPS
 //#define HARDWARE_ENABLE_GSM
 //#define HARDWARE_ENABLE_BATTERY
