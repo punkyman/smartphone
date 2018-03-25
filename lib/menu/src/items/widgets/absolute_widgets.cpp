@@ -186,7 +186,8 @@ bool CallWidget::update(Inputs inputs)
             return false;
         else
         {
-            num = *number.end();
+            num = number[number.length()-1];
+            num = (num == '\n' ? ' ' : num);
             number.remove(number.length()-1);
         }
     }
