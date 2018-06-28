@@ -13,7 +13,7 @@ namespace ModuleGps
 {
     TinyGPSPlus gps;
 #if defined(STM32_MCU_SERIES)
-    HardwareSerial& serial = Serial1;
+    HardwareSerial& serial = Serial3;
 #elif defined(__AVR_ARCH__)
     SoftwareSerial serial(GPS_SS_RX, GPS_SS_TX);
 #endif
