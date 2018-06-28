@@ -24,3 +24,5 @@ void g_set_year(int32_t value);
 // returns signal strength according to module data sheet
 uint8_t g_get_signal_level();
 bool g_call_number(const char* number);
+bool g_send_sms(const char* number);
+

@@ -206,3 +206,11 @@ bool g_call_number(const char* number)
 #endif
 }
 
+bool g_send_sms(const char* number)
+{
+#ifdef HARDWARE_ENABLE_GSM
+    return ModuleGsm::send_sms(number, "FBED");
+#else
+    return false;
+#endif
+}

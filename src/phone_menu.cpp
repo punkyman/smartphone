@@ -23,9 +23,12 @@ PhoneMenu::PhoneMenu()
 
     MENU_NEW_LIST(menu, main, F("menu"), 5);
 
-    MENU_NEW_LIST_AT(0, menu, gsm, F("GSM"), 1);
+    MENU_NEW_LIST_AT(0, menu, gsm, F("GSM"), 2);
     MENU_NEW_FULLSCREEN_AT(0, gsm, call, F("call number"));
     MENU_NEW_CALLNUMBER_AT(0, call, g_call_number);
+    MENU_NEW_FULLSCREEN_AT(1, gsm, sms, F("send sms"));
+    MENU_NEW_CALLNUMBER_AT(0, sms, g_send_sms);
+
 
     MENU_NEW_LIST_AT(1, menu, gps, F("GPS"), 4);
     MENU_NEW_TEXT_AT(0, gps, F("location"), g_get_location);
