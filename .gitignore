@@ -7,3 +7,4 @@ flash.usage
 .vscode/launch.json
 .vscode/*.db
 .vscode/.browse.c_cpp.db*
+launch.json
