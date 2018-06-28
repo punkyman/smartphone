@@ -14,11 +14,14 @@
 // HARDWARE_ENABLE_RTC
 // HARDWARE_USE_SH1106
 
-#define GPS_SS_RX PB10
-#define GPS_SS_TX PB11
+// serial info is not used on stm32, this is for reference
+#define GPS_SS_TX PB10
+#define GPS_SS_RX PB11
 
-#define GSM_SS_RX PA2
-#define GSM_SS_TX PA3
+// serial info is not used on stm32, this is for reference
+#define GSM_SS_TX PA2
+#define GSM_SS_RX PA3
+
 #define GSM_RESET PB7
 
 #define BATTERY_ANALOG_READ PA0
