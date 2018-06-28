@@ -90,9 +90,9 @@ bool ATSerial::at_get_response()
 
     while(1)
     {
-        char c = timed_read();
+        int read = timed_read();
         
-        if(c == -1)
+        if(read < 0)
         {
 #ifdef SERIAL_DEBUG
             Serial.println(F("No response"));
@@ -100,6 +100,8 @@ bool ATSerial::at_get_response()
             return false;
         }
 
+        char c = (char) read;
+        
         buffer += c;
         if(c == '\n')
         {
