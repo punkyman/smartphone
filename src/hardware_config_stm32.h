@@ -14,19 +14,19 @@
 // HARDWARE_ENABLE_RTC
 // HARDWARE_USE_SH1106
 
-#define GPS_SS_RX 3
-#define GPS_SS_TX 4
+#define GPS_SS_RX PB10
+#define GPS_SS_TX PB11
 
-#define GSM_SS_RX 4
-#define GSM_SS_TX 3
-#define GSM_RESET PB8
+#define GSM_SS_RX PA2
+#define GSM_SS_TX PA3
+#define GSM_RESET PB7
 
-#define BATTERY_ANALOG_READ PA3
+#define BATTERY_ANALOG_READ PA0
 
-#define JOYSTICK_ANALOG_X PA0
-#define JOYSTICK_ANALOG_Y PA1
-#define JOYSTICK_DIGITAL_SWITCH PB9
+#define JOYSTICK_ANALOG_X PA1
+#define JOYSTICK_ANALOG_Y PA4
+#define JOYSTICK_DIGITAL_SWITCH PB12
 
-#define ENCODER_DIGITAL_CLOCK PB3 // needs to be on an interrupt compatible pin, on arduino mini : 2 or 3
-#define ENCODER_DIGITAL_DATA PB4
-#define ENCODER_DIGITAL_SWITCH PB5
+#define ENCODER_DIGITAL_CLOCK PB15 // needs to be on an interrupt compatible pin, on arduino mini : 2 or 3
+#define ENCODER_DIGITAL_DATA PB14
+#define ENCODER_DIGITAL_SWITCH PB13
