@@ -1,6 +1,8 @@
 #pragma once
 #include <Arduino.h>
 
+//#define USE_CLICK_ENCODER
+
 extern volatile int8_t encoder_scrolls;
 extern bool encoder_switch;
 
