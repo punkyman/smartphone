@@ -49,7 +49,7 @@ ClickEncoder::ClickEncoder(uint8_t A, uint8_t B, uint8_t BTN, uint8_t stepsPerNo
     button(Open), steps(stepsPerNotch),
     pinA(A), pinB(B), pinBTN(BTN), pinsActive(active)
 {
-  uint8_t configType = (pinsActive == LOW) ? INPUT_PULLUP : INPUT;
+  WiringPinMode configType = (pinsActive == LOW) ? INPUT_PULLUP : INPUT;
   pinMode(pinA, configType);
   pinMode(pinB, configType);
   pinMode(pinBTN, configType);
@@ -182,14 +182,14 @@ int16_t ClickEncoder::getValue(void)
 {
   int16_t val;
   
-  cli();
+  noInterrupts();
   val = delta;
 
   if (steps == 2) delta = val & 1;
   else if (steps == 4) delta = val & 3;
   else delta = 0; // default to 1 step per notch
 
-  sei();
+  interrupts();
   
   if (steps == 4) val >>= 2;
   if (steps == 2) val >>= 1;
