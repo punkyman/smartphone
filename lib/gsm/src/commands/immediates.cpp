@@ -21,6 +21,12 @@ GSM_RESULT at_init(ATSerial* as)
     if(!as->at_is_response_ok())
         return GSM_ERROR;
 
+    as->at_command(F("AT+CMIC=0,0"));
+    if(!as->at_get_response())
+        return GSM_TIMEOUT;
+    if(!as->at_is_response_ok())
+        return GSM_ERROR;
+
     return GSM_OK;
 }
 
