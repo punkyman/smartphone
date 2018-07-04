@@ -15,3 +15,19 @@ The current hardware is based on :
 And for the inputs, a Playstation2 joystick, and a rotary encoder.
 
 ![](./hardware.jpg)
+
+STM32F103C8T6 support, on 4.3.1 sdk, the following modification has to be made :
+
+in
+/home/punky/.platformio/packages/framework-arduinoststm32/STM32F1/libraries/Wire/Wire.cpp :
+//TwoWire Wire(1);
+TwoWire Wire(1, 0x4);
+
+because of :
+in
+/home/punky/.platformio/packages/framework-arduinoststm32/STM32F1/system/libmaple/stm32f1/include/series/i2c.h
+
+/* Flag to use alternate pin mapping in i2c_master_enable(). */
+#define _I2C_HAVE_DEPRECATED_I2C_REMAP 1
+#define I2C_REMAP 0x4
+

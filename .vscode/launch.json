@@ -14,6 +14,7 @@
             "name": "PIO Debug",
             "executable": "/media/data/hubic/work/arduino/platformio/smartphone-github/.pioenvs/smartphone/firmware.elf",
             "toolchainBinDir": "/home/punky/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "svdPath": "/home/punky/.platformio/platforms/ststm32/misc/svd/STM32F103xx.svd",
             "preLaunchTask": "PlatformIO: Pre-Debug",
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -23,6 +24,7 @@
             "name": "PIO Debug (Skip Pre-Debug)",
             "executable": "/media/data/hubic/work/arduino/platformio/smartphone-github/.pioenvs/smartphone/firmware.elf",
             "toolchainBinDir": "/home/punky/.platformio/packages/toolchain-gccarmnoneeabi/bin",
+            "svdPath": "/home/punky/.platformio/platforms/ststm32/misc/svd/STM32F103xx.svd",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
