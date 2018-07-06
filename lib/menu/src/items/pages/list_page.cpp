@@ -116,10 +116,17 @@ Page* ListPage::update(const Inputs& inputs)
 
     if(inputs.Scroll < 0)
     {
-        if(index > 0)
+        int8_t scrolls = inputs.Scroll;
+
+        while(scrolls < 0)
         {
-            content[index]->unfocus();
-            content[--index]->focus();
+            if(index > 0)
+            {
+                content[index]->unfocus();
+                content[--index]->focus();
+            }
+
+            ++scrolls;
         }
 
         return this;
@@ -127,10 +134,18 @@ Page* ListPage::update(const Inputs& inputs)
 
     if(inputs.Scroll > 0)
     {
-        if(index < nb - 1)
+
+        int8_t scrolls = inputs.Scroll;
+
+        while(scrolls > 0)
         {
-            content[index]->unfocus();
-            content[++index]->focus();
+            if(index < nb - 1)
+            {
+                content[index]->unfocus();
+                content[++index]->focus();
+            }
+
+            --scrolls;
         }
 
         return this;

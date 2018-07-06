@@ -196,14 +196,21 @@ bool CallWidget::update(const Inputs& inputs)
         number += num;
         num = ' ';
     }
-    if(inputs.Scroll > 0)
+
+    int8_t scrolls = inputs.Scroll;
+
+    while(scrolls > 0)
     {
         num = nextInCharset(num);
+        --scrolls;
     }
-    if(inputs.Scroll < 0)
+
+    while(scrolls < 0)
     {
         num = previousInCharset(num);
+        ++scrolls;
     }
+    
     if(inputs.Navigation & INPUT_VALIDATE)
     {
         if(!set(number.c_str()))

@@ -13,7 +13,7 @@ namespace ModuleInput
 {
 
 Inputs::Inputs()
-: up(false), down(false), left(false), right(false), validate(false)
+: scrolls(0), up(false), down(false), left(false), right(false), validate(false)
 , pressed_up(false), pressed_down(false), pressed_left(false), pressed_right(false), pressed_validate(false)
 , released_up(false), released_down(false), released_left(false), released_right(false), released_validate(false)
 {
@@ -50,6 +50,7 @@ void update()
     inputs.left = false;
     inputs.right = false;
     inputs.validate = false;
+    inputs.scrolls = 0;
 
 #if defined(HARDWARE_USE_JOYSTICK)
     joystick_read_values();
@@ -58,12 +59,15 @@ void update()
     inputs.left |= joystick_analog_X < (ANALOG_CENTER -analog_treshold);
     inputs.right |= joystick_analog_X > (ANALOG_CENTER + analog_treshold);
     inputs.validate |= joystick_switch;
+    inputs.scrolls += inputs.down ? 1 : 0;
+    inputs.scrolls += inputs.up ? -1 : 0;
 #endif
 #if defined(HARDWARE_USE_ENCODER)
     encoder_read_values();
     inputs.down |= (encoder_scrolls < 0);
     inputs.up |= (encoder_scrolls > 0);
     inputs.validate |= encoder_switch;
+    inputs.scrolls += encoder_scrolls;
     encoder_clear_readings();
 #endif
     

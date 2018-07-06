@@ -9,6 +9,8 @@ namespace ModuleInput
     {
         Inputs();
 
+        uint8_t scrolls;
+
         bool up, down, left, right, validate;
         bool pressed_up, pressed_down, pressed_left, pressed_right, pressed_validate;
         bool released_up, released_down, released_left, released_right, released_validate;

@@ -72,14 +72,8 @@ void PhoneMenu::update()
     const ModuleInput::Inputs* inputs = ModuleInput::getInputs();
     Menu::Inputs menu_inputs;
 
-    if(inputs->pressed_up)
-    {
-        menu_inputs.Scroll = -1;
-    }
-    if(inputs->pressed_down)
-    {
-        menu_inputs.Scroll = 1;
-    }
+    menu_inputs.Scroll = inputs->scrolls;
+
     if(inputs->pressed_left)
     {
         menu_inputs.Navigation |= Menu::INPUT_BACK;
