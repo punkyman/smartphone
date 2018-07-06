@@ -7,7 +7,6 @@
 // adding here what is missing, so that it does not get lost after a platform re-install
 #define snprintf_P(s, l, f, ...) snprintf((s), (l), (f), __VA_ARGS__)
 #define nullptr NULL // it's a warning because of -Wall, it's an error with -Wno-c++0x-compat
-#define digitalPinToInterrupt(p) (p)
 #elif defined(__AVR_ARCH__)
 
 #else
