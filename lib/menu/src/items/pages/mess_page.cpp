@@ -21,14 +21,14 @@ void MessPage::draw(Renderer* render)
     }
 }
 
-Page* MessPage::update(Inputs inputs)
+Page* MessPage::update(const Inputs& inputs)
 {
     // No inputs passed to the widgets here
-    if(inputs & INPUT_BACK)
+    if(inputs.Navigation & INPUT_BACK)
     {
         return parent ? parent : this;
     }
-    if(inputs & INPUT_VALIDATE)
+    if(inputs.Navigation & INPUT_VALIDATE)
     {
         return menu;
     }

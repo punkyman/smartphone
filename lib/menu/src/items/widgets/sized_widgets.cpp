@@ -49,29 +49,29 @@ ModifyIntWidget::ModifyIntWidget(Page* parent, const __FlashStringHelper * name,
 {
 }
 
-bool ModifyIntWidget::update(Inputs inputs)
+bool ModifyIntWidget::update(const Inputs& inputs)
 {
     if(!interacting)
     {
         value = get();
-        if(inputs & INPUT_VALIDATE)
+        if(inputs.Navigation & INPUT_VALIDATE)
             interacting = true;
     }
     else
     {
-        if(inputs & INPUT_VALIDATE)
+        if(inputs.Navigation & INPUT_VALIDATE)
         {
             set(value);
             interacting = false;
         }
-        if(inputs & INPUT_BACK)
+        if(inputs.Navigation & INPUT_BACK)
         {
             if(value > minimum)
                 --value;
             else
                 value = maximum;
         }
-        if(inputs & INPUT_FORWARD)
+        if(inputs.Navigation & INPUT_FORWARD)
         {
             if(value < maximum)
                 ++value;

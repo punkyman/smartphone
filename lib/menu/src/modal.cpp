@@ -35,14 +35,14 @@ bool Modal::listener(uint8_t msg)
     return false;
 }
 
-bool Modal::update(Inputs inputs)
+bool Modal::update(const Inputs& inputs)
 {
     if(!active)
         return false;
     else
     {
         if(style != STYLE_IN_PROGRESS)
-            if(inputs & INPUT_VALIDATE)
+            if(inputs.Navigation & INPUT_VALIDATE)
                 active = false;
 
         return true;

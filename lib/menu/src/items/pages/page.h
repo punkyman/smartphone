@@ -28,7 +28,7 @@ namespace Menu
         virtual void enter() {}
 
         // interactions update
-        virtual Page* update(Inputs inputs) = 0;
+        virtual Page* update(const Inputs& inputs) = 0;
 
         Item** content;
         uint8_t nb;

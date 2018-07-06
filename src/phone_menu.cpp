@@ -70,36 +70,36 @@ PhoneMenu::PhoneMenu()
 void PhoneMenu::update()
 {
     const ModuleInput::Inputs* inputs = ModuleInput::getInputs();
-    Menu::Inputs input_values = 0;
+    Menu::Inputs menu_inputs;
 
     if(inputs->pressed_up)
     {
-        input_values |= Menu::INPUT_PREVIOUS;
+        menu_inputs.Scroll = -1;
     }
     if(inputs->pressed_down)
     {
-        input_values |= Menu::INPUT_NEXT;
+        menu_inputs.Scroll = 1;
     }
     if(inputs->pressed_left)
     {
-        input_values |= Menu::INPUT_BACK;
+        menu_inputs.Navigation |= Menu::INPUT_BACK;
     }
     if(inputs->pressed_right)
     {
-        input_values |= Menu::INPUT_FORWARD;
+        menu_inputs.Navigation |= Menu::INPUT_FORWARD;
     }
     if(inputs->pressed_validate)
     {
-        input_values |= Menu::INPUT_VALIDATE;
+        menu_inputs.Navigation |= Menu::INPUT_VALIDATE;
     }
 
-    if(modal->update(input_values))
+    if(modal->update(menu_inputs))
     {
         return; // modal intercepts all inputs
     }
 
     Menu::Page* previousPage = currentPage;
-    currentPage = currentPage->update(input_values);
+    currentPage = currentPage->update(menu_inputs);
 
     if(previousPage != currentPage)
     {

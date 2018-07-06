@@ -105,7 +105,7 @@ void ListPage::draw(Renderer* render)
     }
 }
 
-Page* ListPage::update(Inputs inputs)
+Page* ListPage::update(const Inputs& inputs)
 {
     if(!content[index]->ispage())
     {
@@ -114,7 +114,7 @@ Page* ListPage::update(Inputs inputs)
             return this;
     }
 
-    if(inputs & INPUT_PREVIOUS)
+    if(inputs.Scroll < 0)
     {
         if(index > 0)
         {
@@ -125,7 +125,7 @@ Page* ListPage::update(Inputs inputs)
         return this;
     }
 
-    if(inputs & INPUT_NEXT)
+    if(inputs.Scroll > 0)
     {
         if(index < nb - 1)
         {
@@ -136,12 +136,12 @@ Page* ListPage::update(Inputs inputs)
         return this;
     }
 
-    if(inputs & INPUT_BACK)
+    if(inputs.Navigation & INPUT_BACK)
     {
         return parent;
     }
 
-    if(inputs & INPUT_VALIDATE)
+    if(inputs.Navigation & INPUT_VALIDATE)
     {
         if(content[index]->ispage())
             return (Page*) content[index];

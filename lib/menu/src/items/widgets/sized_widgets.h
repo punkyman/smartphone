@@ -19,7 +19,7 @@ namespace Menu
     {
         ModifyIntWidget(Page* parent, const __FlashStringHelper * name, GETINT get, SETINT set, int32_t minimum, int32_t maximum);
 
-        virtual bool update(Inputs inputs);
+        virtual bool update(const Inputs& inputs);
 
         virtual void drawInPage(Renderer* render, Rect* area);
         virtual bool canDrawInPage(const Renderer* render, Rect* area) const;

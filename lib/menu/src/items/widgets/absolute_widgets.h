@@ -87,7 +87,7 @@ namespace Menu
     {
         CallWidget(Page* parent, CALLNUMBER set);
 
-        virtual bool update(Inputs inputs);
+        virtual bool update(const Inputs& inputs);
 
         virtual void drawInPage(Renderer* render, Rect* area);
 

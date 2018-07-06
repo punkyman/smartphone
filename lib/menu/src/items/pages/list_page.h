@@ -19,7 +19,7 @@ namespace Menu
 
         virtual void draw(Renderer* render);
 
-        virtual Page* update(Inputs inputs);
+        virtual Page* update(const Inputs& inputs);
 
         virtual void enter();
 

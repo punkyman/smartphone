@@ -22,7 +22,7 @@ namespace Menu
 
         Modal();
 
-        bool update(Inputs inputs);
+        bool update(const Inputs& inputs);
 
         void draw(Renderer* render);
 

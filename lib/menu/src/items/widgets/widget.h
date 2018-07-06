@@ -12,13 +12,13 @@ namespace Menu
         virtual bool ispage() const { return false; }
 
         // returns true if the widget absorbs the inputs
-        virtual bool update(Inputs inputs) = 0;
+        virtual bool update(const Inputs& inputs) = 0;
     };
 
     struct DisplayWidget : Widget
     {
         DisplayWidget(Page* parent, const __FlashStringHelper * name) : Widget(parent, name) {}
 
-        virtual bool update(Inputs inputs) { (void) inputs; return false; }
+        virtual bool update(const Inputs& inputs) { (void) inputs; return false; }
     };
 }

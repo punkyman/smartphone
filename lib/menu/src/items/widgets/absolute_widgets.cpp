@@ -170,7 +170,7 @@ CallWidget::CallWidget(Page* parent, CALLNUMBER setter)
     success = false;
 }
 
-bool CallWidget::update(Inputs inputs)
+bool CallWidget::update(const Inputs& inputs)
 {
     if(success)
     {
@@ -180,7 +180,7 @@ bool CallWidget::update(Inputs inputs)
         return false;
     }
 
-    if(inputs & INPUT_BACK)
+    if(inputs.Navigation & INPUT_BACK)
     {
         if(number.length() == 0)
             return false;
@@ -191,20 +191,20 @@ bool CallWidget::update(Inputs inputs)
             number.remove(number.length()-1);
         }
     }
-    if(inputs & INPUT_FORWARD)
+    if(inputs.Navigation & INPUT_FORWARD)
     {
         number += num;
         num = ' ';
     }
-    if(inputs & INPUT_NEXT)
+    if(inputs.Scroll > 0)
     {
         num = nextInCharset(num);
     }
-    if(inputs & INPUT_PREVIOUS)
+    if(inputs.Scroll < 0)
     {
         num = previousInCharset(num);
     }
-    if(inputs & INPUT_VALIDATE)
+    if(inputs.Navigation & INPUT_VALIDATE)
     {
         if(!set(number.c_str()))
         {

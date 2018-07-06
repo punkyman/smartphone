@@ -18,13 +18,13 @@ void FullscreenPage::draw(Renderer* render)
     content[0]->drawInPage(render, &area);
 }
 
-Page* FullscreenPage::update(Inputs inputs)
+Page* FullscreenPage::update(const Inputs& inputs)
 {
     Menu::Widget* widget = (Menu::Widget*) content[0]; // better be a widget !
     if(widget->update(inputs))
         return this;
 
-    if(inputs & INPUT_BACK)
+    if(inputs.Navigation & INPUT_BACK)
     {
         return parent ? parent : this;
     }
