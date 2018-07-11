@@ -7,6 +7,8 @@ The system embeds a bunch of sensors, some inputs, an RTC clock, a GPS, and a GS
 The project makes use of platformio to manage sdk download, project building, etc. See platformio.ini file. It can be debugged on stm32 platform, but not on arduino atmel.
 The project has an internal configuration in the file src\hardware_config.h, where a bunch of defines help configure which modules are expected to be part of the hardware.
 
+## Hardware v2
+
 Hardware v2 is based on similar components as v1, except :
 * Custom circuit board is now in place to link all the components together. See pcb-design\ for the gerber files used to produce the circuit board
 * Arduino pro mini has been replaced by a stm32f103c8t6 (aka the bluepill). The main issue with arduino was a code size issue, where everything could not fit into 32kb of ram. The code has been ported to the bluepill using the maple framework.
@@ -14,7 +16,9 @@ Hardware v2 is based on similar components as v1, except :
 
 ![](./hardware-v2.jpg)
 
-The first iteration has a few issues which won't be fixed until a new batch of circuit boards is produced :
+## PCB issues
+
+The first iteration of the pcb design has a few issues which won't be fixed until a new batch of circuit boards is produced :
 * there is a pin mismatch on the i2c bus, which uses PB8 and PB9 instead of PB6 and PB7. Both can be used hardware-wise, but the maple framework makes use of PB6/PB7 connections by default.
 on 4.3.1 sdk, the following modification can be made to fix the issue :
 
@@ -28,6 +32,8 @@ STM32F1/system/libmaple/stm32f1/include/series/i2c.h
 /* Flag to use alternate pin mapping in i2c_master_enable(). */
 #define _I2C_HAVE_DEPRECATED_I2C_REMAP 1
 #define I2C_REMAP 0x4
+
+## Hardware v1
 
 Hardware v1 was based on :
 - Arduino pro mini 3,3V : that embeds the AtMega328P, running at 8mhz, and providing 32kB of progmem, 2kB of ram
