@@ -33,6 +33,11 @@ STM32F1/system/libmaple/stm32f1/include/series/i2c.h
 #define _I2C_HAVE_DEPRECATED_I2C_REMAP 1
 #define I2C_REMAP 0x4
 
+* The spacing on the pinpad holes is too small
+* The holes for the power wires are too small
+* The transistor pads are too small
+* The SIM800L slot misses the net pad
+
 ## Hardware v1
 
 Hardware v1 was based on :
