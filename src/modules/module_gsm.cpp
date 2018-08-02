@@ -54,7 +54,6 @@ namespace ModuleGsm
                 else
                 {
                     Messaging::Notify(Messages::Channel, Messages::MSG_GSM_OPERATION_FAILURE);
-                    reset();
                 }
             }
         }
