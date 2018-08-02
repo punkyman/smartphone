@@ -59,8 +59,6 @@ void update()
     inputs.left |= joystick_analog_X < (ANALOG_CENTER -analog_treshold);
     inputs.right |= joystick_analog_X > (ANALOG_CENTER + analog_treshold);
     inputs.validate |= joystick_switch;
-    inputs.scrolls += inputs.down ? 1 : 0;
-    inputs.scrolls += inputs.up ? -1 : 0;
 #endif
 #if defined(HARDWARE_USE_ENCODER)
     encoder_read_values();
@@ -82,6 +80,11 @@ void update()
     inputs.released_left = (!inputs.left && previous_left);
     inputs.released_right = (!inputs.right && previous_right);
     inputs.released_validate = (!inputs.validate && previous_validate);
+
+#if defined(HARDWARE_USE_JOYSTICK)
+    inputs.scrolls += inputs.pressed_down ? 1 : 0;
+    inputs.scrolls += inputs.pressed_up ? -1 : 0;
+#endif
 }
 
 }; //namespace ModuleInput
