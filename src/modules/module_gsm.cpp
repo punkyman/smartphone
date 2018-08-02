@@ -59,8 +59,7 @@ namespace ModuleGsm
         }
         else if(millis() >= signal_time)
         {
-            if(at_get_signal_level(atserial, &signal_level) != GSM_OK)
-                reset();
+            at_get_signal_level(atserial, &signal_level); // do not watch for results as this is non important information
             signal_time = millis() + SIGNAL_UPDATE;
         }
    }
